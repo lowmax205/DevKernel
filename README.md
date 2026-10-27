@@ -5,32 +5,31 @@
 DevKernel is a local-first **Meta-Developer Operating System (MyOS)** built on the **"One Home Per Fact"** principle. It bridges local Obsidian long-term memory, relational AST + semantic knowledge graphs (Graphify + DeepSeek), and structured Interpretable Context Methodology (ICM) project cards to empower AI coding assistants with instant, zero-token-waste context recall and disciplined engineering lifecycles.
 
 ---
-
 ## 1. The 3-Layer Knowledge Architecture
 
 ```mermaid
 flowchart TD
   subgraph Layer3["Layer 3: Direction (ICM Cards)"]
-    CARD["MyOS/projects/<slug>.md<br/>• Live Status & Next Actions<br/>• Authoritative Routing Table"]
+    CARD["MyOS/projects/slug.md<br/>- Live Status and Next Actions<br/>- Authoritative Routing Table"]
   end
 
   subgraph Layer1["Layer 1: Memory (Obsidian Vault)"]
-    HUBS["10 - Projects/<Project>/<Project> Hub.md<br/>• Interactive Archify Diagrams<br/>• Linked Architecture Patterns"]
-    SESSIONS["10 - Projects/<Project>/[<CODE>] YYYY-MM-DD - <Focus>.md<br/>• Single Daily Consolidated Notes<br/>• Decisions, Mistakes & Wins"]
-    ATOMIC["30 - Resources/Atomic Insights/<Pattern>.md<br/>• Reusable Gotchas & 10 Backend Patterns<br/>• Concept-First Titles (<= 5 words / 35 chars)"]
+    HUBS["10 - Projects/Project/Project Hub.md<br/>- Interactive Archify Diagrams<br/>- Linked Architecture Patterns"]
+    SESSIONS["10 - Projects/Project/CODE YYYY-MM-DD - Focus.md<br/>- Single Daily Consolidated Notes<br/>- Decisions, Mistakes and Wins"]
+    ATOMIC["30 - Resources/Atomic Insights/Pattern.md<br/>- Reusable Gotchas and 10 Backend Patterns<br/>- Concept-First Titles: at most 5 words / 35 chars"]
   end
 
   subgraph Layer2["Layer 2: Connections (Graphify Graph)"]
-    AST["graphify-out/graph.json<br/>• 4,000+ AST Nodes & Relational Edges<br/>• Code Symbol Dep Tree & Clusters"]
-    CAPSULE["graph_recall.py<br/>• Pure-English 2-Hop Traversal<br/>• Strict <350 Token Context Capsule"]
+    AST["graphify-out/graph.json<br/>- 4,000+ AST Nodes and Relational Edges<br/>- Code Symbol Dep Tree and Clusters"]
+    CAPSULE["graph_recall.py<br/>- Pure-English 2-Hop Traversal<br/>- Strict under 350 Token Context Capsule"]
   end
 
-  CARD <-->|"One Home Per Fact"| HUBS
+  CARD ---|"One Home Per Fact"| HUBS
   HUBS --> SESSIONS
   HUBS --> ATOMIC
   SESSIONS -.->|"extracts gotchas"| ATOMIC
-  AST -.->|"indexes code & notes"| HUBS
-  AST -.->|"indexes code & notes"| ATOMIC
+  AST -.->|"indexes code and notes"| HUBS
+  AST -.->|"indexes code and notes"| ATOMIC
   CAPSULE -->|"queries"| AST
   CAPSULE -->|"injects capsule into prompt"| CARD
 ```
@@ -53,12 +52,12 @@ flowchart TD
 
   CHECK -->|"YES"| TIER1["Tier 1: Simple CRUD Invariant"]
   TIER1 --> REPO["Direct Repository + Service"]
-  REPO --> REJECT["Strictly Reject:<br/>• CQRS Handlers<br/>• Custom Builders<br/>• Distributed Event Buses"]
-  REJECT --> NOTICE["Emit Notice:<br/>[SIMPLICITY_GATE] Preserving Tier 1 simplicity:<br/>Direct Repository + Service model used."]
+  REPO --> REJECT["Strictly Reject:<br/>- CQRS Handlers<br/>- Custom Builders<br/>- Distributed Event Buses"]
+  REJECT --> NOTICE["Emit Notice:<br/>SIMPLICITY_GATE: Preserving Tier 1 simplicity<br/>Direct Repository + Service model used."]
 
   CHECK -->|"NO"| TIER2["Tier 2: High-Scale / External Invariants"]
   TIER2 --> COND{"Select Specialized Pattern:"}
-  COND -->|">3 Algorithm Rules / Calculation Variations"| STRAT["Strategy Pattern"]
+  COND -->|"Over 3 Algorithm Rules / Calculation Variations"| STRAT["Strategy Pattern"]
   COND -->|"Third-Party / Legacy Dirty Schemas"| ADAPT["Adapter Pattern (ACL)"]
   COND -->|"Secondary Side Effects (Email, SMS, Telemetry)"| OBS["Observer Pattern (Domain Events)"]
   COND -->|"Flaky External Remote APIs"| CB["Circuit Breaker Pattern"]
