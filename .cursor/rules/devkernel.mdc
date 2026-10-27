@@ -1,0 +1,49 @@
+---
+description: DevKernel Global Workspace Routing Table (ICM), AI Hero Workflow & Repo Bootstrapper
+alwaysApply: true
+---
+# DevKernel — Global Workspace Routing Table (ICM)
+
+You are operating inside `<ZENTORA_ROOT>`. Follow the "One Home Per Fact" principle:
+- **Live Status & Next Steps** live ONLY in `<ZENTORA_ROOT>/MyOS/projects/<project-slug>.md`.
+- **Full History & Session Notes** live ONLY in `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/<Project Name>/`.
+- **Connections & Communities** live ONLY in `<ZENTORA_ROOT>/MyOS/graphify-out/graph.json`.
+
+## Universal Engineering & Terminal Guardrails
+1. **Windows PowerShell 5.1 Terminal Execution:**
+   - Never use bash-style `&&`, `||`, or `cd "path" && command`. Set `Cwd` / `working_directory` directly or use `cmd1; if ($?) { cmd2 }`.
+2. **ASCII-Safe Punctuation & UTF-8 Without BOM:**
+   - Save all files as UTF-8 without BOM. Prefer ASCII `-`, `--`, `->`, `...`, `Section N` to avoid PowerShell encoding corruption.
+3. **Mandatory Verification Gate (`verification-before-completion`):**
+   - Run `npm run lint:fix` and `npm run build` (plus affected tests) with exit code `0` before claiming completion or committing.
+
+## Exact Graphify CLI Syntax (Zero-Token-Waste Rule)
+> **CRITICAL — NEVER run `graphify --update`!** `update` and `extract` are subcommands, NOT `--flags`:
+- **Fast AST Re-Index:** `.\scripts\graphify.ps1 update` (if present in repo) or `graphify update "<ZENTORA_ROOT>/MyOS"`.
+- **Full DeepSeek Extraction:** `graphify extract "<ZENTORA_ROOT>/MyOS" --backend deepseek --output "<ZENTORA_ROOT>/MyOS"`.
+
+## Workflow Rules
+0. **Strict Obsidian Project Folder Resolution (NEVER write to Vault Root):**
+   - All project Hub notes, Session notes (`<Project Name> Session YYYY-MM-DD.md`), and Changelog archives MUST be created inside `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/<Project Name>/`.
+1. **Pre-Flight Rule (Before answering status or architecture questions):**
+   - Run `python "<ZENTORA_ROOT>/MyOS/_meta/zentora_sync.py" --once`
+   - Run `python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "<english keywords>" --hops 2`.
+   - Read `<ZENTORA_ROOT>/AGENTS.md` and `<ZENTORA_ROOT>/MyOS/projects/<project-slug>.md`.
+2. **AI Hero (`aihero.dev`) + DevKernel Development Lifecycle:**
+   - Do NOT duplicate global skills (`~/.agents/skills/`) inside individual repository `.agents/skills/` folders.
+   - **Clarify & Specify:** `/grill-me` (or `grill-with-docs`) -> `to-spec` -> `to-tickets`
+   - **Design & Model:** `domain-modeling` / `codebase-design` / `archify`
+   - **Build & Verify:** `tdd` -> `implement` -> `verification-before-completion` -> `code-review`
+   - **Commit & Release (`/git-commit [patch|minor|major]`):**
+     - **Without `patch|minor|major`:** Updates `## [Unreleased]` in `CHANGELOG.md` and commits atomically.
+     - **With `patch|minor|major`:** Promotes `## [Unreleased]`, ensures/updates the `production` branch from `main`, creates an annotated git tag `vX.Y.Z` with the latest `CHANGELOG.md` notes, and triggers a **GitHub Release (`gh release create`) ONLY on `major` updates**.
+3. **When told `save progress`:**
+   - Detect project and update single daily consolidated note: `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/<Project Name>/[<CODE>] YYYY-MM-DD - <Focus Title>.md`.
+   - Extract atomic gotchas into `<ZENTORA_ROOT>/MyOS/ObsidianVault/30 - Resources/Atomic Insights/`, update `<ZENTORA_ROOT>/MyOS/projects/<project-slug>.md`, and run fast AST update `graphify update "<ZENTORA_ROOT>/MyOS"` (use `graphify extract` only for major releases or when `--deep` is specified).
+4. **When told `archify <Project Name>`:**
+   - Output `.docs/architecture/system-architecture.html` and `.docs/architecture/system-architecture.mmd` inside the repository.
+5. **When told `bootstrap <RepoName>`:**
+   - Run `powershell -ExecutionPolicy Bypass -File "<ZENTORA_ROOT>/MyOS/_meta/bootstrap_repo.ps1" -RepoPath "<RepoName-or-Path>"`.
+6. **Backend Engineering Protocols (ZEP) & Two-Tier Simplicity Gate:**
+   - Inspect backend code against the 10 Backend Design Patterns (`Repository`, `Factory`, `Singleton`, `Strategy`, `Observer`, `Builder`, `Adapter`, `Decorator`, `CQRS`, `Circuit Breaker`).
+   - Enforce controller insulation (no raw queries/fetch in handlers) and Two-Tier Simplicity Gate.

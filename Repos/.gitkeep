@@ -1,0 +1,2 @@
+# This file preserves the Repos/ root directory in version control.
+# Individual repositories inside Repos/ are tracked separately by their own Git remotes.

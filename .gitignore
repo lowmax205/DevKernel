@@ -1,0 +1,45 @@
+# ==============================================================================
+# ZentoraDev Master Workspace .gitignore
+# ==============================================================================
+
+# Child Repositories (tracked independently by their own Git remotes)
+Repos/**
+!Repos/
+!Repos/.gitkeep
+
+# Secrets & Environment Configurations (CRITICAL - DO NOT TRACK)
+.env*
+*.env
+.env.graphify
+MyOS/.env.graphify
+!.env*.example
+!*.env.example
+
+# Python Cache & Runtime State
+__pycache__/
+*.py[cod]
+*$py.class
+MyOS/_meta/__pycache__/
+MyOS/_meta/.sync_state.json
+
+# Obsidian Local Session & UI State (Track notes, ignore local layout changes)
+MyOS/ObsidianVault/.obsidian/workspace.json
+MyOS/ObsidianVault/.obsidian/workspace-mobile.json
+MyOS/ObsidianVault/.obsidian/cache/
+MyOS/ObsidianVault/.trash/
+
+# Graphify Heavy Cache & Daily Dumps (Keep core graph.json, reports, and HTML; ignore AST cache & dated dumps)
+MyOS/graphify-out/cache/
+graphify-out/cache/
+MyOS/graphify-out/20*
+graphify-out/20*
+MyOS/graphify-out/.graphify_*
+graphify-out/.graphify_*
+
+# OS & Editor Temporary Files
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.tmp
+*.log
+MyOS/graphify-out/.rebuild.lock

@@ -1,0 +1,48 @@
+---
+description: Zentora Backend Engineering Protocols (ZEP) - Boundary Enforcement, Anti-Overengineering Linter, and Two-Tier Simplicity Gate
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.py"
+  - "**/*.js"
+  - "**/*.mjs"
+  - "**/backend/**"
+  - "**/src/**"
+  - "**/apps/api/**"
+alwaysApply: false
+---
+# Zentora Backend Engineering Protocols (ZEP)
+
+When reading, authoring, or refactoring backend source code, enforce the 10 Backend Design Patterns and architectural boundaries:
+
+## 1. Boundary Enforcement
+- **Controller & Route Handler Insulation:** API route handlers, NestJS controllers, Express routers, and FastAPI endpoints must NOT execute direct database queries, raw SQL, or ad-hoc external HTTP fetch calls.
+- **Service & Repository Inversion:** Controllers delegate immediately to injected domain services; persistence logic is encapsulated behind repository interfaces (`Repository Pattern`).
+- **External API Insulation:** Third-party vendor calls must pass through Anti-Corruption Layer adapters (`Adapter Pattern`) wrapped with stateful failure protection (`Circuit Breaker Pattern`).
+
+## 2. Anti-Overengineering & Clean Code Linter
+- **Constructor & Parameter Bloat (5+ Args):** When a function or constructor takes 5 or more positional arguments, flag it and refactor to a typed options object or fluent builder (`Builder Pattern`).
+- **Deeply Branching Conditionals (>3 Branches):** When nested `if/elif/else` or `switch` statements exceed 3 operational branches for variant business calculations, flag it and refactor into polymorphic strategy classes (`Strategy Pattern`).
+- **Unhandleable Network Failure:** When remote third-party API fetch calls lack configured timeouts, retry policies, or fallback mechanisms, flag it and wrap the call with a circuit breaker (`Circuit Breaker Pattern`).
+
+## 3. Two-Tier Simplicity Gate
+- **Tier 1 (Standard CRUD Operations):**
+  - Enforce direct **Repository + Service** pattern.
+  - Strictly **REJECT** CQRS, distributed event buses, and custom builders for simple entities.
+  - Emission standard: `[SIMPLICITY_GATE] Preserving Tier 1 simplicity: Direct Repository + Service model used.`
+- **Tier 2 (High-Scale / Multi-Algorithm / External Integrations):**
+  - Mandate **Strategy** for algorithmic variants (>3 calculation rules).
+  - Mandate **Adapter** for third-party or legacy schemas.
+  - Mandate **Observer** for asynchronous secondary side effects (notifications, telemetry, analytics).
+  - Mandate **Circuit Breaker** for remote network dependencies.
+  - Mandate **CQRS** strictly for high-throughput write-contested pipelines.
+
+## 4. Polyglot Standards
+- **TypeScript / Node.js:**
+  - Decouple with TypeScript `interface` contracts.
+  - Use Prisma / Drizzle ORM abstractions.
+  - Use Zod schemas and fluent builder patterns.
+- **Python / FastAPI:**
+  - Decouple with `typing.Protocol` or ABCs.
+  - Validate with Pydantic v2 domain schemas.
+  - Use SQLAlchemy 2.0 session repositories.

@@ -1,0 +1,16 @@
+#!/bin/sh
+# Zentora Dev Root Pre-Commit Portability & BOM Hook
+# Blocks commits containing hardcoded Windows drive letters or UTF-8 BOM.
+
+ROOT_DIR=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+
+if [ -f "$ROOT_DIR/MyOS/_meta/check_portable_paths.py" ]; then
+  python "$ROOT_DIR/MyOS/_meta/check_portable_paths.py" --staged
+  EXIT_CODE=$?
+  if [ $EXIT_CODE -ne 0 ]; then
+    echo "[git-hook] ERROR: Commit blocked by Zentora Dev Portability Guard."
+    exit $EXIT_CODE
+  fi
+fi
+
+exit 0

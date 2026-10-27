@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Zentora Sync Watcher",
+      "type": "shell",
+      "command": "python MyOS/_meta/zentora_sync.py --watch",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated",
+        "clear": false,
+        "showReuseMessage": false
+      },
+      "problemMatcher": []
+    }
+  ]
+}

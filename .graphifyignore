@@ -1,0 +1,12 @@
+ObsidianVault/Templates/**
+Templates/**
+**/Templates/**
+graphify-out/
+MyOS/graphify-out/
+.obsidian/
+ObsidianVault/.obsidian/
+MyOS/ObsidianVault/.obsidian/
+_meta/git-hooks/**
+MyOS/_meta/git-hooks/**
+.env*
+Repos/**

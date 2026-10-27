@@ -1,0 +1,136 @@
+#!/bin/sh
+# Git post-commit hook for Zentora Dev (Dynamic Root Resolution)
+
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+if [ -z "$REPO_ROOT" ]; then
+  REPO_ROOT=$(pwd)
+fi
+PROJECT_NAME=$(basename "$REPO_ROOT")
+DATE_TODAY=$(date +%Y-%m-%d)
+COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "0000000")
+COMMIT_MSG=$(git log -1 --pretty=%B 2>/dev/null | head -n 1)
+CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | tr '\n' ', ' | sed 's/,$//')
+
+# Determine base start directory
+if git rev-parse --show-toplevel >/dev/null 2>&1; then
+  START_DIR=$(git rev-parse --show-toplevel)
+else
+  START_DIR=$(cd "$(dirname "$0")" && pwd)
+fi
+
+CURR="$START_DIR"
+ZENTORA_ROOT_OVERRIDE="${ZENTORA_ROOT:-}"
+ZENTORA_ROOT=""
+MYOS_ROOT=""
+
+# Traverse upward to locate ZentoraDev / MyOS
+while [ "$CURR" != "/" ] && [ -n "$CURR" ] && [ "$CURR" != "." ]; do
+  if [ -d "$CURR/MyOS" ] && { [ -d "$CURR/MyOS/_meta" ] || [ -f "$CURR/MyOS/_meta/zentora_sync.py" ]; }; then
+    ZENTORA_ROOT="$CURR"
+    MYOS_ROOT="$CURR/MyOS"
+    break
+  elif [ -d "$CURR/_meta" ] && [ "$(basename "$CURR")" = "MyOS" ]; then
+    MYOS_ROOT="$CURR"
+    ZENTORA_ROOT=$(cd "$CURR/.." && pwd)
+    break
+  fi
+  PARENT=$(cd "$CURR/.." 2>/dev/null && pwd)
+  if [ "$PARENT" = "$CURR" ]; then
+    break
+  fi
+  CURR="$PARENT"
+done
+
+# Fallback: honor ZENTORA_ROOT env var (no hardcoded drive letters)
+if [ -z "$ZENTORA_ROOT" ] && [ -n "${ZENTORA_ROOT_OVERRIDE:-}" ]; then
+  ZENTORA_ROOT="$ZENTORA_ROOT_OVERRIDE"
+  MYOS_ROOT="$ZENTORA_ROOT_OVERRIDE/MyOS"
+fi
+
+# Skip post-commit session/sync hook when committing inside the root DevKernel workspace itself
+if [ "$REPO_ROOT" = "$ZENTORA_ROOT" ] || [ "$PROJECT_NAME" = "DevKernel" ] || [ "$PROJECT_NAME" = "ZentoraDev" ] || [ "$PROJECT_NAME" = "MyOS" ]; then
+  exit 0
+fi
+
+if [ -f "$MYOS_ROOT/.env.graphify" ]; then
+  set -a
+  . "$MYOS_ROOT/.env.graphify"
+  set +a
+elif [ -f "$ZENTORA_ROOT/.env.graphify" ]; then
+  set -a
+  . "$ZENTORA_ROOT/.env.graphify"
+  set +a
+fi
+
+# Derive project short code
+case "$PROJECT_NAME" in
+  "DevKernel") CODE="DEV" ;;
+  "Starter-Project") CODE="STA" ;;
+  *)
+    CODE=$(echo "$PROJECT_NAME" | tr '[:lower:]' '[:upper:]' | cut -c1-4)
+    ;;
+esac
+
+VAULT_PROJECT_DIR="$MYOS_ROOT/ObsidianVault/10 - Projects/$PROJECT_NAME"
+mkdir -p "$VAULT_PROJECT_DIR"
+
+# Detect if a session note already exists for today matching [$CODE] $DATE_TODAY - *.md
+EXISTING_SESSION=$(find "$VAULT_PROJECT_DIR" -maxdepth 1 -name "\[$CODE\] $DATE_TODAY - *.md" -print -quit 2>/dev/null)
+
+if [ -n "$EXISTING_SESSION" ] && [ -f "$EXISTING_SESSION" ]; then
+  SESSION_FILE="$EXISTING_SESSION"
+else
+  # Check for legacy pattern just in case
+  LEGACY_SESSION="$VAULT_PROJECT_DIR/$PROJECT_NAME Session $DATE_TODAY.md"
+  if [ -f "$LEGACY_SESSION" ]; then
+    SESSION_FILE="$LEGACY_SESSION"
+  else
+    SESSION_FILE="$VAULT_PROJECT_DIR/[$CODE] $DATE_TODAY - Daily Dev Log.md"
+  fi
+fi
+
+if [ ! -f "$SESSION_FILE" ]; then
+cat <<EOF> "$SESSION_FILE"
+---
+type: session
+status: active
+tags:
+  - project/$PROJECT_NAME
+  - session-log
+created: $DATE_TODAY
+summary: Automated and manual session log for $PROJECT_NAME on $DATE_TODAY.
+---
+# [$CODE] $DATE_TODAY - Daily Dev Log
+
+Parent: [[$PROJECT_NAME Hub]]
+
+## Focus
+- Active development on $PROJECT_NAME
+
+## What was built
+- **[$COMMIT_HASH]** $COMMIT_MSG (Files: \`$CHANGED_FILES\`)
+
+## Mistakes
+- 
+
+## Decisions
+- 
+
+## Wins
+- 
+EOF
+else
+  if grep -q "## What was built" "$SESSION_FILE" 2>/dev/null; then
+    awk -v entry="- **[$COMMIT_HASH]** $COMMIT_MSG (Files: \`$CHANGED_FILES\`)" '
+      /^## What was built/ { print; print entry; next }
+      { print }
+    ' "$SESSION_FILE" > "$SESSION_FILE.tmp" && mv "$SESSION_FILE.tmp" "$SESSION_FILE"
+  else
+    echo "- **[$COMMIT_HASH]** $COMMIT_MSG (Files: \`$CHANGED_FILES\`)" >> "$SESSION_FILE"
+  fi
+fi
+
+# Run background reconciliation and graph update asynchronously
+nohup python "$MYOS_ROOT/_meta/zentora_sync.py" --once >/dev/null 2>&1 &
+
+exit 0

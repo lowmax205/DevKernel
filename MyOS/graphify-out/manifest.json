@@ -1,0 +1,1268 @@
+{
+  "_meta/bootstrap_machine.ps1": {
+    "mtime": 1792736185.4347663,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d7a41edf97262cddc8df6e686e1a8750",
+    "semantic_hash": ""
+  },
+  "_meta/bootstrap_repo.ps1": {
+    "mtime": 1792735649.4552271,
+    "seen": 1793064597.1303139,
+    "ast_hash": "16ba250b6b5d267e3d52c25e94f86bf4",
+    "semantic_hash": ""
+  },
+  "_meta/check_portable_paths.py": {
+    "mtime": 1792999723.144199,
+    "seen": 1793064597.1303139,
+    "ast_hash": "1aa1cd2da90ea10796b36cef75037812",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/bin/archify.mjs": {
+    "mtime": 1792735506.6423187,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e14e6ff16129f42073e022170dddbcfd",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/bin/delivery-update.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d9ad883fab3d5e1dd3af3af65dd7acff",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/bin/finalize.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "499f9bfad6d167827d4c429a103615f1",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/bin/open-artifact.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "cfeffc8638c6df198329cccb21deb7fe",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/bin/preview.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "74d1222005c05087a085a9017d7805ba",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/bin/recover-output.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "6466ffa045c5cefadc46677bbd93e01a",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/bin/visual-check.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "1d21ffc0c168f5423a7e520c601a2f5c",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/brand-marks/catalog.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "9bb786967cf74a8c019d435b49af5845",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/delta/architecture-delta.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "f4cc1d53cafd003a2cb25f8f24b2f993",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/agent-run.lifecycle.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ee07dbeb727b3bbe096a24373a97489b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/agent-tool-call.workflow.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "2383333b1f4a65df428b9db460374412",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/archify-dev-activity.timeline.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e65224d215fba92a6bb34e68ffb24111",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/archify-repository.tree.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "9c91c690c75bd2e98d93a429902d366f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/async-job-roundtrip.sequence.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "6dc91cb216f5c7b669b9e49d5b193218",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/brand-aware-delivery.architecture.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c832ce00f05f735c4c8b90e311578b99",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/cache-miss-request.sequence.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "54e8dab1d8410394ea5211d6a10242ca",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/checkout-platform.base.architecture.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "39b1f0bde0e9a1ffe33514dc4fafd335",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/checkout-platform.head.architecture.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "51ae6214500db0ca8171c5733df800aa",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/checkout-request.waterfall.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "2563b38b299ccfe73ae6e6a9320073c4",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/deployment-release.lifecycle.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c7735cc175fbb16dc0f83a1a4cbde2e2",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/event-stream.dataflow.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "374530102a61fc710f632b7acca52cba",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/example-rebuild.waterfall.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "2a0aceb590addaefb702f32cc406dc79",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/holiday-planning.workflow.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8d9b45bc8d87111d983382fde2ae5763",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/incident-response.workflow.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "aa5b3463a9898cf32804d0a320a5f12f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/locales/de.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "982b57b2649aae58e31c3db8ddd73932",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/locales/fr.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "626d3844a0c4d84bf4e53a9efa3ee5ab",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/locales/fr.partial.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "a80458d8ddd99d86c99d4104980386a7",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/locales/it.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "6a01a39d2ca0fb754986cbd90c439886",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/locales/ja.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "cc02ee37e195f3b63e2a9b0ac83a7da3",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/locales/pt.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "1243efa785f47f20c2ec5a14fbec17c7",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/locales/ru.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "3048b2db2829c346b9f12dcd2084a7dd",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/orders.erd.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "df34e7fa7f23d42e7a75c26e748b638f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/payment-incident.timeline.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "63e831ea0d1f10e688eb0ddcf15e5dc3",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/payment-platform.tree.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "24dd2092a55afa1ed6f919bd6ff9d7a4",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/payment-processors.class.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b8caeb5f296091973d9a341d2dea107b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/payments.class.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b0a0767572f92ddb9b467aacc3e40998",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/product-analytics.dataflow.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "0e739280ccb37762a462390b8e0abd29",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/production-deployment.architecture.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "87e4e9526e209d7cee4ff1f3a35f4d24",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/release-delivery.workflow.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "558785d92ab49e462a5cad99ef497043",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/subscription-billing.erd.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "26adf83b411b6784b03c16b9b7b91d26",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/web-app.architecture.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e2121056ec36f53116a905f4dc4ac139",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/locales/en.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8389f38356b5e3d86391c4964fc812d5",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/locales/es.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "87096bc10397f5d46271b091f5d8c746",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/locales/ko.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "3bc63e9d21b1ca6bf072ffa330c8334b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/locales/manifest.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "98b471741d1a5f6bbe26e5c2cf2383a0",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/locales/zh-CN.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "314540bb4cfe98aa68ec1f6199fe036c",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/locales/zh-TW.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "65667918e6b55e34ec94e9cdf2e3d14e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/migrations/workflow-v2.mjs": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "dd44aac1783799877b2f26b0c4c0c7fa",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/package.json": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "4768954deaa92d16afa4ff1fc6f0afdb",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/recipes/scenarios.mjs": {
+    "mtime": 1792735506.6785693,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c905e469a8c63c18f2b0c5196d37dd7d",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/architecture/grid.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8608b694f270c64bb826be7641b55dba",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/architecture/labels.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ce04e8aea54a1658fbdc1f7ee89f57e0",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/architecture/render-architecture.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "fafc650bf0ca7f53dce0fc3a9fc53c81",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/architecture/routing.mjs": {
+    "mtime": 1792735506.679674,
+    "seen": 1793064597.1303139,
+    "ast_hash": "58876b0b6f9ba1659ebd2424840a893f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/class/render-class.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8c1c1e70b1105a8d2bc16d6be19bd22d",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/dataflow/dataflow-compiler.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "3651a59e536a17ad4894b071a181fead",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/dataflow/joint-label-routing.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "93bbb6cfbe9496f35388cc5f89c635db",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/dataflow/label-capacity.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "af07585ccaf6401a329c010426681e93",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/dataflow/render-dataflow.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "69320fef4eae57b97823269bd985bae7",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/erd/grid.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "afeea92b22b94fa4992238901c9c2374",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/erd/render-erd.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "50203c5d20a168d919a64d8bc369e6ea",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/lifecycle/render-lifecycle.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "627fd8c27c3998d02078f28fab235d44",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/sequence/render-sequence.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "2f5aae446370fdad0b8df3abf4af444e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/atomic-output.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "862fdef455ac360d265e169b6b748da9",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/automatic-labels.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "44cf8e8c58738c34b95dd3e92aa46143",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/brand-marks.mjs": {
+    "mtime": 1792735506.681569,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8502e983f65d2a0911fced0985e718a4",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/cli.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "6a8ec57e5e75a2e7d3f0c4e65a6db901",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/desktop-readability.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d33044e119975427bd6eeecb47de4e94",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/diagnostics.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "7c3e1acb74ef5e7590d4c770ca10f2cf",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/engineering-profiles.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8b0897e45f42590990772743dd52f3c2",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/generated-brand-marks.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d85c4353afd7fe56c56b519c5fe324bf",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/generated-validators.mjs": {
+    "mtime": 1792735506.6845684,
+    "seen": 1793064597.1303139,
+    "ast_hash": "59d8910ab7dd294f3b8656c742f5a6fe",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/geometry.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "fe53e8339908dea924863e858deea160",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/i18n.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "231d8ee40cd86ed0fc3785ae00d0c691",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/layout-report.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c64b00833bc4e1210b86b30a892db27c",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/legend.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "f214312f84a680786c7ec66ada373c93",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/node-card-style.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "398d21c5a3afc9ceb93283298ff68845",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/output-path.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e7e806b33e91f5b54cbcfd0b016d0f06",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/owned-temp-directory.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "696b9849cbe54dafcfbc2c61d053cc61",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/path-semantics.mjs": {
+    "mtime": 1792736167.057006,
+    "seen": 1793064597.1303139,
+    "ast_hash": "aa4605d7161f9fbca9aff98c44195b46",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/portable-path.mjs": {
+    "mtime": 1792735506.6845684,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c41940d1c3ab3118275ac7f980c1e39e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/repository-evidence.mjs": {
+    "mtime": 1792735506.6855683,
+    "seen": 1793064597.1303139,
+    "ast_hash": "3f6ca5c8d9c4467b94b298aa4ab0be0c",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/repository-location.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "270c58348cd039d9fe54f82acfba0dc7",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/route-quality.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ca8249b2fa53fc3ed901b19bbe817452",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/sidecar-path.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8982d6e7f31edf15753118637bd0936e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/spatial-grid.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "0bc41bdb8574af67685421a3d9fc132a",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/svg-path-analysis.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "28982b5e4764cc73e17dee60e8fd9832",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/text-fit.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "5abd297d0a53aa3b24ada35c318e7cff",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/utils.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c32dff0e96718d50cb78bdb7cbbd7101",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/shared/validator.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "0dd05db6c1fe13d23e0cb7ed08284a43",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/timeline/render-timeline.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b2fac4cb65dcf16501e48e0f51212d91",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/tree/render-tree.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b4afea87b41d3e5029166e5dae36021a",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/waterfall/render-waterfall.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "f975a9771fc4591a7ee5c8e67d294839",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/workflow/render-workflow.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "151d702b64c279bb4f44ba93b44dceca",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/workflow/workflow-compiler.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "660e3c5f6ca8bb7147141a733258804f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/workflow/workflow-migration-geometry.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d677b3be670bfbb04c0e5844568c3b04",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/workflow/workflow-placement-repair.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "20eaac706e107a6f335b0aa43c20ad44",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/architecture.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8ece96f040af665964ac45493fb3eeac",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/class.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "463331b54c0ba6b5259c47cdb3a523a7",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/common.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "49afd90cb3dc38b839e2e2c377399ad3",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/dataflow.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "20dbfb65450604905206be9784a86dcb",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/erd.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b890fb885b3585b5005a0a31431d64c5",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/lifecycle.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "02aa93cf9d863ec60aa4cd62ac4876eb",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/sequence.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "590d8d54ff56633c9c196cee4ce893e8",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/timeline.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "1a7082d66cfaacb757eb0f9ebd9fe97a",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/tree.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e8b83d2c7e1060fd1661cf46a047a407",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/waterfall.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "80f7282090bf50631289bd3c2daeff42",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/workflow.schema.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "09c9055a759b93cce3af4bc9721060ed",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/scripts/check-render-output.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ff28c73bb754cb6d6997ce5815115bce",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/scripts/check-update.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "dfb03a69930998dc0a8c20c456a1d05e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/scripts/delivery-update-child.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8ddfa3c0c320df2be0985d4e60658196",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/scripts/generate-brand-marks.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "080c5ba82d7a26761ca172e140fa1f9d",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/scripts/generate-validators.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "5bad3eb2af7ef04a969794d62e401b72",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/scripts/render-examples.mjs": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e83580941408c02439ae40bbf9b490d8",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/scripts/update-contract.mjs": {
+    "mtime": 1792735506.686569,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b25b35840f1bf8a0b17731e4ff79dec2",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/skill-release.json": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "368ee2de6764a17ef131e10b0df70248",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/diagnosing-bugs/scripts/hitl-loop.template.sh": {
+    "mtime": 1792648880.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "798a4f0d6a526f8dda2494b6f6d39d79",
+    "semantic_hash": ""
+  },
+  "_meta/graph_recall.py": {
+    "mtime": 1793000104.932255,
+    "seen": 1793064597.1303139,
+    "ast_hash": "221a0bbefd292637c588703a223d4466",
+    "semantic_hash": ""
+  },
+  "_meta/verify_vault_links.py": {
+    "mtime": 1793000244.1437256,
+    "seen": 1793064597.1303139,
+    "ast_hash": "9b5f7f493153cc88a781013a95e2e9dc",
+    "semantic_hash": ""
+  },
+  "_meta/zentora_sync.py": {
+    "mtime": 1793064786.784267,
+    "seen": 1793064923.6117754,
+    "ast_hash": "79acee30df299ca7f9888c6651815323",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/10 - Projects/DevKernel/DevKernel Hub.md": {
+    "mtime": 1793064388.5808077,
+    "seen": 1793064597.1303139,
+    "ast_hash": "1e95a06f42cad410d3d3d54dc4ed4fcf",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/10 - Projects/Starter-Project/Starter-Project Hub.md": {
+    "mtime": 1793064396.2017963,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b9cfe80b7656a052cb63ba20310e8de1",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Adapter Pattern.md": {
+    "mtime": 1793064656.2037654,
+    "seen": 1793064923.6117754,
+    "ast_hash": "01e642a53102f8edbea2d3efdbce3bdd",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Builder Pattern.md": {
+    "mtime": 1793064656.2037654,
+    "seen": 1793064923.6117754,
+    "ast_hash": "568ab1f896c1a986f73a00370cdda0ac",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/CQRS Pattern.md": {
+    "mtime": 1793064656.204735,
+    "seen": 1793064923.6117754,
+    "ast_hash": "46681605f6c10b7bfca2cbc06166274f",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Circuit Breaker Pattern.md": {
+    "mtime": 1793064656.204735,
+    "seen": 1793064923.6117754,
+    "ast_hash": "dada0da1480c030fec40c3c6ed08a4ba",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Decorator Pattern.md": {
+    "mtime": 1793064656.204735,
+    "seen": 1793064923.6117754,
+    "ast_hash": "df4b6e9459b1cb3eb13b774bd3f3834f",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Factory Pattern.md": {
+    "mtime": 1793064656.2057357,
+    "seen": 1793064923.6117754,
+    "ast_hash": "6b68e988c3b6721e95c6947a56a6988d",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Graphify Subcommands Rule.md": {
+    "mtime": 1793064656.2057357,
+    "seen": 1793064923.6117754,
+    "ast_hash": "951c9dcf370c0d140e1103d72c7cbcb8",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Observer Pattern.md": {
+    "mtime": 1793064656.2057357,
+    "seen": 1793064923.6117754,
+    "ast_hash": "5112c390918f48d7bf3ee01a4979d8a8",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/One Home Per Fact.md": {
+    "mtime": 1793064656.2067337,
+    "seen": 1793064923.6117754,
+    "ast_hash": "aae658a3b21974e679ca77a68203a62e",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Public Settings Secret Isolation.md": {
+    "mtime": 1793064656.2067337,
+    "seen": 1793064923.6117754,
+    "ast_hash": "4fea41947f003cf60b7dbed10bd03bc0",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Repository Pattern.md": {
+    "mtime": 1793064656.2067337,
+    "seen": 1793064923.6117754,
+    "ast_hash": "ec07667d8c3b5446d390bc87d0cc6fe6",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Singleton Pattern.md": {
+    "mtime": 1793064656.2077315,
+    "seen": 1793064923.6117754,
+    "ast_hash": "9eec585626ea60d1f6685c328805618f",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Strategy Pattern.md": {
+    "mtime": 1793064656.2077315,
+    "seen": 1793064923.6117754,
+    "ast_hash": "9a39f41dfb0214854055104845a08940",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/SKILL.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d43c90f0663d90ecdabd10e7de05ccbb",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/THIRD_PARTY_NOTICES.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e66cb72cac0056e0f76e968f137292d7",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/assets/JetBrainsMono-OFL.txt": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ef6f2e4e492b5f803264c768e09db345",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/assets/template.html": {
+    "mtime": 1792735506.6406732,
+    "seen": 1793064597.1303139,
+    "ast_hash": "2199754a8937a38004595d1f599efc4a",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/brand-marks/README.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "36458d477094c8c0c10ea70b333c004b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/class-payment-processors-rendered.html": {
+    "mtime": 1792735506.6453109,
+    "seen": 1793064597.1303139,
+    "ast_hash": "47c0375290417e5c16ed170fe80d4966",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/class-payments-rendered.html": {
+    "mtime": 1792735506.6473124,
+    "seen": 1793064597.1303139,
+    "ast_hash": "df69f6fb864bb2bcf568543ba78f1cfd",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/dataflow-product-analytics.html": {
+    "mtime": 1792735506.6513584,
+    "seen": 1793064597.1303139,
+    "ast_hash": "048f984185d5b9d316581fb32655b054",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/erd-orders-rendered.html": {
+    "mtime": 1792735506.6533525,
+    "seen": 1793064597.1303139,
+    "ast_hash": "cdd740b41133dd0677fe6db706b53b58",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/lifecycle-agent-run.html": {
+    "mtime": 1792735506.655352,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d7e48e9222782f51bcd98c4cd3c0fd78",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/sequence-cache-miss-request.html": {
+    "mtime": 1792735506.6573513,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ef58d91155e9bc5b6b9a261e31c20a85",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/subscription-billing-rendered.html": {
+    "mtime": 1792735506.6593509,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ad4a2e5a5ed26715c20680a52d681dca",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/timeline-archify-dev-activity-rendered.html": {
+    "mtime": 1792735506.662318,
+    "seen": 1793064597.1303139,
+    "ast_hash": "dbb3fac442f31f135645eac4e61b1321",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/timeline-payment-incident-rendered.html": {
+    "mtime": 1792735506.664945,
+    "seen": 1793064597.1303139,
+    "ast_hash": "f32dc84ad1561ed1e9a383e9ef1c01da",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/tree-archify-repository-rendered.html": {
+    "mtime": 1792735506.6669486,
+    "seen": 1793064597.1303139,
+    "ast_hash": "ab9a69e1ae6c8ffe1cdbfd69624d98fe",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/tree-payment-platform-rendered.html": {
+    "mtime": 1792735506.668984,
+    "seen": 1793064597.1303139,
+    "ast_hash": "cc6908296f2b6cfb4492b44472106a46",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/waterfall-checkout-request-rendered.html": {
+    "mtime": 1792735506.670564,
+    "seen": 1793064597.1303139,
+    "ast_hash": "84ea95d38630bdb6b89dac550b2a483f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/waterfall-example-rebuild-rendered.html": {
+    "mtime": 1792735506.672603,
+    "seen": 1793064597.1303139,
+    "ast_hash": "0d27547debdbd7a1da40bdb61cb808c0",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/web-app-rendered.html": {
+    "mtime": 1792735506.6755712,
+    "seen": 1793064597.1303139,
+    "ast_hash": "fb76cdd83a0149ee8992314b18d5eb44",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/examples/workflow-agent-tool-call-rendered.html": {
+    "mtime": 1792735506.6775684,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c9bfd243ec2521f18219b0007e83a03e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/locales/README.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "9c25da083716868edc60f5e92671e3e5",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/architecture-layout-repair.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "f0c789b7cbb2b2cf24ab6cb8dd602375",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/authoring-contract.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "77984062031522477c93e8b49f025229",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/authoring-defaults.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "cad398e10549eb736366cc015cbf4bed",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/brand-marks.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8a389974a5302a7033c80c669af2d2bf",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/delivery-contract.md": {
+    "mtime": 1792736167.0560281,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b818e025fb920b63344152a20075c3cd",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/repository-authoring.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c0ffc98d51c4be418d116d71ad43a1c1",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/update-awareness.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "cde4f97882ab75e51c690d67174d6d79",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/references/viewer-runtime.md": {
+    "mtime": 1792648874.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d1e11e94bc61b0e1f938d12e4c1283b8",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/class/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c7d460b2c6d1e1ca22fef1ebe79b665f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/dataflow/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d8f7b1792f88e9c68ca0f37f4c6ddca0",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/erd/README.md": {
+    "mtime": 1792735506.6805694,
+    "seen": 1793064597.1303139,
+    "ast_hash": "63f41fce323b67db4f9fca78c723187e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/lifecycle/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "1145ee00d396604bc3ea82fd74c0c0c7",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/sequence/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "daa57a0ee65467af23c725f16f12e803",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/timeline/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "aefd1e211b686896fd3193c1ac19075b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/tree/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "091e2d9e156a70f9cbc95e07021b8657",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/waterfall/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "adc180858b2dba9bac1fb4ee042a81bb",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/renderers/workflow/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "1ba99d67a7d372c38faac0da6dbbee18",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/archify/schemas/README.md": {
+    "mtime": 1792648876.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "5562d66fb87bca9d717b9a6fee22c01c",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/code-review/SKILL.md": {
+    "mtime": 1792735506.6885676,
+    "seen": 1793064597.1303139,
+    "ast_hash": "250da6a19ffe796fdb2c12d71a0accd4",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/code-review/agents/openai.yaml": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "727988accc02936891b13cd4845000de",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/codebase-design/DEEPENING.md": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "4f46559b59cded1dfa3a95fd413d5b06",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/codebase-design/DESIGN-IT-TWICE.md": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "f2a13925433e79b556a8c677c70e279b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/codebase-design/SKILL.md": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "027234c0400e7dee63d0e28a8da5b932",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/codebase-design/agents/openai.yaml": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e3ef79463bafe87b6c5d93099f6ec8dc",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/design-taste-frontend/SKILL.md": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "648c8bf98f84fbe7f14bf2da035c57fe",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/diagnosing-bugs/SKILL.md": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "bd46d273f39ae9ddd1ae91bd5ddf062f",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/diagnosing-bugs/agents/openai.yaml": {
+    "mtime": 1792648878.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "381dc5d9e4529e13f1a8fb0fb6e462e0",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/domain-modeling/ADR-FORMAT.md": {
+    "mtime": 1792648880.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "523569129da3daab7bc280eb3b359816",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/domain-modeling/GLOSSARY-FORMAT.md": {
+    "mtime": 1792648880.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "2880e175b4d6cd4b83118c5aaae348e2",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/domain-modeling/SKILL.md": {
+    "mtime": 1792648880.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "457419334f50f6a58bcf572bfa39c8ca",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/domain-modeling/agents/openai.yaml": {
+    "mtime": 1792648880.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "2854fbe73ae3d34431029391c8319949",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/git-commit/SKILL.md": {
+    "mtime": 1793064846.8763769,
+    "seen": 1793064923.6117754,
+    "ast_hash": "d80078d17c212034fe08a4a7db80f56e",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/grill-me/SKILL.md": {
+    "mtime": 1792648880.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d235df798736c9a2de127ef44ec17c5c",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/grill-me/agents/openai.yaml": {
+    "mtime": 1792648880.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "4f8d07281108635f083a7984848d404b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/implement/SKILL.md": {
+    "mtime": 1792648882.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "e2ba2f22b62ab678b66255374df4da17",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/implement/agents/openai.yaml": {
+    "mtime": 1792648882.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "8b1644d5678a17f33306f98a7c236d20",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/monorepo-architect/SKILL.md": {
+    "mtime": 1793064815.0276191,
+    "seen": 1793064923.6117754,
+    "ast_hash": "b3d232eb00054a87f8b0cbe528f78d55",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/selfhost-devops/SKILL.md": {
+    "mtime": 1793064833.9370146,
+    "seen": 1793064923.6117754,
+    "ast_hash": "cd20e8bb42fb533edc8e82e808cd6c5b",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/setup-pre-commit/SKILL.md": {
+    "mtime": 1792648886.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "caffb713350d80c8bf4853893a7f0cac",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/setup-pre-commit/agents/openai.yaml": {
+    "mtime": 1792648886.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "37a2e85b7101b4ccd5612560083fe790",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/tdd/SKILL.md": {
+    "mtime": 1792648886.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "df7e0fc3458cecca6251986aefdd90ec",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/tdd/agents/openai.yaml": {
+    "mtime": 1792648886.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "59675eba19fbb5a677a621278f5ef618",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/tdd/mocking.md": {
+    "mtime": 1792648886.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "d5bba1ea1f387c4809b7dc7c4e75c862",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/tdd/tests.md": {
+    "mtime": 1792648886.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "89c7c4b26e8ebfc0b7699dbe96b433e5",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/to-spec/SKILL.md": {
+    "mtime": 1792735506.6925714,
+    "seen": 1793064597.1303139,
+    "ast_hash": "7417bb03e7d8f7f68dbcb442db8bb6c9",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/to-spec/agents/openai.yaml": {
+    "mtime": 1792648888.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "303abe92d1e7c947d1d36affacf18406",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/to-tickets/SKILL.md": {
+    "mtime": 1792648888.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "c5bdca374ed85549c659e7e354a813f5",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/to-tickets/agents/openai.yaml": {
+    "mtime": 1792648888.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "7c9fd2d5d1572711319d6aa0c7ca2903",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/verification-before-completion/SKILL.md": {
+    "mtime": 1792648888.0,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b426244500af91643fd4f68dcb5d0cfb",
+    "semantic_hash": ""
+  },
+  "dashboards/tracker.md": {
+    "mtime": 1793064960.9482045,
+    "seen": 1793065029.4349954,
+    "ast_hash": "f3184a7a5eb485b51e3f4be7ab4a883a",
+    "semantic_hash": ""
+  },
+  "projects/devkernel.md": {
+    "mtime": 1793064367.4689784,
+    "seen": 1793064597.1303139,
+    "ast_hash": "238b283383244181368d465439c58a95",
+    "semantic_hash": ""
+  },
+  "projects/starter-project.md": {
+    "mtime": 1793064374.3064873,
+    "seen": 1793064597.1303139,
+    "ast_hash": "b155307e3f3aa8ca3ff260f3d1ab1e51",
+    "semantic_hash": ""
+  }
+}

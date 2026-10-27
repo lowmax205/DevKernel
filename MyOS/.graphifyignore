@@ -1,0 +1,8 @@
+ObsidianVault/Templates/**
+Templates/**
+**/Templates/**
+graphify-out/
+.obsidian/
+ObsidianVault/.obsidian/
+_meta/git-hooks/**
+.env*
