@@ -1,14 +1,14 @@
 {
   "_meta/bootstrap_machine.ps1": {
-    "mtime": 1792736185.4347663,
-    "seen": 1793064597.1303139,
-    "ast_hash": "d7a41edf97262cddc8df6e686e1a8750",
+    "mtime": 1793067067.6084964,
+    "seen": 1793068858.1641328,
+    "ast_hash": "9f66053bde13c561ae4e7a99d36b4068",
     "semantic_hash": ""
   },
   "_meta/bootstrap_repo.ps1": {
-    "mtime": 1792735649.4552271,
-    "seen": 1793064597.1303139,
-    "ast_hash": "16ba250b6b5d267e3d52c25e94f86bf4",
+    "mtime": 1793067037.7043622,
+    "seen": 1793068858.1641328,
+    "ast_hash": "e8a02193df29f9a3abde897cd62cf406",
     "semantic_hash": ""
   },
   "_meta/check_portable_paths.py": {
@@ -738,9 +738,9 @@
     "semantic_hash": ""
   },
   "ObsidianVault/10 - Projects/DevKernel/DevKernel Hub.md": {
-    "mtime": 1793064388.5808077,
-    "seen": 1793064597.1303139,
-    "ast_hash": "1e95a06f42cad410d3d3d54dc4ed4fcf",
+    "mtime": 1793068723.3024192,
+    "seen": 1793068858.1651373,
+    "ast_hash": "ebad000c340284c8812e1537ddbf6e45",
     "semantic_hash": ""
   },
   "ObsidianVault/10 - Projects/Starter-Project/Starter-Project Hub.md": {
@@ -1263,6 +1263,66 @@
     "mtime": 1793064374.3064873,
     "seen": 1793064597.1303139,
     "ast_hash": "b155307e3f3aa8ca3ff260f3d1ab1e51",
+    "semantic_hash": ""
+  },
+  "_meta/agent-adapters/antigravity/skills.json": {
+    "mtime": 1793066945.7130506,
+    "seen": 1793068858.1641328,
+    "ast_hash": "aa061ed180a906150ada615c629bb4b1",
+    "semantic_hash": ""
+  },
+  "_meta/setup_agent.ps1": {
+    "mtime": 1793067957.6507094,
+    "seen": 1793068858.1651373,
+    "ast_hash": "9a6066ab0d6f7b8a1070ded2f322c0e6",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/10 - Projects/DevKernel/[DEV] 2026-10-27 - Multi-Agent Architecture and Knowledge Codification.md": {
+    "mtime": 1793068731.4489932,
+    "seen": 1793068858.1651373,
+    "ast_hash": "66f41d0f6c664275e37da5973ffe10c4",
+    "semantic_hash": ""
+  },
+  "ObsidianVault/30 - Resources/Atomic Insights/Universal Agent Adapter Pattern.md": {
+    "mtime": 1793068758.125023,
+    "seen": 1793068858.1651373,
+    "ast_hash": "4fb18f5208346e6eb1a917befb66de32",
+    "semantic_hash": ""
+  },
+  "_meta/agent-adapters/antigravity/devkernel-portable-paths.md": {
+    "mtime": 1793064332.7603605,
+    "seen": 1793068858.1651373,
+    "ast_hash": "a6a4676f7fdec8b354ee7977d1fd8970",
+    "semantic_hash": ""
+  },
+  "_meta/agent-adapters/chatgpt/README.md": {
+    "mtime": 1793066938.612566,
+    "seen": 1793068858.1651373,
+    "ast_hash": "35c5e00382db681cfd888608b3b488db",
+    "semantic_hash": ""
+  },
+  "_meta/agent-adapters/claude/CLAUDE.md": {
+    "mtime": 1793066920.919092,
+    "seen": 1793068858.1651373,
+    "ast_hash": "1bd79247687cf75bdfeaf29fc7a1cff4",
+    "semantic_hash": ""
+  },
+  "_meta/agent-adapters/copilot/copilot-instructions.md": {
+    "mtime": 1793066930.1254168,
+    "seen": 1793068858.1651373,
+    "ast_hash": "4d6d00c42a2b1b17d84ca8dffaa8644a",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/devkernel-manager/SKILL.md": {
+    "mtime": 1793064353.6391456,
+    "seen": 1793068858.1651373,
+    "ast_hash": "9061118b615ac9ec6c519ba9fce4f280",
+    "semantic_hash": ""
+  },
+  "_meta/global-skills/setup-agent/SKILL.md": {
+    "mtime": 1793066978.1051521,
+    "seen": 1793068858.1651373,
+    "ast_hash": "772e2524fefa837ecf574c3640d82a86",
     "semantic_hash": ""
   }
 }
