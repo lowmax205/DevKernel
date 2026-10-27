@@ -133,6 +133,46 @@ Single-context layout (`GLOSSARY.md` at repo root and ADRs in `.docs/decisions/`
     }
 }
 
+# 5b. Deploy Multi-Agent Adapters (Claude Code, GitHub Copilot, Cursor)
+$ClaudeDst = Join-Path $RepoPath "CLAUDE.md"
+if (-not (Test-Path $ClaudeDst)) {
+    $ClaudeTpl = [System.IO.File]::ReadAllText((Join-Path $StarterDir "CLAUDE.md"), $Utf8NoBom)
+    $ClaudeContent = $ClaudeTpl.
+        Replace("<Project Name>", $ProjectName).
+        Replace("{{Project Name}}", $ProjectName).
+        Replace("<project-slug>", $ProjectSlug).
+        Replace("{{project-slug}}", $ProjectSlug)
+    [System.IO.File]::WriteAllText($ClaudeDst, $ClaudeContent, $Utf8NoBom)
+    Write-Host "[CREATED] Multi-Agent Adapter: CLAUDE.md"
+}
+
+$GithubDir = Join-Path $RepoPath ".github"
+$CopilotDst = Join-Path $GithubDir "copilot-instructions.md"
+if (-not (Test-Path $CopilotDst)) {
+    if (-not (Test-Path $GithubDir)) { New-Item -ItemType Directory -Path $GithubDir -Force | Out-Null }
+    $CopilotTpl = [System.IO.File]::ReadAllText((Join-Path $StarterDir "copilot-instructions.md"), $Utf8NoBom)
+    $CopilotContent = $CopilotTpl.
+        Replace("<Project Name>", $ProjectName).
+        Replace("{{Project Name}}", $ProjectName).
+        Replace("<project-slug>", $ProjectSlug).
+        Replace("{{project-slug}}", $ProjectSlug)
+    [System.IO.File]::WriteAllText($CopilotDst, $CopilotContent, $Utf8NoBom)
+    Write-Host "[CREATED] Multi-Agent Adapter: .github/copilot-instructions.md"
+}
+
+$CursorRulesDir = Join-Path $RepoPath ".cursor\rules"
+$AdapterCursorDir = Join-Path $PSScriptRoot "agent-adapters\cursor"
+if (Test-Path $AdapterCursorDir) {
+    if (-not (Test-Path $CursorRulesDir)) { New-Item -ItemType Directory -Path $CursorRulesDir -Force | Out-Null }
+    Get-ChildItem $AdapterCursorDir -Filter "*.mdc" | ForEach-Object {
+        $dest = Join-Path $CursorRulesDir $_.Name
+        if (-not (Test-Path $dest)) {
+            Copy-Item -Path $_.FullName -Destination $dest -Force
+            Write-Host "[CREATED] Multi-Agent Adapter: .cursor/rules/$($_.Name)"
+        }
+    }
+}
+
 # 6. Create root CHANGELOG.md if missing, or ensure ## [Unreleased] exists
 $ChangelogPath = Join-Path $RepoPath "CHANGELOG.md"
 if (-not (Test-Path $ChangelogPath)) {

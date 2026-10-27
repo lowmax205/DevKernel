@@ -78,18 +78,43 @@ flowchart TD
 
 ---
 
-## 3. Progressive Rules & The 16 Core Bundled Global Skills
+---
 
-### Progressive Rule Slicing (`.cursor/rules/`)
-- **`devkernel.mdc` (`alwaysApply: true`):** Master routing table, One Home Per Fact, PowerShell 5.1 guardrails, and Graphify CLI syntax.
-- **`backend-patterns.mdc` (`alwaysApply: false`):** Activates strictly when editing backend code (`**/*.ts`, `**/*.py`, `**/backend/**`, etc.), enforcing controller insulation, anti-overengineering linter, and polyglot gates without bloating non-code prompts.
+## 3. Universal Multi-Agent Architecture & Global Engineering Skills
 
-### 16 Core Pruned Global Skills (`~/.agents/skills/`)
-To eliminate token waste and courseware bloat, DevKernel bundles a streamlined 16-skill engineering suite:
+DevKernel is completely agent-agnostic. Rather than locking workflows into a single tool, it employs a **Universal Adapter Pattern** anchored by `AGENTS.md` as the single canonical source of truth:
+
+```mermaid
+flowchart TD
+  SSOT["Universal Master: AGENTS.md<br/>- One Home Per Fact<br/>- Two-Tier Simplicity Gate<br/>- PowerShell 5.1 Terminal Rules"]
+
+  SSOT --> CLAUDE["Claude Code CLI<br/>(CLAUDE.md)"]
+  SSOT --> CURSOR["Cursor IDE<br/>(.cursor/rules/*.mdc)"]
+  SSOT --> AGY["Google Antigravity<br/>(.agents/skills + Junctions)"]
+  SSOT --> COPILOT["GitHub Copilot<br/>(.github/copilot-instructions.md)"]
+  SSOT --> CHATGPT["ChatGPT CLI / Codex<br/>(Native AGENTS.md ingestion)"]
+
+  ADAPTERS["MyOS/_meta/agent-adapters/<br/>Centralized modular templates"] -.->|"provisioned via /setup or setup_agent.ps1"| CLAUDE
+  ADAPTERS -.-> CURSOR
+  ADAPTERS -.-> AGY
+  ADAPTERS -.-> COPILOT
+  ADAPTERS -.-> CHATGPT
+```
+
+### Multi-Agent Integration Matrix
+- **Universal Master (`AGENTS.md`):** Authoritative routing table, ZEP backend patterns, and session persistence protocols.
+- **Claude Code CLI (`CLAUDE.md`):** Terminal pair-programming instructions with instant graph context recall.
+- **Cursor IDE (`.cursor/rules/*.mdc`):** Progressive rule slicing (`devkernel.mdc` always on; `backend-patterns.mdc` active for code).
+- **Google Antigravity:** Fully automated vault, graph, and skill execution via directory junctions (`~/.agents/skills`).
+- **GitHub Copilot (`.github/copilot-instructions.md`):** Custom workspace instructions for VS Code and Copilot CLI.
+- **ChatGPT CLI / OpenAI Codex:** Native zero-config comprehension through standard `AGENTS.md` parsing.
+
+### 18 Core Pruned Global Skills (`~/.agents/skills/`)
+To eliminate token waste and courseware bloat, DevKernel bundles a streamlined, production-hardened engineering suite:
 - **Clarify & Specify:** `grill-me`, `to-spec`, `to-tickets`
 - **Design & Model:** `archify`, `domain-modeling`, `codebase-design`, `design-taste-frontend`
 - **Build & Verify:** `implement`, `tdd`, `verification-before-completion`, `code-review`, `diagnosing-bugs`
-- **Release & Ops:** `git-commit`, `selfhost-devops`, `monorepo-architect`, `setup-pre-commit`
+- **Release & Ops:** `git-commit`, `selfhost-devops`, `monorepo-architect`, `setup-pre-commit`, `setup-agent`, `devkernel-manager`
 
 > **Deduplication Invariant:** Child repositories in `Repos/` must **NEVER** duplicate these global skills locally; local `.agents/skills/` folders contain strictly project-specific domain skills.
 
@@ -104,16 +129,28 @@ When setting up DevKernel on a new workstation:
 git clone <your-devkernel-repo-url>.git
 cd DevKernel
 
-# 2. Run the automated 1-step bootstrapper
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\bootstrap_machine.ps1
+# 2. Run the automated bootstrapper (configures all AI agents by default)
+powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\bootstrap_machine.ps1 -Agent all
 ```
 
-### What `bootstrap_machine.ps1` Does:
-1. Restores the **16 core engineering skills** from `MyOS/_meta/global-skills/` to your user profile (`~/.agents/skills/`).
-2. Creates Windows directory junctions to Antigravity and Gemini skill directories.
-3. Initializes `MyOS/.env.graphify` from `.env.graphify.example`.
-4. Installs Git pre-commit and post-commit hooks for portability and automatic session telemetry.
-5. Calibrates local state with `zentora_sync.py --once`.
+### On-Demand Agent Setup (`setup_agent.ps1` or `/setup`)
+You can configure or switch agent adapters anytime via script or conversational slash commands:
+
+```powershell
+# Configure for a specific agent:
+powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent claude
+powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent cursor
+powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent antigravity
+powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent copilot
+powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent all
+```
+
+Or ask your AI assistant:
+- `/setup all`
+- `/setup claude`
+- `/setup cursor`
+- `/setup antigravity`
+- `/setup copilot`
 
 ---
 
@@ -124,7 +161,7 @@ To connect any new or existing repository in `Repos/` to DevKernel:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\bootstrap_repo.ps1 -RepoPath "MyProject"
 ```
-Or tell the agent: `bootstrap MyProject`. This automatically scaffolds `.agents/rules/00-zentora-and-ai-hero.md`, `AGENTS.md`, `CHANGELOG.md` with `## [Unreleased]`, prunes duplicate skills, and creates the ICM Card and Obsidian Hub.
+Or tell any AI agent: `bootstrap MyProject`. This automatically provisions multi-agent support (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.cursor/rules/`), scaffolds `.agents/rules/00-zentora-and-ai-hero.md`, `CHANGELOG.md` with `## [Unreleased]`, prunes duplicate skills, and registers the ICM Card and Obsidian Hub.
 
 ### 2. High-Efficiency Context Recall (Zero Token Waste)
 Before guessing or reading full directories, query the 2-hop relational knowledge graph:
@@ -138,7 +175,7 @@ Generates a strict <350 token Context Capsule including project status, linked A
 - **Release Version (`/git-commit patch|minor|major`):** Promotes `## [Unreleased]` to `## [X.Y.Z] - YYYY-MM-DD`, updates the `production` branch from `main`, creates an annotated git tag `vX.Y.Z`, and triggers a **GitHub Release (`gh release create`) ONLY on `major` updates**.
 
 ### 4. Persisting Memory (`save progress`)
-Say **`save progress`** to:
+Say **`save progress`** in Claude Code, Cursor, Antigravity, or ChatGPT CLI to:
 1. Record or append to today's consolidated session note: `ObsidianVault/10 - Projects/<Project>/[<CODE>] YYYY-MM-DD - <Focus Title>.md`.
 2. Extract reusable architecture insights or non-obvious bugs into `ObsidianVault/30 - Resources/Atomic Insights/`.
 3. Update `status`, `next`, and `updated` in `MyOS/projects/<project-slug>.md`.
@@ -150,8 +187,6 @@ Say **`save progress`** to:
 
 ```text
 DevKernel/
-├── .agents/                        # Agent skills & workspace skills.json
-├── .cursor/rules/                  # Cursor IDE rules (devkernel.mdc, backend-patterns.mdc)
 ├── .docs/                          # System Architecture & Agent Standards
 │   ├── architecture/               # Modular deep-dive architectural specifications
 │   │   ├── system-overview.md      # Mission, invariants & high-level architecture
@@ -164,20 +199,25 @@ DevKernel/
 │   ├── ObsidianVault/              # Long-term Obsidian memory & session archives
 │   │   ├── 10 - Projects/          # Project Hub notes and dated session notes
 │   │   ├── 30 - Resources/         # Atomic Insights & reusable gotchas
-│   │   └── Templates/              # Note & child repo templates
+│   │   └── Templates/              # Note & child repo templates (repo-agents-starter)
 │   ├── projects/                   # ICM Project Cards (<slug>.md)
 │   ├── graphify-out/               # 2-hop Graphify AST graph, reports, and HTML
 │   ├── dashboards/                 # High-level tracker dashboards
 │   ├── _meta/                      # Sync scripts, git hooks, and machine bootstrapper
-│   │   └── global-skills/          # 16 core engineering protocols
+│   │   ├── agent-adapters/         # Modular adapter profiles (Claude, Cursor, Copilot, Antigravity, ChatGPT)
+│   │   ├── global-skills/          # 18 core engineering skills (including setup-agent & devkernel-manager)
+│   │   ├── setup_agent.ps1         # Multi-agent environment & adapter provisioner
+│   │   └── bootstrap_machine.ps1   # 1-step workstation bootstrapper
 │   └── .env.graphify.example       # DeepSeek API configuration template
 ├── Repos/                          # Child project repositories (ignored by Git)
 │   └── .gitkeep
 ├── .gitignore                      # Strict isolation for child repos & secrets
-├── AGENTS.md                       # Master ICM workspace routing table
+├── AGENTS.md                       # Master ICM workspace routing table (Universal SSOT)
 ├── CHANGELOG.md                    # Keep a Changelog workspace history
 └── README.md                       # Master workspace guide
 ```
+
+> **Clean Repository Invariant:** The root repository is completely tool-neutral. Local agent folders (`.cursor/`, `.agents/`, `.github/`, `CLAUDE.md`) are generated dynamically on demand when running `.\MyOS\_meta\setup_agent.ps1 -Agent <name>` or `/setup <agent>`.
 
 ---
 

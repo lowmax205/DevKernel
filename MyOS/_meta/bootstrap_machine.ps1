@@ -7,6 +7,8 @@
 
 [CmdletBinding()]
 param(
+    [ValidateSet("all", "antigravity", "cursor", "claude", "chatgpt", "copilot")]
+    [string]$Agent = "all",
     [switch]$SkipGraphifyInstall,
     [switch]$ForceSkillsOverwrite
 )
@@ -81,48 +83,14 @@ if (Test-Path $BUNDLED_SKILLS) {
     Write-Warning "  [WARN] Bundled skills folder not found at $BUNDLED_SKILLS"
 }
 
-# 5. Create Antigravity Global Directory Junctions
-Write-Host "`n[4/7] Configuring Antigravity Junctions & Manifests..." -ForegroundColor Cyan
-
-# ~/.gemini/config/skills -> ~/.agents/skills
-$geminiConfigDir = Join-Path $HOME ".gemini\config"
-if (-not (Test-Path $geminiConfigDir)) { New-Item -ItemType Directory -Path $geminiConfigDir -Force | Out-Null }
-
-if (Test-Path $CONFIG_SKILLS) {
-    $item = Get-Item $CONFIG_SKILLS
-    if ($item.LinkType -ne 'Junction') { Remove-Item $CONFIG_SKILLS -Recurse -Force }
+# 5. Provision Multi-Agent Adapters (Antigravity, Cursor, Claude, Copilot, ChatGPT)
+Write-Host "`n[4/7] Provisioning Multi-Agent Adapters (Agent: $Agent)..." -ForegroundColor Cyan
+$setupAgentScript = Join-Path $MYOS_ROOT "_meta\setup_agent.ps1"
+if (Test-Path $setupAgentScript) {
+    & $setupAgentScript -Agent $Agent -TargetRepo $WORKSPACE_ROOT
+} else {
+    Write-Warning "  [WARN] setup_agent.ps1 not found at $setupAgentScript"
 }
-if (-not (Test-Path $CONFIG_SKILLS)) {
-    New-Item -ItemType Junction -Path $CONFIG_SKILLS -Target $GLOBAL_SKILLS | Out-Null
-}
-Write-Host "  [OK] Linked: $CONFIG_SKILLS -> $GLOBAL_SKILLS" -ForegroundColor Green
-
-# ~/.gemini/antigravity/skills -> ~/.agents/skills
-$geminiAgyDir = Join-Path $HOME ".gemini\antigravity"
-if (-not (Test-Path $geminiAgyDir)) { New-Item -ItemType Directory -Path $geminiAgyDir -Force | Out-Null }
-
-if (Test-Path $AGY_SKILLS) {
-    $item = Get-Item $AGY_SKILLS
-    if ($item.LinkType -ne 'Junction') { Remove-Item $AGY_SKILLS -Recurse -Force }
-}
-if (-not (Test-Path $AGY_SKILLS)) {
-    New-Item -ItemType Junction -Path $AGY_SKILLS -Target $GLOBAL_SKILLS | Out-Null
-}
-Write-Host "  [OK] Linked: $AGY_SKILLS -> $GLOBAL_SKILLS" -ForegroundColor Green
-
-# ~/.gemini/config/skills.json
-$globalSkillsJson = Join-Path $geminiConfigDir "skills.json"
-$skillsManifest = @"
-{
-  "entries": [
-    {
-      "path": "~/.agents/skills"
-    }
-  ]
-}
-"@
-Set-Content -Path $globalSkillsJson -Value $skillsManifest -Encoding UTF8
-Write-Host "  [OK] Created global skills.json manifest: $globalSkillsJson" -ForegroundColor Green
 
 # 6. Ensure Environment Secrets (MyOS/.env.graphify)
 Write-Host "`n[5/7] Checking Graphify API Configuration..." -ForegroundColor Cyan

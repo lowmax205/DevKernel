@@ -16,7 +16,8 @@ You are operating inside `<ZENTORA_ROOT>` (the folder that contains this file; i
 | Graph Env File | `<ZENTORA_ROOT>/MyOS/.env.graphify` | Local environment file for `DEEPSEEK_API_KEY` |
 | Recall Script | `<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py` | Pure-English 1-to-2 hop graph search script (no AI) |
 | Repo Bootstrapper | `<ZENTORA_ROOT>/MyOS/_meta/bootstrap_repo.ps1` | Automated setup & skill deduplicator for any new or existing repo |
-| Global Skills | `~/.agents/skills/` | AI Hero (`aihero.dev`), `archify`, `git-commit`, `verification-before-completion`, `design-taste-frontend`, `monorepo-architect`, `selfhost-devops` |
+| Multi-Agent Setup | `<ZENTORA_ROOT>/MyOS/_meta/setup_agent.ps1` | Automated adapter & environment provisioner for Claude, Cursor, Antigravity, Copilot, ChatGPT |
+| Global Skills | `~/.agents/skills/` | AI Hero (`aihero.dev`), `archify`, `git-commit`, `verification-before-completion`, `design-taste-frontend`, `monorepo-architect`, `selfhost-devops`, `setup-agent`, `devkernel-manager` |
 | Codebases | `<ZENTORA_ROOT>/Repos/` | Project source code repositories |
 
 ## Universal Engineering & Terminal Guardrails
@@ -71,6 +72,8 @@ You are operating inside `<ZENTORA_ROOT>` (the folder that contains this file; i
    - Enforce controller insulation: handlers never run raw SQL or direct third-party fetch calls.
    - Enforce Two-Tier Simplicity Gate: Tier 1 CRUD (Repo + Service; reject CQRS/Event Bus/Builders); Tier 2 (Strategy for >3 branches, Adapter for schemas, Observer for side effects, Breaker for external APIs).
    - Polyglot enforcement: TypeScript (interface/Prisma/Zod) vs Python (typing.Protocol/Pydantic v2/SQLAlchemy).
+7. **When told `/setup <agent>` or `setup <agent>`:**
+   - Run `powershell -ExecutionPolicy Bypass -File "<ZENTORA_ROOT>/MyOS/_meta/setup_agent.ps1" -Agent <agent>` (supports `all`, `claude`, `cursor`, `antigravity`, `copilot`, `chatgpt`).
 
 ## Active Projects Registry
 

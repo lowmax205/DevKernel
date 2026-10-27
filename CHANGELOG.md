@@ -8,12 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
-### Changed
-
-### Fixed
+- **Universal Multi-Agent Adapter Architecture**: Decoupled DevKernel from single-agent lock-in by establishing modular adapter profiles in `MyOS/_meta/agent-adapters/` for Claude Code CLI (`CLAUDE.md`), Cursor (`.cursor/rules/*.mdc`), Google Antigravity (`.agents/skills/`, `.agents/rules/`, junctions), GitHub Copilot CLI/VS Code (`.github/copilot-instructions.md`), and ChatGPT CLI / OpenAI Codex (`AGENTS.md`).
+- **Automated Multi-Agent Setup Engine (`MyOS/_meta/setup_agent.ps1`)**: Created one-command environment provisioner supporting `-Agent [antigravity|cursor|claude|chatgpt|copilot|all]` with `-TargetRepo` scoping for root workspace or child repositories.
+- **Global `setup-agent` & `devkernel-manager` Skills**: Added `setup-agent` and moved `devkernel-manager` to `MyOS/_meta/global-skills/` to provide conversational slash commands (`/setup all`, `/setup claude`, `/setup cursor`, `/setup antigravity`, `/setup copilot`) across all AI assistants.
+- **Child Repository Multi-Agent Bootstrapper**: Updated `MyOS/_meta/bootstrap_repo.ps1` and `MyOS/ObsidianVault/Templates/repo-agents-starter` to automatically scaffold `CLAUDE.md`, `.github/copilot-instructions.md`, and `.cursor/rules/` for any new or existing child repository in `Repos/`.
+- **Machine Onboarding Refactoring (`MyOS/_meta/bootstrap_machine.ps1`)**: Refactored workstation bootstrapper with an `-Agent` parameter (defaulting to `all`), delegating adapter deployment to `setup_agent.ps1`.
+- **Master README.md Overhaul**: Rewrote Sections 3 through 6 to feature the Universal Multi-Agent Ecosystem, Mermaid adapter flowcharts, quickstart commands, and updated directory maps.
 
 ### Removed
+- **Root Agent Artifacts Purged**: Removed `.cursor/` and `.agents/` from git tracking and workspace root. All tool-specific directories are now strictly generated on demand via `/setup <agent>` or `setup_agent.ps1`, preserving complete repository neutrality.
 
 ## [0.1.0] - 2026-10-27
 
