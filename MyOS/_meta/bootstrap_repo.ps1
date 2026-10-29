@@ -87,6 +87,25 @@ if (Test-Path $SkillsJsonSrc) {
     Write-Host "[UPDATED] Skill manifest: .agents/skills.json"
 }
 
+# 4b. Deploy scripts/graphify.ps1 and .graphifyignore
+$RepoScriptsDir = Join-Path $RepoPath "scripts"
+if (-not (Test-Path $RepoScriptsDir)) { New-Item -ItemType Directory -Path $RepoScriptsDir -Force | Out-Null }
+$GraphifyScriptSrc = Join-Path $StarterDir "scripts\graphify.ps1"
+$GraphifyScriptDst = Join-Path $RepoScriptsDir "graphify.ps1"
+if (Test-Path $GraphifyScriptSrc) {
+    Copy-Item -Path $GraphifyScriptSrc -Destination $GraphifyScriptDst -Force
+    Write-Host "[UPDATED] Repo graphify runner: scripts/graphify.ps1"
+}
+
+$GraphifyIgnoreSrc = Join-Path $StarterDir ".graphifyignore"
+$GraphifyIgnoreDst = Join-Path $RepoPath ".graphifyignore"
+if (Test-Path $GraphifyIgnoreSrc) {
+    if (-not (Test-Path $GraphifyIgnoreDst)) {
+        Copy-Item -Path $GraphifyIgnoreSrc -Destination $GraphifyIgnoreDst -Force
+        Write-Host "[CREATED] Graphify ignore file: .graphifyignore"
+    }
+}
+
 # 5. Create or update root AGENTS.md & .docs/agents/*.md
 $StarterDocsAgents = Join-Path $StarterDir ".docs\agents"
 $RepoDocsAgents = Join-Path $RepoPath ".docs\agents"

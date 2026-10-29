@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+.next/
+out/
+coverage/
+.git/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.gemini/
+.cursor/
+graphify-out/
+*.log
+

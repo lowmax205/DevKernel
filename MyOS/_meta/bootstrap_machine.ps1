@@ -61,24 +61,21 @@ if (Get-Command graphify -ErrorAction SilentlyContinue) {
     Write-Warning "  [WARN] Graphify installation pending. You can install later with: pip install graphifyy"
 }
 
-# 4. Restore Global Skills (All 45 Bundled Engineering Skills)
-Write-Host "`n[3/7] Restoring Global Skills to ~/.agents/skills..." -ForegroundColor Cyan
+# 4. Sync Curated Global Skills (Strict 1:1 Mirror of MyOS/_meta/global-skills)
+Write-Host "`n[3/7] Syncing Curated Global Skills to ~/.agents/skills..." -ForegroundColor Cyan
 if (-not (Test-Path $GLOBAL_SKILLS)) {
     New-Item -ItemType Directory -Path $GLOBAL_SKILLS -Force | Out-Null
 }
 
 if (Test-Path $BUNDLED_SKILLS) {
+    Get-ChildItem -Path $GLOBAL_SKILLS -Force | Remove-Item -Recurse -Force
     $skills = Get-ChildItem $BUNDLED_SKILLS -Directory
     foreach ($s in $skills) {
         $dest = Join-Path $GLOBAL_SKILLS $s.Name
-        if (-not (Test-Path $dest) -or $ForceSkillsOverwrite) {
-            Copy-Item -Path $s.FullName -Destination $dest -Recurse -Force
-            Write-Host "  + Restored skill: $($s.Name)" -ForegroundColor Gray
-        } else {
-            Write-Host "  = Skill already exists: $($s.Name)" -ForegroundColor DarkGray
-        }
+        Copy-Item -Path $s.FullName -Destination $dest -Recurse -Force
+        Write-Host "  + Synced skill: $($s.Name)" -ForegroundColor Gray
     }
-    Write-Host "  [OK] Restored $($skills.Count) skills in $GLOBAL_SKILLS" -ForegroundColor Green
+    Write-Host "  [OK] Synced $($skills.Count) curated skills in $GLOBAL_SKILLS" -ForegroundColor Green
 } else {
     Write-Warning "  [WARN] Bundled skills folder not found at $BUNDLED_SKILLS"
 }
@@ -123,5 +120,5 @@ Write-Host "   [SUCCESS] ZentoraDev is 100% configured for this machine!       "
 Write-Host "==================================================================" -ForegroundColor Green
 Write-Host "Next steps:"
 Write-Host "  1. If you haven't yet, edit MyOS/.env.graphify and add your DEEPSEEK_API_KEY"
-Write-Host "  2. In Antigravity or VS Code, reload the window to index all 45 skills"
+Write-Host "  2. In Antigravity or VS Code, reload the window to index all 18 curated skills"
 Write-Host "  3. Bootstrap any repo with: bootstrap <RepoName>`n"

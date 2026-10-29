@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Dedicated Global Companion Skills**: Mirrored 4 new curated workflow skills in `MyOS/_meta/global-skills/`:
+  - `context7-docs`: Real-time version-specific library and API documentation retrieval via Context7 MCP.
+  - `playwright-browser`: Snapshot-first browser automation, DOM exploration, and screenshot capture via Playwright MCP.
+  - `database-toolbox`: Two-tier database operations enforcing read-only inspection by default and explicit confirmation for mutations.
+  - `graphify`: Dedicated Zentora Graphify AST re-indexing, graph recall, and semantic extraction skill.
+- **Child Repository Graphify Runner & Ignore**: Deployed `scripts/graphify.ps1` and `.graphifyignore` to `MyOS/ObsidianVault/Templates/repo-agents-starter/`, root workspace, and automated deployment via `MyOS/_meta/bootstrap_repo.ps1`.
+- **Automated MCP Server Configuration**: Updated `MyOS/_meta/setup_agent.ps1` to automatically write and maintain `~/.gemini/config/mcp_config.json` with stdio configurations for Context7, Playwright, SQLite, PostgreSQL, and GCP Database Toolbox.
 - **Context7 & Fetch MCP Tooling Integration**: Configured modular MCP server templates for `@upstash/context7-mcp` and `mcp-fetch-server` across Cursor (`MyOS/_meta/agent-adapters/cursor/mcp.json`) and Antigravity/Gemini adapters.
 - **Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03)**: Added mandatory pre-coding library version inspection, live documentation retrieval via Context7, and strict prohibition of deprecated patterns across `AGENTS.md`, `CLAUDE.md`, `copilot-instructions.md`, and `.cursor/rules/modern-stack-guard.mdc`.
 - **Engineering Skill Enhancements**: Upgraded `implement` skill with Context7 pre-implementation modernity checks, `code-review` with ZEP-03 deprecated framework syntax detection, and `diagnosing-bugs` with Fetch protocol for remote issue lookup.

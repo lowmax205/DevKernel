@@ -63,8 +63,34 @@ if (-not $npxCmd) {
 }
 Write-Host ""
 
+function Sync-GlobalSkills {
+    Write-Host "[Global Skills] Syncing curated MyOS skills to ~/.agents/skills..." -ForegroundColor Cyan
+    $bundledSkills = Join-Path $ScriptDir "global-skills"
+    $globalSkills = Join-Path $HOME ".agents\skills"
+
+    if (-not (Test-Path $bundledSkills)) {
+        Write-Warning "  [WARN] Bundled skills folder not found at $bundledSkills"
+        return
+    }
+
+    if (-not (Test-Path $globalSkills)) {
+        New-Item -ItemType Directory -Path $globalSkills -Force | Out-Null
+    }
+
+    # Remove all existing items in ~/.agents/skills so it stays a strict 1:1 mirror of MyOS/_meta/global-skills
+    Get-ChildItem -Path $globalSkills -Force | Remove-Item -Recurse -Force
+
+    $skills = Get-ChildItem -Path $bundledSkills -Directory
+    foreach ($s in $skills) {
+        $dest = Join-Path $globalSkills $s.Name
+        Copy-Item -Path $s.FullName -Destination $dest -Recurse -Force
+    }
+    Write-Host "  + Synced $($skills.Count) curated skills from MyOS/_meta/global-skills -> $globalSkills" -ForegroundColor Green
+}
+
 function Install-Antigravity {
     param([string]$Path)
+    Sync-GlobalSkills
     Write-Host "[Agent: Antigravity] Configuring Antigravity / Gemini integration..." -ForegroundColor Cyan
 
     $globalSkills = Join-Path $HOME ".agents\skills"
@@ -110,6 +136,56 @@ function Install-Antigravity {
 "@
     [System.IO.File]::WriteAllText($globalSkillsJson, $skillsManifest, $Utf8NoBom)
     Write-Host "  + Manifest: $globalSkillsJson" -ForegroundColor Green
+
+    # Global MCP Servers Configuration (~/.gemini/config/mcp_config.json)
+    $mcpConfigFile = Join-Path $geminiConfigDir "mcp_config.json"
+    $defaultMcpServers = @{
+        "context7" = @{
+            "command" = "cmd.exe"
+            "args" = @("/c", "npx", "-y", "@upstash/context7-mcp")
+        }
+        "playwright" = @{
+            "command" = "cmd.exe"
+            "args" = @("/c", "npx", "-y", "@modelcontextprotocol/server-playwright")
+        }
+        "sqlite" = @{
+            "command" = "cmd.exe"
+            "args" = @("/c", "npx", "-y", "@modelcontextprotocol/server-sqlite")
+        }
+        "postgres" = @{
+            "command" = "cmd.exe"
+            "args" = @("/c", "npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/postgres")
+        }
+        "gcp-database-toolbox" = @{
+            "command" = "cmd.exe"
+            "args" = @("/c", "npx", "-y", "mcp-toolbox-for-databases")
+        }
+    }
+
+    $existingConfig = @{ "mcpServers" = @{} }
+    if (Test-Path $mcpConfigFile) {
+        $content = Get-Content -Path $mcpConfigFile -Raw -ErrorAction SilentlyContinue
+        if ($content -and $content.Trim().Length -gt 0) {
+            try {
+                $parsed = $content | ConvertFrom-Json
+                if ($parsed.mcpServers) {
+                    foreach ($prop in $parsed.mcpServers.PSObject.Properties) {
+                        $existingConfig["mcpServers"][$prop.Name] = $prop.Value
+                    }
+                }
+            } catch {
+                Write-Warning "  [WARN] Failed to parse existing mcp_config.json, re-initializing."
+            }
+        }
+    }
+
+    foreach ($serverKey in $defaultMcpServers.Keys) {
+        $existingConfig["mcpServers"][$serverKey] = $defaultMcpServers[$serverKey]
+    }
+
+    $mcpJson = $existingConfig | ConvertTo-Json -Depth 5
+    [System.IO.File]::WriteAllText($mcpConfigFile, $mcpJson, $Utf8NoBom)
+    Write-Host "  + MCP Config: $mcpConfigFile (context7, playwright, sqlite, postgres, gcp-database-toolbox)" -ForegroundColor Green
 
     # Target repository skills.json
     $repoAgentsDir = Join-Path $Path ".agents"
