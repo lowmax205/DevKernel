@@ -72,7 +72,16 @@ You are operating inside `<ZENTORA_ROOT>` (the folder that contains this file; i
    - Enforce controller insulation: handlers never run raw SQL or direct third-party fetch calls.
    - Enforce Two-Tier Simplicity Gate: Tier 1 CRUD (Repo + Service; reject CQRS/Event Bus/Builders); Tier 2 (Strategy for >3 branches, Adapter for schemas, Observer for side effects, Breaker for external APIs).
    - Polyglot enforcement: TypeScript (interface/Prisma/Zod) vs Python (typing.Protocol/Pydantic v2/SQLAlchemy).
-7. **When told `/setup <agent>` or `setup <agent>`:**
+7. **Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03):**
+   - **Mandatory Library Verification Before Generation:**
+     - Before writing code for any modern external library or framework feature prone to major version breaking changes (e.g., Next.js App Router, Tailwind v4, Pydantic v2, Prisma v5+, Supabase v2, LangChain, FastAPI):
+     - The agent **MUST** inspect the target repo's `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` to confirm the exact installed version.
+     - The agent **MUST** invoke the `context7` MCP tool to retrieve live, official documentation and working syntax snippets before generating code.
+   - **Zero Deprecated Syntax Invariant:**
+     - Strictly forbid deprecated patterns (e.g., Next.js `pages/` routing in App Router repos, Pydantic v1 `.dict()` on Pydantic v2 codebases, or unvetted CommonJS `require()` in modern TypeScript/ESM projects).
+   - **Issue Diagnostics Gate (Fetch Protocol):**
+     - When encountering a package compiler bug or third-party dependency error, the agent must use the `fetch` MCP tool to inspect the official GitHub issue, changelog, or release notes instead of inventing hypothetical flags or configs.
+8. **When told `/setup <agent>` or `setup <agent>`:**
    - Run `powershell -ExecutionPolicy Bypass -File "<ZENTORA_ROOT>/MyOS/_meta/setup_agent.ps1" -Agent <agent>` (supports `all`, `claude`, `cursor`, `antigravity`, `copilot`, `chatgpt`).
 
 ## Active Projects Registry

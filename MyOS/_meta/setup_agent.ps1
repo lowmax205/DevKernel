@@ -53,6 +53,14 @@ Write-Host "       ZentoraDev Multi-Agent Adapter Provisioner                 " 
 Write-Host "==================================================================" -ForegroundColor Cyan
 Write-Host "Target Repository : $TargetRepo ($RepoName)" -ForegroundColor Yellow
 Write-Host "Selected Agent    : $Agent" -ForegroundColor Yellow
+
+# Validate Node.js & npx availability for MCP servers
+$npxCmd = Get-Command npx -ErrorAction SilentlyContinue
+if (-not $npxCmd) {
+    Write-Warning "[WARN] 'npx' was not found in PATH. Context7 and Fetch MCP servers require Node.js/npx."
+} else {
+    Write-Host "[OK] Detected npx: $($npxCmd.Source)" -ForegroundColor Green
+}
 Write-Host ""
 
 function Install-Antigravity {
@@ -120,13 +128,26 @@ function Install-Antigravity {
         Copy-Item -Path $_.FullName -Destination (Join-Path $repoRulesDir $_.Name) -Force
         Write-Host "  + Rule: .agents/rules/$($_.Name)" -ForegroundColor Green
     }
+
+    # Machine-Wide Antigravity / Gemini MCP configuration
+    $geminiMcpJson = Join-Path $HOME ".gemini\mcp.json"
+    $adapterMcp = Join-Path $AdaptersDir "cursor\mcp.json"
+    if (Test-Path $adapterMcp) {
+        if (-not (Test-Path $geminiMcpJson) -or $Force) {
+            Copy-Item -Path $adapterMcp -Destination $geminiMcpJson -Force
+            Write-Host "  + Provisioned global Gemini MCP: $geminiMcpJson" -ForegroundColor Green
+        } else {
+            Write-Host "  = Already present: $geminiMcpJson" -ForegroundColor DarkGray
+        }
+    }
 }
 
 function Install-Cursor {
     param([string]$Path)
-    Write-Host "[Agent: Cursor] Deploying Cursor rules (.cursor/rules/*.mdc)..." -ForegroundColor Cyan
+    Write-Host "[Agent: Cursor] Deploying Cursor rules (.cursor/rules/*.mdc) & MCP configs..." -ForegroundColor Cyan
 
-    $cursorRulesDir = Join-Path $Path ".cursor\rules"
+    $cursorDir = Join-Path $Path ".cursor"
+    $cursorRulesDir = Join-Path $cursorDir "rules"
     if (-not (Test-Path $cursorRulesDir)) { New-Item -ItemType Directory -Path $cursorRulesDir -Force | Out-Null }
 
     $adapterCursorDir = Join-Path $AdaptersDir "cursor"
@@ -139,6 +160,32 @@ function Install-Cursor {
             } else {
                 Write-Host "  = Already present: .cursor/rules/$($_.Name)" -ForegroundColor DarkGray
             }
+        }
+
+        # Deploy repo-level .cursor/mcp.json
+        $adapterMcpJson = Join-Path $adapterCursorDir "mcp.json"
+        $repoMcpJson = Join-Path $cursorDir "mcp.json"
+        if (Test-Path $adapterMcpJson) {
+            if (-not (Test-Path $repoMcpJson) -or $Force) {
+                Copy-Item -Path $adapterMcpJson -Destination $repoMcpJson -Force
+                Write-Host "  + Deployed: .cursor/mcp.json" -ForegroundColor Green
+            } else {
+                Write-Host "  = Already present: .cursor/mcp.json" -ForegroundColor DarkGray
+            }
+        }
+    }
+
+    # Ensure Global Cursor MCP configuration (~/.cursor/mcp.json)
+    $globalCursorDir = Join-Path $HOME ".cursor"
+    if (-not (Test-Path $globalCursorDir)) { New-Item -ItemType Directory -Path $globalCursorDir -Force | Out-Null }
+    $globalCursorMcp = Join-Path $globalCursorDir "mcp.json"
+    $adapterMcp = Join-Path $AdaptersDir "cursor\mcp.json"
+    if (Test-Path $adapterMcp) {
+        if (-not (Test-Path $globalCursorMcp) -or $Force) {
+            Copy-Item -Path $adapterMcp -Destination $globalCursorMcp -Force
+            Write-Host "  + Provisioned global Cursor MCP: $globalCursorMcp" -ForegroundColor Green
+        } else {
+            Write-Host "  = Already present: $globalCursorMcp" -ForegroundColor DarkGray
         }
     }
 }

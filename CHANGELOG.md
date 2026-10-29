@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Context7 & Fetch MCP Tooling Integration**: Configured modular MCP server templates for `@upstash/context7-mcp` and `mcp-fetch-server` across Cursor (`MyOS/_meta/agent-adapters/cursor/mcp.json`) and Antigravity/Gemini adapters.
+- **Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03)**: Added mandatory pre-coding library version inspection, live documentation retrieval via Context7, and strict prohibition of deprecated patterns across `AGENTS.md`, `CLAUDE.md`, `copilot-instructions.md`, and `.cursor/rules/modern-stack-guard.mdc`.
+- **Engineering Skill Enhancements**: Upgraded `implement` skill with Context7 pre-implementation modernity checks, `code-review` with ZEP-03 deprecated framework syntax detection, and `diagnosing-bugs` with Fetch protocol for remote issue lookup.
+- **MCP Adapter Provisioner**: Updated `MyOS/_meta/setup_agent.ps1` to detect host `npx` availability and dynamically provision global and repo-level MCP definitions.
+- **Clean Neutral Root Invariant Protection**: Added on-demand agent folders (`.cursor/`, `.agents/`, `.github/`, `CLAUDE.md`) to `.gitignore`.
 - **Universal Multi-Agent Adapter Architecture**: Decoupled DevKernel from single-agent lock-in by establishing modular adapter profiles in `MyOS/_meta/agent-adapters/` for Claude Code CLI (`CLAUDE.md`), Cursor (`.cursor/rules/*.mdc`), Google Antigravity (`.agents/skills/`, `.agents/rules/`, junctions), GitHub Copilot CLI/VS Code (`.github/copilot-instructions.md`), and ChatGPT CLI / OpenAI Codex (`AGENTS.md`).
 - **Automated Multi-Agent Setup Engine (`MyOS/_meta/setup_agent.ps1`)**: Created one-command environment provisioner supporting `-Agent [antigravity|cursor|claude|chatgpt|copilot|all]` with `-TargetRepo` scoping for root workspace or child repositories.
 - **Global `setup-agent` & `devkernel-manager` Skills**: Added `setup-agent` and moved `devkernel-manager` to `MyOS/_meta/global-skills/` to provide conversational slash commands (`/setup all`, `/setup claude`, `/setup cursor`, `/setup antigravity`, `/setup copilot`) across all AI assistants.

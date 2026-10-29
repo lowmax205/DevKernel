@@ -1,17 +1,17 @@
-# Graph Report - MyOS  (2026-10-27)
+# Graph Report - MyOS  (2026-10-29)
 
 ## Corpus Check
-- 194 files · ~1,346,689 words
+- 195 files · ~1,347,415 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 4 file(s) not represented in the graph (top: (none) 2, .mdc 2)
+- Unclassified: 5 file(s) not represented in the graph (top: .mdc 3, (none) 2)
 
 ## Summary
-- 2595 nodes · 7067 edges · 133 communities (119 shown, 14 thin omitted)
+- 2604 nodes · 7076 edges · 125 communities (112 shown, 13 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 165 edges (avg confidence: 0.87)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b8a7d9a1`
+- Built from commit: `2d91c8bd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -21,9 +21,9 @@
 - render-erd.mjs
 - architecture-delta.mjs
 - render-class.mjs
-- workflow-v2.mjs
+- minimumNodeTextWidth
 - zentora_sync.py
-- asArray
+- workflow-compiler.mjs
 - render-sequence.mjs
 - render-lifecycle.mjs
 - atomic-output.mjs
@@ -43,20 +43,20 @@
 - i18n.mjs
 - route-quality.mjs
 - preview.mjs
-- dataflow-compiler.mjs
-- validateReadablePinnedGeometry
-- anchor
+- escapeHtml
+- utils.mjs
+- context7
 - func3
 - Codebase Design
-- workflow-compiler.mjs
+- segmentIntersectsRect
 - ref_node_path
 - During the session
 - compileWorkflowInternal
-- pathFor
+- collectDesktopReadability
 - cli.mjs
 - package.json
 - Delivery contract
-- renderMembers
+- 5. CONTEXT-AWARE PROACTIVITY
 - PipeCdp
 - tasteskill: Anti-Slop Frontend Skill
 - Appendix B - Canonical Sources (read these before reinventing)
@@ -70,18 +70,16 @@
 - Authoring contract
 - detail
 - desktop-readability.mjs
-- diagnostics.mjs
+- Executable geometry rules
 - validatePortablePath
 - Steps
 - Test-Driven Development
 - Process
 - generate-brand-marks.mjs
-- memberRows
+- 7. DIAL DEFINITIONS (Technical Reference)
 - 4. DESIGN ENGINEERING DIRECTIVES (Bias Correction)
 - Mode placement
 - generate-validators.mjs
-- legend.mjs
-- pathFor
 - collectArrows
 - 10. REFERENCE VOCABULARY (Pattern Names the Agent Should Know)
 - Viewer Runtime reference
@@ -134,16 +132,11 @@
 - brand-marks/README.md
 - manifest.json
 - update-awareness.md
+- implement/SKILL.md
 - [DEV] 2026-10-27 - Multi-Agent Architecture and Knowledge Codification
-- routeBudgetMetrics
 - Repository Pattern decouples business logic from persistence
 - ChatGPT CLI & OpenAI Codex Configuration — Zentora Dev
-- 1. THE THREE DIALS (Core Configuration)
-- autoViewBox
-- sideFor
 - devkernel-portable-paths.md
-- connectionEndpointSide
-- inferredSides
 
 ## God Nodes (most connected - your core abstractions)
 1. `compileWorkflowInternal()` - 198 edges
@@ -159,24 +152,24 @@
 
 ## Surprising Connections (you probably didn't know these)
 - `Layout and routing` --references--> `sideFor()`  [INFERRED]
-  MyOS/_meta/global-skills/archify/renderers/erd/README.md → MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
+  Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/erd/README.md → Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
+- `5.D Forbidden Animation Patterns` --references--> `layout()`  [INFERRED]
+  Repos/DevKernel/MyOS/_meta/global-skills/design-taste-frontend/SKILL.md → Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/lifecycle/render-lifecycle.mjs
 - `Waterfall` --references--> `detail()`  [INFERRED]
-  MyOS/_meta/global-skills/archify/references/authoring-contract.md → MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
+  Repos/DevKernel/MyOS/_meta/global-skills/archify/references/authoring-contract.md → Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
 - `Input` --references--> `detail()`  [INFERRED]
-  MyOS/_meta/global-skills/archify/renderers/timeline/README.md → MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
+  Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/timeline/README.md → Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
 - `Input` --references--> `detail()`  [INFERRED]
-  MyOS/_meta/global-skills/archify/renderers/waterfall/README.md → MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
-- `GitHub Copilot Custom Instructions — Zentora Dev` --references--> `build()`  [INFERRED]
-  MyOS/_meta/agent-adapters/copilot/copilot-instructions.md → MyOS/_meta/global-skills/archify/renderers/dataflow/dataflow-compiler.mjs
+  Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/waterfall/README.md → Repos/DevKernel/MyOS/_meta/global-skills/archify/renderers/class/render-class.mjs
 
 ## Import Cycles
 - None detected.
 
-## Communities (133 total, 14 thin omitted)
+## Communities (125 total, 13 thin omitted)
 
 ### Community 0 - "archify.mjs"
-Cohesion: 0.05
-Nodes (123): acquireDeliveryLock(), artifactCheckMaxBuffer(), artifactIdentity(), assertDeliveryOwnership(), assertOwnedDeliveryLock(), beginDeliveryAttempt(), canonicalExistingDeliveryOutput(), captureDeliveryTargetState() (+115 more)
+Cohesion: 0.06
+Nodes (118): acquireDeliveryLock(), artifactCheckMaxBuffer(), artifactIdentity(), assertDeliveryOwnership(), assertOwnedDeliveryLock(), beginDeliveryAttempt(), canonicalExistingDeliveryOutput(), captureDeliveryTargetState() (+110 more)
 
 ### Community 1 - "check-update.mjs"
 Cohesion: 0.06
@@ -184,115 +177,115 @@ Nodes (110): acquireOperation(), assertBoundedRegularFile(), assertCacheTargetAb
 
 ### Community 2 - "render-erd.mjs"
 Cohesion: 0.04
-Nodes (85): inferredSides(), bandedLayout(), DEFAULT_ER_GRID, entityHeight(), erGridLayout(), gridColumn(), resolvedEntityWidth(), resolveEntityPos() (+77 more)
+Nodes (76): bandedLayout(), DEFAULT_ER_GRID, entityHeight(), erGridLayout(), gridColumn(), resolvedEntityWidth(), resolveEntityPos(), validateErGridPlacement() (+68 more)
 
 ### Community 3 - "architecture-delta.mjs"
 Cohesion: 0.06
 Nodes (82): addNodeMarker(), addState(), annotateArchitectureSideSvg(), architectureDeltaChangeRows(), ArchitectureDeltaError, BOUNDARY_FIELDS, boundaryChangeMap(), boundaryElements() (+74 more)
 
 ### Community 4 - "render-class.mjs"
-Cohesion: 0.06
-Nodes (32): bands, busGroups, busPaths, busRouteConflict(), cliArgs, { diagram: cd, template, outPath, sourceEvidence }, __dirname, GENERALIZATION (+24 more)
+Cohesion: 0.05
+Nodes (67): attributeText(), bands, buildLayoutReport(), busGroups, busPaths, cliArgs, compartments(), connectionEndpointSide() (+59 more)
 
-### Community 5 - "workflow-v2.mjs"
-Cohesion: 0.16
-Nodes (27): clone(), diagnostic(), expandableViewBox(), legacyLayoutProbe(), legacyRequirementProbe(), migrateWorkflowDocument(), requiredViewBoxFrom(), result() (+19 more)
+### Community 5 - "minimumNodeTextWidth"
+Cohesion: 0.07
+Nodes (60): clone(), diagnostic(), expandableViewBox(), legacyLayoutProbe(), legacyRequirementProbe(), migrateWorkflowDocument(), requiredViewBoxFrom(), result() (+52 more)
 
 ### Community 6 - "zentora_sync.py"
 Cohesion: 0.06
 Nodes (29): main(), scan(), tracked_files(), detect_project_context(), extract_keywords(), format_capsule(), load_graph(), main() (+21 more)
 
-### Community 7 - "asArray"
-Cohesion: 0.13
-Nodes (42): boundaryRect(), componentDiagnosticBox(), hasAutomaticRouteGeometry(), rectContains(), validateArchitecture(), validateClassDiagram(), validateDataflow(), recordDiagnostic() (+34 more)
+### Community 7 - "workflow-compiler.mjs"
+Cohesion: 0.12
+Nodes (57): boundaryRect(), validateArchitecture(), validateClassDiagram(), compileDataflow(), ensureAutoLegendFits(), renderLegend(), validateDataflow(), nodeTextFit (+49 more)
 
 ### Community 8 - "render-sequence.mjs"
 Cohesion: 0.07
-Nodes (68): renderStageHeader(), preferredWidth(), validateStructure(), arrowClass, automaticCanvasWidth(), automaticHeight, compositionFrames, contentBottom (+60 more)
+Nodes (54): arrowClass, automaticCanvasWidth(), automaticHeight, compositionFrames, contentBottom, __dirname, layout, legacySegmentLabelBox() (+46 more)
 
 ### Community 9 - "render-lifecycle.mjs"
-Cohesion: 0.05
-Nodes (63): assignArcLevels(), assignTracks(), bracketOf, brackets, bracketTargets, canvasWidth, countCrossings(), depth (+55 more)
+Cohesion: 0.06
+Nodes (53): assignArcLevels(), assignTracks(), bracketOf, brackets, bracketTargets, canvasWidth, countCrossings(), depth (+45 more)
 
 ### Community 10 - "atomic-output.mjs"
-Cohesion: 0.13
-Nodes (49): captureOwnedDeliverySidecars(), args, backupOwnedPublishedEntry(), restoreOwnedBackup(), unlinkOwnedEntry(), backupPublicRegularFileBinding(), captureAtomicOutput(), captureRegularFileBinding() (+41 more)
+Cohesion: 0.14
+Nodes (47): args, backupOwnedPublishedEntry(), backupPublicRegularFileBinding(), captureAtomicOutput(), captureRegularFileBinding(), captureRegularFileHandle(), captureRequestedEntry(), captureTarget() (+39 more)
 
 ### Community 11 - "build"
-Cohesion: 0.14
-Nodes (27): GitHub Copilot Custom Instructions — Zentora Dev, build(), compactCorridors(), crossingFlows(), detourFor(), endpointStubs(), extraLabelLineMasksRoute(), flowSides() (+19 more)
+Cohesion: 0.12
+Nodes (32): GitHub Copilot Custom Instructions — Zentora Dev, build(), compactCorridors(), crossingFlows(), detourFor(), endpointStubs(), flowSides(), flowStrokeWidth() (+24 more)
 
 ### Community 12 - "visual-check.mjs"
 Cohesion: 0.08
-Nodes (57): appendEvidenceCleanupWarning(), appendEvidencePublicationFailure(), baseReceipt(), beginVisualEvidenceWrite(), CAPTURE_VIEWPORTS, CHROME_NO_SANDBOX_ENV, CHROME_STARTUP_TIMEOUT_MS, cleanupStagedEvidence() (+49 more)
+Nodes (60): appendEvidenceCleanupWarning(), appendEvidencePublicationFailure(), baseReceipt(), beginVisualEvidenceWrite(), CAPTURE_VIEWPORTS, CHROME_NO_SANDBOX_ENV, CHROME_STARTUP_TIMEOUT_MS, cleanupStagedEvidence() (+52 more)
 
 ### Community 13 - "generated-validators.mjs"
 Cohesion: 0.04
 Nodes (53): pattern10, pattern11, pattern12, pattern13, pattern133, pattern14, pattern15, pattern16 (+45 more)
 
 ### Community 14 - "render-architecture.mjs"
-Cohesion: 0.06
-Nodes (49): DEFAULT_GRID, gridLayout(), resolveComponentPos(), validateGridPlacement(), architectureLegendEntries, autoViewBoxFor(), boundaryLabelWidth(), buildLayoutReport() (+41 more)
+Cohesion: 0.05
+Nodes (57): DEFAULT_GRID, gridLayout(), resolveComponentPos(), validateGridPlacement(), architectureLegendEntries, autoViewBoxFor(), boundaryLabelWidth(), buildLayoutReport() (+49 more)
 
 ### Community 15 - "render-waterfall.mjs"
 Cohesion: 0.05
-Nodes (47): byId, children, cliArgs, details, { diagram: wf, template, outPath, sourceEvidence }, __dirname, dotX(), footprint (+39 more)
+Nodes (49): byId, children, cliArgs, details, { diagram: wf, template, outPath, sourceEvidence }, __dirname, dotX(), footprint (+41 more)
 
 ### Community 16 - "createRouter"
-Cohesion: 0.15
-Nodes (43): createRouter(), alignFacingPorts(), automaticEndpoint(), cachePath(), candidateSidePairs(), collinearBacktrack(), collinearOverlapLength(), computePath() (+35 more)
+Cohesion: 0.12
+Nodes (52): createRouter(), alignFacingPorts(), automaticEndpoint(), cachePath(), candidateSidePairs(), collinearBacktrack(), collinearOverlapLength(), computePath() (+44 more)
 
 ### Community 17 - "finalize.mjs"
-Cohesion: 0.10
-Nodes (42): allChecksPassed(), browserEvidence(), captureReceipt(), compactFinalizeReceipt(), consolidateDiagnostics(), defaultFinalizeReceiptPath(), defaultFinalizeSummaryPath(), defaultRunner() (+34 more)
+Cohesion: 0.09
+Nodes (47): allChecksPassed(), browserEvidence(), captureReceipt(), compactFinalizeReceipt(), consolidateDiagnostics(), defaultDeliveryPaths(), defaultFinalizeReceiptPath(), defaultFinalizeSummaryPath() (+39 more)
 
 ### Community 18 - "render-timeline.mjs"
-Cohesion: 0.06
-Nodes (44): breaks, buildLayoutReport(), cards, cliArgs, clockLabel(), { diagram: tl, template, outPath, sourceEvidence }, __dirname, durationLabel() (+36 more)
+Cohesion: 0.05
+Nodes (53): autoViewBox(), contentBounds(), legendLayout(), autoViewBox(), renderLegend(), legendFootprint(), measuredEntryWidth(), measureLegend() (+45 more)
 
 ### Community 19 - "brand-marks.mjs"
 Cohesion: 0.09
 Nodes (36): asUrl(), BASIC_HTML_REFERENCES, beforeDeadline(), captureBrandReference(), captureRemoteBrand(), captureTimeoutMilliseconds(), checkedFetch(), COLLECTIONS (+28 more)
 
 ### Community 20 - "path-semantics.mjs"
-Cohesion: 0.11
-Nodes (53): visualEvidenceOwnershipMatches(), authoredOutputDiagnostic(), nativeOutputDiagnostic(), rejectWindowsIpcShare(), resolveNativeOutputDirectory(), throwNativeOutputDiagnostic(), validateNativeOutputPath(), validateWindowsNativeComponent() (+45 more)
+Cohesion: 0.09
+Nodes (58): visualEvidenceOwnershipMatches(), authoredOutputDiagnostic(), nativeOutputDiagnostic(), rejectWindowsIpcShare(), resolveNativeOutputDirectory(), throwNativeOutputDiagnostic(), validateNativeOutputPath(), validateWindowsNativeComponent() (+50 more)
 
 ### Community 21 - "render-tree.mjs"
 Cohesion: 0.07
-Nodes (48): renderBoundaryFrame(), renderBoundaryLabel(), renderConnectionLabel(), renderSvg(), renderSvg(), renderSvg(), markAttrs(), svgAccessibleText() (+40 more)
+Nodes (29): all, ancestorsOf(), attachOf(), bandSize, bandStart, centerOf(), childrenOf, cliArgs (+21 more)
 
 ### Community 22 - "geometry.mjs"
 Cohesion: 0.10
-Nodes (33): anchorFitsCanvas(), arrowClassMap, AUTHORED_PLAN_KEYS, axisCanvasOverflow(), clampAnchorToCanvas(), collectLabelCanvasOverflow(), collectLabelRouteClearance(), collinearForward() (+25 more)
+Nodes (34): anchorFitsCanvas(), AUTHORED_PLAN_KEYS, axisCanvasOverflow(), clampAnchorToCanvas(), collectLabelCanvasOverflow(), collectLabelRouteClearance(), collinearForward(), createRouteCandidateIndex() (+26 more)
 
 ### Community 23 - "check-render-output.mjs"
-Cohesion: 0.08
-Nodes (21): checks, collectLegendCollisions(), collectRelationshipCrossings(), composition, crossProduct(), ELEMENT_NUMERIC_ATTRS, HTML_VOID_ELEMENTS, htmlPath (+13 more)
+Cohesion: 0.07
+Nodes (27): describeLabelCanvasOverflow(), minimumLabelRouteClearance(), checks, collectLegendCollisions(), collectRelationshipCrossings(), composition, crossProduct(), ELEMENT_NUMERIC_ATTRS (+19 more)
 
 ### Community 24 - "i18n.mjs"
-Cohesion: 0.08
-Nodes (41): componentContext(), BUNDLED_CATALOGS, bundledCatalog(), bundledLocaleFor(), CANONICAL_KEYS, CANONICAL_PLACEHOLDERS, catalogFor(), classifyTranslations() (+33 more)
+Cohesion: 0.12
+Nodes (26): BUNDLED_CATALOGS, bundledCatalog(), bundledLocaleFor(), CANONICAL_KEYS, CANONICAL_PLACEHOLDERS, catalogFor(), classifyTranslations(), DEFAULT_LOCALE (+18 more)
 
 ### Community 25 - "route-quality.mjs"
 Cohesion: 0.12
-Nodes (27): boundsForPoints(), boundsForRects(), cleanRouteDetourProblems(), collinearOverlap(), DEFAULTS, emptyControlPointClearance(), expandedRect(), inferredSide() (+19 more)
+Nodes (27): properSegmentIntersection(), boundsForPoints(), boundsForRects(), cleanRouteDetourProblems(), collinearOverlap(), DEFAULTS, emptyControlPointClearance(), expandedRect() (+19 more)
 
 ### Community 26 - "preview.mjs"
 Cohesion: 0.13
-Nodes (32): atomicOutputError(), atomicOutputFailure(), captureOwnedDirectory(), cleanupOwnedDirectory(), cliPath, compactMessage(), diagramTypes, here (+24 more)
+Nodes (34): atomicOutputError(), atomicOutputFailure(), captureOwnedDeliverySidecars(), captureOwnedDirectory(), cleanupOwnedDirectory(), cliPath, compactMessage(), diagramTypes (+26 more)
 
-### Community 27 - "dataflow-compiler.mjs"
-Cohesion: 0.17
-Nodes (38): renderComponent(), renderConnectionPath(), renderRelationshipPath(), renderType(), compileDataflow(), attempt(), labelPoint(), renderFlowLabel() (+30 more)
+### Community 27 - "escapeHtml"
+Cohesion: 0.13
+Nodes (51): componentContext(), renderComponent(), renderRelationshipLabel(), renderRelationshipPath(), renderSvg(), renderType(), renderFlowPath(), renderNode() (+43 more)
 
-### Community 28 - "validateReadablePinnedGeometry"
-Cohesion: 0.16
-Nodes (29): acceptsFix(), authoredPinEvidence(), authoredRouteAssertionFields(), combinations(), conflictPinsFromRemovalSets(), endpointSideIsHonored(), hasAuthoredRouteAssertions(), presentChannelPins() (+21 more)
+### Community 28 - "utils.mjs"
+Cohesion: 0.23
+Nodes (10): nodeTextFit, SEMANTIC_SIGIL_FOOTPRINT, SEMANTIC_SIGIL_INSET, SEMANTIC_SIGIL_SIZE, serializeScriptJson(), SIGIL_SHAPE, SIGIL_TONE, SOURCE_BADGE_FOOTPRINT (+2 more)
 
-### Community 29 - "anchor"
-Cohesion: 0.21
-Nodes (28): anchor(), automaticPortSpread(), chosenSide(), defaultFromSide(), defaultToSide(), joinRoutePoints(), automaticEndpointRepairs(), automaticForwardReversePx() (+20 more)
+### Community 29 - "context7"
+Cohesion: 0.40
+Nodes (5): npx, mcp-fetch-server, @upstash/context7-mcp, context7, fetch
 
 ### Community 30 - "func3"
 Cohesion: 0.13
@@ -302,9 +295,9 @@ Nodes (24): func3(), validate20(), validate22(), validate24(), validate27(), val
 Cohesion: 0.09
 Nodes (21): 1. In-process, 2. Local-substitutable, 3. Remote but owned (Ports & Adapters), 4. True external (Mock), Deepening, Dependency categories, Seam discipline, Testing strategy: replace, don't layer (+13 more)
 
-### Community 32 - "workflow-compiler.mjs"
-Cohesion: 0.08
-Nodes (41): predictedFixedWidthOverflow(), withDiagnosticRecordingSuppressed(), NODE_CARD_ATTR, nodeCardStyle(), TONES, addVerifiedCrossingRepair(), addVerifiedPlacementRepair(), authoredNodeHeight() (+33 more)
+### Community 32 - "segmentIntersectsRect"
+Cohesion: 0.40
+Nodes (5): slideTitleOffRoutes(), extraLabelLineMasksRoute(), pointInBox(), segmentIntersectsRect(), segmentBlocked()
 
 ### Community 33 - "ref_node_path"
 Cohesion: 0.16
@@ -315,16 +308,16 @@ Cohesion: 0.09
 Nodes (19): ADR Format, Numbering, Optional sections, Template, What qualifies, When to offer an ADR, GLOSSARY.md Format, Rules (+11 more)
 
 ### Community 35 - "compileWorkflowInternal"
-Cohesion: 0.12
-Nodes (45): rectsOverlap(), segmentIntersectsRect(), segmentRectClearance(), measureLegend(), compileWorkflowInternal(), boundsOverlap(), candidateLabelRect(), classifyFailedAutomaticCandidatePins() (+37 more)
+Cohesion: 0.05
+Nodes (127): anchor(), joinRoutePoints(), variantAccent(), compileWorkflowInternal(), acceptsFix(), authoredPinEvidence(), authoredRouteAssertionFields(), automaticEndpointRepairs() (+119 more)
 
-### Community 36 - "pathFor"
-Cohesion: 0.11
-Nodes (35): workflow(), finalizeReadableViewBox(), gapYBetween(), groupSpan(), isReadableControlledRoute(), labelRectFor(), measuredContentBounds(), measuredPlanFootprint() (+27 more)
+### Community 36 - "collectDesktopReadability"
+Cohesion: 0.50
+Nodes (5): declaredWideReadabilityBudget(), projectedNodeTextPx(), collectDesktopReadability(), hasAttribute(), viewBoxSize()
 
 ### Community 37 - "cli.mjs"
-Cohesion: 0.12
-Nodes (27): defaultDeliveryPaths(), stagePreviewCommit(), __dirname, removeOwnedRegularFile(), applyLocaleTranslations(), isFilesystemError(), loadDiagram(), loadDiagramWithBrandMarks() (+19 more)
+Cohesion: 0.08
+Nodes (44): attempt(), __dirname, applyLocaleTranslations(), isFilesystemError(), loadDiagram(), loadDiagramWithBrandMarks(), outputPathGuards, RELATIONSHIP_COLLECTIONS (+36 more)
 
 ### Community 38 - "package.json"
 Cohesion: 0.11
@@ -334,9 +327,9 @@ Nodes (17): bin, archify, description, devDependencies, ajv, simple-icons, engin
 Cohesion: 0.12
 Nodes (17): Architecture layout repair, Choose the repair scope, One coherent repair, A new candidate at an existing output path, Automated browser evidence, Delivery contract, Failed finalize and candidate repair, Handoff receipt (+9 more)
 
-### Community 40 - "renderMembers"
-Cohesion: 0.50
-Nodes (5): memberColumns(), memberSpans(), punctuated(), renderMembers(), visibilityChip()
+### Community 40 - "5. CONTEXT-AWARE PROACTIVITY"
+Cohesion: 0.40
+Nodes (5): 5.A Sticky-Stack - Canonical Skeleton, 5.B Horizontal-Pan - Canonical Skeleton, 5.C Scroll-Reveal Stagger - Canonical Skeleton (lighter alternative), 5. CONTEXT-AWARE PROACTIVITY, 5.D Forbidden Animation Patterns
 
 ### Community 41 - "PipeCdp"
 Cohesion: 0.27
@@ -344,27 +337,23 @@ Nodes (4): ChromeVisualBrowser, chromeVisualBrowserArgs(), evaluate(), PipeCdp
 
 ### Community 42 - "tasteskill: Anti-Slop Frontend Skill"
 Cohesion: 0.13
-Nodes (15): 0.A Read these signals first, 0.B Output a one-line "Design Read" before generating, 0. BRIEF INFERENCE (Read the Room Before Anything Else), 0.C If the brief is ambiguous, ask one question, do not guess, 0.D Anti-Default Discipline, 13. OUT OF SCOPE, 14. FINAL PRE-FLIGHT CHECK, 2.A When to reach for a real design system (use official packages) (+7 more)
+Nodes (15): 0.A Read these signals first, 0.B Output a one-line "Design Read" before generating, 0. BRIEF INFERENCE (Read the Room Before Anything Else), 0.C If the brief is ambiguous, ask one question, do not guess, 0.D Anti-Default Discipline, 13. OUT OF SCOPE, 14. FINAL PRE-FLIGHT CHECK, 1.A Dial Inference (design read → dial values) (+7 more)
 
 ### Community 43 - "Appendix B - Canonical Sources (read these before reinventing)"
 Cohesion: 0.13
 Nodes (15): Appendix B - Canonical Sources (read these before reinventing), Apple Liquid Glass (Apple platforms only), Atlassian, Bootstrap, Carbon, Fluent UI, GOV.UK, Material Web (+7 more)
 
 ### Community 44 - "Diagnosing Bugs"
-Cohesion: 0.13
-Nodes (14): Completion criterion: a tight loop that goes red, Diagnosing Bugs, Minimise, Non-deterministic bugs, Phase 1: Build a feedback loop, Phase 2: Reproduce + minimise, Phase 3: Hypothesise, Phase 4: Instrument (+6 more)
-
-### Community 45 - "authoring-contract.md"
-Cohesion: 0.22
-Nodes (3): Bundled Viewer catalogs, Agent decision path, Brand marks
+Cohesion: 0.12
+Nodes (15): Completion criterion: a tight loop that goes red, Diagnosing Bugs, Minimise, Non-deterministic bugs, Package Compiler & Runtime Errors (Fetch Protocol), Phase 1: Build a feedback loop, Phase 2: Reproduce + minimise, Phase 3: Hypothesise (+7 more)
 
 ### Community 46 - "portable-path.mjs"
 Cohesion: 0.29
 Nodes (12): assertProfile(), classifySemanticCollision(), collisionError(), createSemanticIndex(), findSemanticCollision(), pathError(), PORTABLE_PATH_PROFILES, PortablePathError (+4 more)
 
 ### Community 47 - "parseAttrs"
-Cohesion: 0.27
-Nodes (14): collectArchitectureLeadingSpace(), collectLegendBoxes(), collectRelationshipLabelMasks(), collectSequenceColumnSpace(), collectSequenceNoteBorders(), collectUntransformedNodeRects(), legendTextWidth(), numberAttr() (+6 more)
+Cohesion: 0.29
+Nodes (14): collectArchitectureLeadingSpace(), collectCompositionFrames(), collectLegendBoxes(), collectRelationshipLabelMasks(), collectSequenceColumnSpace(), collectSequenceNoteBorders(), collectUntransformedNodeRects(), legendTextWidth() (+6 more)
 
 ### Community 48 - "scripts"
 Cohesion: 0.12
@@ -387,16 +376,16 @@ Cohesion: 0.15
 Nodes (11): Waterfall, detail(), Axis, Cards, Event Timeline Renderer, Input, Tested size, Execution Waterfall Renderer (+3 more)
 
 ### Community 53 - "desktop-readability.mjs"
-Cohesion: 0.13
-Nodes (16): DECLARED_WIDE_READER_CONTRACT, DECLARED_WIDE_READER_MAX_WIDTH, DECLARED_WIDE_READER_RATIO, DECLARED_WIDE_REFERENCE_BODY_HORIZONTAL_PX, DECLARED_WIDE_REFERENCE_DIAGRAM_HORIZONTAL_PX, declaredWideReadabilityBudget(), describeFixedWidthOverflow(), DESKTOP_FIXED_VERTICAL_CHROME_PX (+8 more)
+Cohesion: 0.15
+Nodes (12): DECLARED_WIDE_READER_CONTRACT, DECLARED_WIDE_READER_MAX_WIDTH, DECLARED_WIDE_READER_RATIO, DECLARED_WIDE_REFERENCE_BODY_HORIZONTAL_PX, DECLARED_WIDE_REFERENCE_DIAGRAM_HORIZONTAL_PX, describeFixedWidthOverflow(), DESKTOP_FIXED_VERTICAL_CHROME_PX, DESKTOP_READABILITY_VIEWPORT (+4 more)
 
-### Community 54 - "diagnostics.mjs"
-Cohesion: 0.11
-Nodes (22): Executable geometry rules, Explicit `via` coordinates, Repair evidence, Repair order, Spacing and labels, boundaryKey, fallbackDiagnostic(), formatDiagnostics() (+14 more)
+### Community 54 - "Executable geometry rules"
+Cohesion: 0.40
+Nodes (5): Executable geometry rules, Explicit `via` coordinates, Repair evidence, Repair order, Spacing and labels
 
 ### Community 55 - "validatePortablePath"
-Cohesion: 0.38
-Nodes (13): architecture(), classDiagram(), dataflow(), erd(), lifecycle(), sequence(), timeline(), tree() (+5 more)
+Cohesion: 0.37
+Nodes (14): architecture(), classDiagram(), dataflow(), erd(), lifecycle(), sequence(), timeline(), tree() (+6 more)
 
 ### Community 56 - "Steps"
 Cohesion: 0.15
@@ -414,9 +403,9 @@ Nodes (12): 1. Gather context, 2. Explore the codebase (optional), 3. Draft vert
 Cohesion: 0.18
 Nodes (13): catalog, catalogPath, domains, fail(), generated, here, ids, lookupForms() (+5 more)
 
-### Community 60 - "memberRows"
-Cohesion: 0.18
-Nodes (13): attributeText(), compartments(), fillLines(), headerHeight(), headerWidth(), measuredTypes, memberRows(), methodText() (+5 more)
+### Community 60 - "7. DIAL DEFINITIONS (Technical Reference)"
+Cohesion: 0.50
+Nodes (4): 7. DIAL DEFINITIONS (Technical Reference), DESIGN_VARIANCE (Level 1-10), MOTION_INTENSITY (Level 1-10), VISUAL_DENSITY (Level 1-10)
 
 ### Community 61 - "4. DESIGN ENGINEERING DIRECTIVES (Bias Correction)"
 Cohesion: 0.17
@@ -430,17 +419,9 @@ Nodes (11): Architecture, Class, Dataflow, ERD, Lifecycle, Mode placement, Seque
 Cohesion: 0.18
 Nodes (10): ajv, diagramTypes, __dirname, output, portableOutputWrappers, RESERVED_TYPE_NAMES, root, schemaIds (+2 more)
 
-### Community 64 - "legend.mjs"
-Cohesion: 0.26
-Nodes (10): ensureAutoLegendFits(), renderLegend(), renderStage(), renderSvg(), legendFootprint(), measuredEntryWidth(), renderedLegendFontSize(), renderLegend() (+2 more)
-
-### Community 65 - "pathFor"
-Cohesion: 0.24
-Nodes (11): buildLayoutReport(), defaultRelationshipLabelPoint(), legendSwatch(), markerAttrs(), pathFor(), relationshipClass(), relationshipLabelBox(), relationshipLabelPoint() (+3 more)
-
 ### Community 66 - "collectArrows"
 Cohesion: 0.22
-Nodes (11): attrEntries(), collectArrows(), collectCompositionFrames(), collectNonFiniteAttrs(), continuousRoutePoints(), decodeNumericReferences(), inspectedPath(), isNumericAttr() (+3 more)
+Nodes (10): attrEntries(), collectArrows(), collectNonFiniteAttrs(), continuousRoutePoints(), decodeNumericReferences(), inspectedPath(), isNumericAttr(), isPoint() (+2 more)
 
 ### Community 67 - "10. REFERENCE VOCABULARY (Pattern Names the Agent Should Know)"
 Cohesion: 0.20
@@ -451,7 +432,7 @@ Cohesion: 0.22
 Nodes (8): Canonical exports, Embedded reading addresses, Exploration, Motion and presentation, Reach Share Card, Route Share Card, Truth boundary, Viewer Runtime reference
 
 ### Community 69 - "Workflow Renderer"
-Cohesion: 0.22
+Cohesion: 0.20
 Nodes (9): Design Rules, Fixed v1, Input, Layout contracts, Legend, Migration and layout receipt, Optional semantic checks, Readable v2 (+1 more)
 
 ### Community 70 - "Phase 2: Release, `production` Branch Sync, Tagging & Major-Only GitHub Release (`patch` | `minor` | `major`)"
@@ -468,15 +449,15 @@ Nodes (8): Further Notes, Implementation Decisions, Out of Scope, Problem Statem
 
 ### Community 73 - "Entity-Relationship Renderer"
 Cohesion: 0.25
-Nodes (7): Cardinality ink, Domain bands, Entity-Relationship Renderer, Input, Reading a schema, The legend band, Typography
+Nodes (8): Cardinality ink, Domain bands, Entity-Relationship Renderer, Input, Layout and routing, Reading a schema, The legend band, Typography
 
 ### Community 74 - "Archify JSON IR Schemas"
 Cohesion: 0.25
 Nodes (8): Archify JSON IR Schemas, Error format, Files, Legend presentation contract, Runtime validation, schema_version policy, Shared definitions (common.schema.json), Visual quality and engineering truth
 
 ### Community 75 - "Process"
-Cohesion: 0.25
-Nodes (7): 1. Pin the fixed point, 2. Identify the spec source, 3. Identify the standards sources, 4. Spawn both sub-agents in parallel, 5. Aggregate, Process, Why two axes
+Cohesion: 0.22
+Nodes (8): 1. Pin the fixed point, 2. Identify the spec source, 3. Identify the standards sources, 4. Spawn both sub-agents in parallel, 5. Aggregate, Modernity & Dependency Baseline (ZEP-03), Process, Why two axes
 
 ### Community 76 - "9. AI TELLS (Forbidden Patterns)"
 Cohesion: 0.25
@@ -487,15 +468,15 @@ Cohesion: 0.29
 Nodes (7): Repository evidence, Author from evidence, Choose an example by structure, Evidence by diagram type, Explore on demand, Repository-backed authoring, line()
 
 ### Community 78 - "Class and Interface Renderer"
-Cohesion: 0.29
-Nodes (6): Class and Interface Renderer, Input, Layout, Reader and export, Relationships, Tested size
+Cohesion: 0.17
+Nodes (7): Bundled Viewer catalogs, Class and Interface Renderer, Input, Layout, Reader and export, Relationships, Tested size
 
 ### Community 79 - "Sequence Renderer"
 Cohesion: 0.29
 Nodes (6): Column fit, Design Rules, Input, Layout budget, Legend, Sequence Renderer
 
 ### Community 80 - "Hierarchy and Tree Renderer"
-Cohesion: 0.29
+Cohesion: 0.33
 Nodes (6): Expand and collapse, Hierarchy and Tree Renderer, Input, Layout, Structure checks, Tested size
 
 ### Community 81 - "Archify"
@@ -615,8 +596,8 @@ Cohesion: 0.40
 Nodes (4): Applied In, Factory Pattern encapsulates multi-provider object creation, Problem Solved, Zentora Standard
 
 ### Community 112 - "normalizeRoutePoints"
-Cohesion: 0.27
-Nodes (17): routeMeetsCompositionFloors(), crossingCount(), distance(), masks(), pinned(), related(), repairLabelRoutes(), segments() (+9 more)
+Cohesion: 0.20
+Nodes (23): busRouteConflict(), routeVia(), crossingCount(), distance(), length(), masks(), pinned(), related() (+15 more)
 
 ### Community 113 - "Setup Agent Skill"
 Cohesion: 0.40
@@ -626,10 +607,6 @@ Nodes (4): Command Execution, Setup Agent Skill, Slash Command Usage, Supported 
 Cohesion: 0.40
 Nodes (5): Decisions, [DEV] 2026-10-27 - Multi-Agent Architecture and Knowledge Codification, Focus, What was built, Wins
 
-### Community 124 - "routeBudgetMetrics"
-Cohesion: 0.29
-Nodes (7): routeBudgetMetrics(), segmentPosition(), routeParts(), subpathBudgetMetrics(), subpathCorridors(), subpathLabelClearance(), subpathRhythmIssues()
-
 ### Community 125 - "Repository Pattern decouples business logic from persistence"
 Cohesion: 0.40
 Nodes (4): Applied In, Problem Solved, Repository Pattern decouples business logic from persistence, Zentora Standard
@@ -638,35 +615,25 @@ Nodes (4): Applied In, Problem Solved, Repository Pattern decouples business log
 Cohesion: 0.50
 Nodes (3): ChatGPT CLI & OpenAI Codex Configuration — Zentora Dev, Recommended CLI Launch Flags, System Protocol Invariants
 
-### Community 127 - "1. THE THREE DIALS (Core Configuration)"
-Cohesion: 0.50
-Nodes (4): 1.A Dial Inference (design read → dial values), 1.B Use-Case Presets, 1.C How the Dials Drive Output, 1. THE THREE DIALS (Core Configuration)
-
-### Community 128 - "autoViewBox"
-Cohesion: 1.00
-Nodes (3): autoViewBox(), contentBounds(), legendLayout()
-
-### Community 129 - "sideFor"
-Cohesion: 0.67
-Nodes (3): ordinaryRouter(), sideFor(), Layout and routing
-
 ## Knowledge Gaps
-- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **2 isolated node(s):** `@upstash/context7-mcp`, `mcp-fetch-server`
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 863 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `layout()` connect `render-lifecycle.mjs` to `asArray`?**
-  _High betweenness centrality (0.059) - this node is a cross-community bridge._
+- **Why does `layout()` connect `render-lifecycle.mjs` to `5. CONTEXT-AWARE PROACTIVITY`, `workflow-compiler.mjs`?**
+  _High betweenness centrality (0.060) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `compileWorkflowInternal()` (e.g. with `acceptsFix()` and `compareCost()`) actually correct?**
   _`compileWorkflowInternal()` has 4 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `@upstash/context7-mcp`, `mcp-fetch-server` to the rest of the system?**
+  _2 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `archify.mjs` be split into smaller, more focused modules?**
-  _Cohesion score 0.05199350081239845 - nodes in this community are weakly interconnected._
-- **Why does `5. CONTEXT-AWARE PROACTIVITY` connect `render-lifecycle.mjs` to `tasteskill: Anti-Slop Frontend Skill`?**
-  _High betweenness centrality (0.058) - this node is a cross-community bridge._
+  _Cohesion score 0.05725680102549494 - nodes in this community are weakly interconnected._
+- **Why does `5.D Forbidden Animation Patterns` connect `5. CONTEXT-AWARE PROACTIVITY` to `render-lifecycle.mjs`?**
+  _High betweenness centrality (0.059) - this node is a cross-community bridge._
 - **Should `check-update.mjs` be split into smaller, more focused modules?**
   _Cohesion score 0.05592203898050974 - nodes in this community are weakly interconnected._
-- **Should `render-erd.mjs` be split into smaller, more focused modules?**
-  _Cohesion score 0.04341164453524004 - nodes in this community are weakly interconnected._
-- **Should `architecture-delta.mjs` be split into smaller, more focused modules?**
-  _Cohesion score 0.057455540355677154 - nodes in this community are weakly interconnected._
+- **Why does `5. CONTEXT-AWARE PROACTIVITY` connect `5. CONTEXT-AWARE PROACTIVITY` to `tasteskill: Anti-Slop Frontend Skill`?**
+  _High betweenness centrality (0.059) - this node is a cross-community bridge._

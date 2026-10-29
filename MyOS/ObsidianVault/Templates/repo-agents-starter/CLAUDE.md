@@ -32,3 +32,8 @@ python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "{{english keywords}}" --hops
 3. **Backend Engineering Protocols (ZEP):**
    - Enforce controller insulation (no raw SQL/fetch in route handlers).
    - Enforce Two-Tier Simplicity Gate (Tier 1 CRUD: Direct Repo + Service; Tier 2: Strategy, Adapter, Observer, Circuit Breaker).
+4. **Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03):**
+   - **Inspect Version First:** Check `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` before generating code for modern libraries (Next.js, Tailwind, Pydantic, Prisma, Supabase, FastAPI).
+   - **Context7 Live Snippets:** Invoke `context7` MCP tool to pull current official API signatures and live documentation before writing code.
+   - **Zero Deprecated Syntax:** Never use obsolete patterns (e.g., Next.js `pages/` in App Router, Pydantic v1 `.dict()`, unvetted CJS `require()`).
+   - **Issue Diagnostics (Fetch Protocol):** When hitting package build or dependency errors, invoke `fetch` MCP tool to consult official GitHub issues/releases rather than inventing speculative flags.

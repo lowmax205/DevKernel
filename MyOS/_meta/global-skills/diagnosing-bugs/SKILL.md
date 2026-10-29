@@ -97,6 +97,12 @@ If you cannot state the prediction, the hypothesis is a vibe: discard or sharpen
 
 **Show the ranked list to the user before testing.** They often have domain knowledge that re-ranks instantly ("we just deployed a change to #3"), or know hypotheses they've already ruled out. Cheap checkpoint, big time saver. Don't block on it; proceed with your ranking if the user is AFK.
 
+### Package Compiler & Runtime Errors (Fetch Protocol)
+When debugging cryptic runtime errors, third-party library crashes, or compiler failures:
+- Do not invent hypothetical flags, nonexistent configuration options, or speculative workarounds.
+- Use the `fetch` MCP tool to retrieve and inspect official GitHub issues, bug tracker threads, and upstream changelogs.
+- Compare the exact installed package version against release notes to locate documented regressions, upstream fixes, or migration breaking changes.
+
 ## Phase 4: Instrument
 
 Each probe must map to a specific prediction from Phase 3. **Change one variable at a time.**

@@ -36,6 +36,12 @@ graphify-out/20*
 MyOS/graphify-out/.graphify_*
 graphify-out/.graphify_*
 
+# On-Demand Agent Artifacts (Clean Root Invariant)
+.cursor/
+.agents/
+.github/
+CLAUDE.md
+
 # OS & Editor Temporary Files
 Thumbs.db
 Desktop.ini

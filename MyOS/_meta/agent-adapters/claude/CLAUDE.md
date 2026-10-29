@@ -34,3 +34,8 @@ This extracts a targeted, <350 token Context Capsule containing project status, 
 3. **Backend Engineering Protocols (ZEP):**
    - Enforce controller insulation (no raw queries/fetch in handlers).
    - Enforce Two-Tier Simplicity Gate: Tier 1 (Direct Repo + Service; strictly reject CQRS/Event Bus); Tier 2 (Strategy for >3 calculation branches, Adapter for dirty external schemas, Observer for async side effects, Circuit Breaker for external APIs).
+4. **Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03):**
+   - **Inspect Version First:** Check `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` before generating code for modern libraries (Next.js, Tailwind, Pydantic, Prisma, Supabase, FastAPI).
+   - **Context7 Live Snippets:** Invoke `context7` MCP tool to pull current official API signatures and live documentation before writing code.
+   - **Zero Deprecated Syntax:** Never use obsolete patterns (e.g., Next.js `pages/` in App Router, Pydantic v1 `.dict()`, unvetted CJS `require()`).
+   - **Issue Diagnostics (Fetch Protocol):** When hitting package build or dependency errors, invoke `fetch` MCP tool to consult official GitHub issues/releases rather than inventing speculative flags.

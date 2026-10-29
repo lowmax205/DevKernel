@@ -28,6 +28,14 @@ Connected to the global **Zentora Dev** architecture ([`<ZENTORA_ROOT>/AGENTS.md
   - TypeScript: Interface abstractions, Prisma/Drizzle ORM, Zod/Builders.
   - Python: `typing.Protocol` / ABCs, Pydantic v2 schemas, SQLAlchemy session repositories.
 
+## 4. Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03)
+- **Mandatory Library Verification Before Generation:**
+  - Before writing code for any modern external library or framework feature prone to major version breaking changes (e.g., Next.js App Router, Tailwind v4, Pydantic v2, Prisma v5+, Supabase v2, LangChain, FastAPI):
+  - The agent **MUST** inspect the target repo's `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` to confirm the exact installed version.
+  - The agent **MUST** invoke the `context7` MCP tool to retrieve live, official documentation and working syntax snippets before generating code.
+- **Zero Deprecated Syntax Invariant:** Strictly forbid deprecated patterns (e.g., Next.js `pages/` routing in App Router repos, Pydantic v1 `.dict()` on Pydantic v2 codebases, or unvetted CommonJS `require()` in modern TypeScript/ESM projects).
+- **Issue Diagnostics Gate (Fetch Protocol):** When encountering a package compiler bug or third-party dependency error, the agent must use the `fetch` MCP tool to inspect the official GitHub issue, changelog, or release notes instead of inventing hypothetical flags or configs.
+
 ## Agent skills
 
 ### Issue tracker

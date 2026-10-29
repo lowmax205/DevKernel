@@ -1,0 +1,25 @@
+---
+description: Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03) and Context7/Fetch MCP Protocol
+alwaysApply: true
+---
+# Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03)
+
+You are operating under the ZentoraDev Universal Engineering Standards. To prevent hallucination, outdated syntax patterns, and library breaking change collisions, strictly enforce this gate before generating or modifying code.
+
+## 1. Mandatory Library Verification Before Generation
+Before authoring code for any modern external library, framework, or package subject to major version changes (e.g., Next.js App Router, Tailwind v4, Pydantic v2, Prisma v5+, Supabase v2, LangChain, FastAPI):
+1. **Inspect Local Version:** Check `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` to confirm the exact installed library version.
+2. **Context7 Documentation Retrieval:** Call the `context7` MCP tool to fetch current, official documentation and working syntax snippets before writing code. Never guess or hallucinate API signatures.
+
+## 2. Zero Deprecated Syntax Invariant
+Strictly reject and never emit deprecated syntax patterns, including but not limited to:
+- Next.js `pages/` directory routing patterns in Next.js App Router codebases.
+- Pydantic v1 `.dict()` or old validators on Pydantic v2 projects (use `.model_dump()`, `@field_validator`).
+- Unvetted CommonJS `require()` in modern TypeScript / ESM (`"type": "module"`) codebases.
+- Deprecated Tailwind v3 configurations in Tailwind v4 setups.
+
+## 3. Issue Diagnostics Gate (Fetch Protocol)
+When encountering a package compiler bug, third-party dependency error, or cryptic runtime failure:
+1. Do not invent hypothetical compiler flags, non-existent configuration options, or random workarounds.
+2. Use the `fetch` MCP tool to retrieve and inspect official GitHub issues, changelogs, release notes, or upstream migration guides.
+
