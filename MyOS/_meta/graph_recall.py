@@ -8,7 +8,6 @@ Emits a structured <350 token Context Capsule for pair-programming agents.
 
 import argparse
 import json
-import os
 import re
 import sys
 from collections import deque
@@ -40,7 +39,6 @@ ENGLISH_STOPWORDS = {
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 MYOS_DIR = SCRIPT_DIR.parent
-ZENTORA_ROOT = Path(os.environ.get("ZENTORA_ROOT") or SCRIPT_DIR.parents[1]).resolve()
 DEFAULT_GRAPH_PATH = MYOS_DIR / "graphify-out" / "graph.json"
 PROJECTS_DIR = MYOS_DIR / "projects"
 
@@ -52,13 +50,8 @@ def extract_keywords(query: str) -> List[str]:
 
 def load_graph(graph_path: Path) -> Dict[str, Any]:
     if not graph_path.exists():
-        # Fallback to relative search
-        alt = ZENTORA_ROOT / "MyOS" / "graphify-out" / "graph.json"
-        if alt.exists():
-            graph_path = alt
-        else:
-            print(f"[graphify capsule] Error: Graph file not found at: {graph_path}", file=sys.stderr)
-            sys.exit(1)
+        print(f"[graphify capsule] Graph not found at {graph_path}. Graphify is optional; generate a graph or pass --graph explicitly.", file=sys.stderr)
+        sys.exit(1)
     with open(graph_path, "r", encoding="utf-8", errors="replace") as f:
         return json.load(f)
 

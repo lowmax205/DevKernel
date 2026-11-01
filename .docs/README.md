@@ -1,3 +1,11 @@
+# Documentation scope
+
+The current Windows starter contract is [starter-decisions.md](starter-decisions.md)
+and the root README. The architecture documents below describe the earlier
+maintainer workspace; automatic installs, global skill mirroring, watchers,
+and mandatory engineering profiles described there are not starter defaults.
+They are excluded from the clean export.
+
 # ZentoraDev Architecture & Standards Documentation
 
 This directory contains the authoritative system architecture, engineering protocols, and agent operational standards for the ZentoraDev Meta-Developer Operating System (MyOS).

@@ -1,231 +1,146 @@
-# DevKernel — Meta-Developer Operating System (MyOS)
+# DevKernel
 
-> **A 3-Layer Autonomous Knowledge & Engineering Operating System for Multi-Repository AI Pair Programming.**
+A Windows starter workspace for developers using AI coding agents across repositories.
+Keep live project direction in short cards, project history in a local vault, and
+optional graph connections in Graphify. Your workspace can have any name.
 
-DevKernel is a local-first **Meta-Developer Operating System (MyOS)** built on the **"One Home Per Fact"** principle. It bridges local Obsidian long-term memory, relational AST + semantic knowledge graphs (Graphify + DeepSeek), and structured Interpretable Context Methodology (ICM) project cards to empower AI coding assistants with instant, zero-token-waste context recall and disciplined engineering lifecycles.
+## Start here
 
----
-## 1. The 3-Layer Knowledge Architecture
+Requirements: Windows, PowerShell 5.1+, Git for Windows, and Python 3.9+ on PATH.
+Install missing tools from [Git for Windows](https://gitforwindows.org/) and
+[Python](https://www.python.org/downloads/windows/), enable PATH, then reopen PowerShell.
+The selected AI agent must already be installed and signed in. Setup configures
+repository instructions; it does not install or authenticate the agent.
 
-```mermaid
-flowchart TD
-  subgraph Layer3["Layer 3: Direction (ICM Cards)"]
-    CARD["MyOS/projects/slug.md<br/>- Live Status and Next Actions<br/>- Authoritative Routing Table"]
-  end
-
-  subgraph Layer1["Layer 1: Memory (Obsidian Vault)"]
-    HUBS["10 - Projects/Project/Project Hub.md<br/>- Interactive Archify Diagrams<br/>- Linked Architecture Patterns"]
-    SESSIONS["10 - Projects/Project/CODE YYYY-MM-DD - Focus.md<br/>- Single Daily Consolidated Notes<br/>- Decisions, Mistakes and Wins"]
-    ATOMIC["30 - Resources/Atomic Insights/Pattern.md<br/>- Reusable Gotchas and 10 Backend Patterns<br/>- Concept-First Titles: at most 5 words / 35 chars"]
-  end
-
-  subgraph Layer2["Layer 2: Connections (Graphify Graph)"]
-    AST["graphify-out/graph.json<br/>- 4,000+ AST Nodes and Relational Edges<br/>- Code Symbol Dep Tree and Clusters"]
-    CAPSULE["graph_recall.py<br/>- Pure-English 2-Hop Traversal<br/>- Strict under 350 Token Context Capsule"]
-  end
-
-  CARD ---|"One Home Per Fact"| HUBS
-  HUBS --> SESSIONS
-  HUBS --> ATOMIC
-  SESSIONS -.->|"extracts gotchas"| ATOMIC
-  AST -.->|"indexes code and notes"| HUBS
-  AST -.->|"indexes code and notes"| ATOMIC
-  CAPSULE -->|"queries"| AST
-  CAPSULE -->|"injects capsule into prompt"| CARD
-```
-
-| Layer | System | Location | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Layer 1: Memory** | **Obsidian Vault** | `MyOS/ObsidianVault/10 - Projects/<Name>/`<br/>`MyOS/ObsidianVault/30 - Resources/Atomic Insights/` | Full chronological session logs, architectural decisions, and reusable Atomic Insights notes. Notes never live at the vault root. |
-| **Layer 2: Connections** | **Graphify + DeepSeek** | `MyOS/graphify-out/graph.json`<br/>`MyOS/_meta/graph_recall.py` | Cross-module symbol dependencies, call hierarchies, semantic communities, and <350 token Context Capsule generation. |
-| **Layer 3: Direction** | **ICM Project Cards** | `MyOS/projects/<project-slug>.md` | Authoritative single-page project cards holding live status, immediate next steps, and resource paths. |
-
----
-
-## 2. DevKernel Backend Engineering Protocols (ZEP)
-
-To prevent premature overengineering while ensuring scalable abstractions, DevKernel enforces the **10 Backend Design Patterns** and a **Two-Tier Simplicity Gate**:
-
-```mermaid
-flowchart TD
-  REQ["Incoming Backend Task"] --> CHECK{"Is this standard CRUD<br/>(Create / Read / Update / Delete)?"}
-
-  CHECK -->|"YES"| TIER1["Tier 1: Simple CRUD Invariant"]
-  TIER1 --> REPO["Direct Repository + Service"]
-  REPO --> REJECT["Strictly Reject:<br/>- CQRS Handlers<br/>- Custom Builders<br/>- Distributed Event Buses"]
-  REJECT --> NOTICE["Emit Notice:<br/>SIMPLICITY_GATE: Preserving Tier 1 simplicity<br/>Direct Repository + Service model used."]
-
-  CHECK -->|"NO"| TIER2["Tier 2: High-Scale / External Invariants"]
-  TIER2 --> COND{"Select Specialized Pattern:"}
-  COND -->|"Over 3 Algorithm Rules / Calculation Variations"| STRAT["Strategy Pattern"]
-  COND -->|"Third-Party / Legacy Dirty Schemas"| ADAPT["Adapter Pattern (ACL)"]
-  COND -->|"Secondary Side Effects (Email, SMS, Telemetry)"| OBS["Observer Pattern (Domain Events)"]
-  COND -->|"Flaky External Remote APIs"| CB["Circuit Breaker Pattern"]
-  COND -->|"High-Throughput Write-Contested Pipelines"| CQRS["CQRS Pattern (Commands / Queries)"]
-```
-
-### The 10 Codified Backend Patterns
-1. **Repository Pattern:** Controller insulation; data access decoupled behind domain repository interfaces (`Prisma`/`Drizzle` in TS, `SQLAlchemy` in Python).
-2. **Factory Pattern:** Encapsulates multi-provider branching behind centralized instantiation factories.
-3. **Singleton Pattern:** Manages heavy lifecycle resources (pools, caches); strictly forbids mutable global state.
-4. **Strategy Pattern:** Isolates interchangeable algorithms into polymorphic strategy classes (>3 branches).
-5. **Observer Pattern:** Publishes domain events (`order.placed`) to decouple asynchronous secondary side effects.
-6. **Builder Pattern:** Fluent step-by-step assembly for complex 5+ parameter payloads and test factories.
-7. **Adapter Pattern:** Translates external/legacy schemas into clean internal domain models at boundaries.
-8. **Decorator Pattern:** Attaches cross-cutting concerns (caching, logging, metrics) transparently without mutating domain services.
-9. **CQRS Pattern:** Segregates write Commands from read Queries; strictly restricted to high-throughput domains.
-10. **Circuit Breaker Pattern:** Stateful failure protection (`CLOSED` -> `OPEN` -> `HALF-OPEN`) with mandatory fallback degradation.
-
----
-
----
-
-## 3. Universal Multi-Agent Architecture & Global Engineering Skills
-
-DevKernel is completely agent-agnostic. Rather than locking workflows into a single tool, it employs a **Universal Adapter Pattern** anchored by `AGENTS.md` as the single canonical source of truth:
-
-```mermaid
-flowchart TD
-  SSOT["Universal Master: AGENTS.md<br/>- One Home Per Fact<br/>- Two-Tier Simplicity Gate<br/>- PowerShell 5.1 Terminal Rules"]
-
-  SSOT --> CLAUDE["Claude Code CLI<br/>(CLAUDE.md)"]
-  SSOT --> CURSOR["Cursor IDE<br/>(.cursor/rules/*.mdc)"]
-  SSOT --> AGY["Google Antigravity<br/>(.agents/skills + Junctions)"]
-  SSOT --> COPILOT["GitHub Copilot<br/>(.github/copilot-instructions.md)"]
-  SSOT --> CHATGPT["ChatGPT CLI / Codex<br/>(Native AGENTS.md ingestion)"]
-
-  ADAPTERS["MyOS/_meta/agent-adapters/<br/>Centralized modular templates"] -.->|"provisioned via /setup or setup_agent.ps1"| CLAUDE
-  ADAPTERS -.-> CURSOR
-  ADAPTERS -.-> AGY
-  ADAPTERS -.-> COPILOT
-  ADAPTERS -.-> CHATGPT
-```
-
-### Multi-Agent Integration Matrix
-- **Universal Master (`AGENTS.md`):** Authoritative routing table, ZEP backend patterns, and session persistence protocols.
-- **Claude Code CLI (`CLAUDE.md`):** Terminal pair-programming instructions with instant graph context recall.
-- **Cursor IDE (`.cursor/rules/*.mdc`):** Progressive rule slicing (`devkernel.mdc` always on; `backend-patterns.mdc` active for code).
-- **Google Antigravity:** Fully automated vault, graph, and skill execution via directory junctions (`~/.agents/skills`).
-- **GitHub Copilot (`.github/copilot-instructions.md`):** Custom workspace instructions for VS Code and Copilot CLI.
-- **ChatGPT CLI / OpenAI Codex:** Native zero-config comprehension through standard `AGENTS.md` parsing.
-
-### 18 Core Pruned Global Skills (`~/.agents/skills/`)
-To eliminate token waste and courseware bloat, DevKernel bundles a streamlined, production-hardened engineering suite:
-- **Clarify & Specify:** `grill-me`, `to-spec`, `to-tickets`
-- **Design & Model:** `archify`, `domain-modeling`, `codebase-design`, `design-taste-frontend`
-- **Build & Verify:** `implement`, `tdd`, `verification-before-completion`, `code-review`, `diagnosing-bugs`
-- **Release & Ops:** `git-commit`, `selfhost-devops`, `monorepo-architect`, `setup-pre-commit`, `setup-agent`, `devkernel-manager`
-
-> **Deduplication Invariant:** Child repositories in `Repos/` must **NEVER** duplicate these global skills locally; local `.agents/skills/` folders contain strictly project-specific domain skills.
-
----
-
-## 4. Quickstart & Machine Onboarding
-
-When setting up DevKernel on a new workstation:
+Clone this repository, open PowerShell in the clone, and run:
 
 ```powershell
-# 1. Clone the repository
-git clone <your-devkernel-repo-url>.git
-cd DevKernel
-
-# 2. Run the automated bootstrapper (configures all AI agents by default)
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\bootstrap_machine.ps1 -Agent all
+powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
 ```
 
-### On-Demand Agent Setup (`setup_agent.ps1` or `/setup`)
-You can configure or switch agent adapters anytime via script or conversational slash commands:
+Choose a **new, empty destination path** for your workspace (the directory must not
+yet exist), select an agent, and enter the root of an existing Git repository.
+For later registrations, select the workspace previously created by setup.
+Repositories may live anywhere, including inside the workspace's Repos folder.
+Setup never moves, clones, initializes, or commits your project repositories.
+
+The prompts also offer an optional engineering profile and a reset option; both
+default to no. Use a noninteractive invocation for repeatable setup:
 
 ```powershell
-# Configure for a specific agent:
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent claude
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent cursor
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent antigravity
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent copilot
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent all
+.\setup.ps1 -WorkspacePath '..\MyWorkspace' -RepoPath '..\ExistingProject' -Agent codex -NonInteractive
 ```
 
-Or ask your AI assistant:
-- `/setup all`
-- `/setup claude`
-- `/setup cursor`
-- `/setup antigravity`
-- `/setup copilot`
+Add `-DryRun` to preview without writes. Use `-EngineeringProfile` to opt into
+version-aware library checks, simple backend patterns, and project verification
+policies. Existing repository standards still require review for conflicts.
 
----
+## Agent integrations
 
-## 5. Development Workflows
+| Agent | Repository instructions |
+| --- | --- |
+| Codex (`codex`, also `chatgpt`) | AGENTS.md |
+| Claude Code (`claude`) | CLAUDE.md pointing to AGENTS.md |
+| Cursor (`cursor`) | .cursor/rules/devkernel.mdc pointing to AGENTS.md |
+| GitHub Copilot (`copilot`) | .github/copilot-instructions.md pointing to AGENTS.md |
+| Antigravity (`antigravity`) | GEMINI.md pointing to AGENTS.md |
 
-### 1. Bootstrapping a Child Repository (`bootstrap <RepoName>`)
-To connect any new or existing repository in `Repos/` to DevKernel:
+Setup adds or updates a marked DevKernel block and preserves surrounding content.
+It reports existing instructions for policy review; it cannot determine whether
+natural-language instructions contradict each other. Malformed markers stop setup.
+Choosing another agent adds that adapter without deleting previous adapters.
+
+Native file conventions: [Claude memory](https://code.claude.com/docs/en/memory),
+[Cursor rules](https://cursor.com/docs/context/rules),
+[Copilot instructions](https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions),
+and [Antigravity rules](https://antigravity.google/docs/rules/).
+Agent UI behavior must be checked in your installed client; automated tests verify
+the generated files and setup behavior, not authenticated agent sessions.
+
+## Register another repository
+
+From the generated workspace:
+
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\bootstrap_repo.ps1 -RepoPath "MyProject"
+.\MyOS\_meta\bootstrap_repo.ps1 -RepoPath '..\AnotherProject' -Agent claude
 ```
-Or tell any AI agent: `bootstrap MyProject`. This automatically provisions multi-agent support (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.cursor/rules/`), scaffolds `.agents/rules/00-zentora-and-ai-hero.md`, `CHANGELOG.md` with `## [Unreleased]`, prunes duplicate skills, and registers the ICM Card and Obsidian Hub.
 
-### 2. High-Efficiency Context Recall (Zero Token Waste)
-Before guessing or reading full directories, query the 2-hop relational knowledge graph:
+`setup_agent.ps1 -Agent cursor -TargetRepo <path>` is another entry point. Both use
+the same preserve-first registration. Pass an existing Git repository root, not
+a project name or a subdirectory. `all` is no longer a setup target: choose one
+agent per invocation. No global settings, MCP servers, Git hooks, or tools are installed.
+
+## Reset repository instructions and skills
+
+Explicitly add `-ResetAgentConfig` to setup or registration. This backs up **all
+known local instruction and skill paths for all five agents**, then configures
+only the selected agent. The exact path list is `RESET_PATHS` in
+`MyOS/_meta/devkernel.py`; it includes root AGENTS/CLAUDE/GEMINI instructions,
+legacy Cursor rules, local rules, local skills, and Copilot instruction files.
+Custom instructions stored elsewhere are outside this reset list.
+
+Backups are under `<repository>/.devkernel/backups/<timestamp>/`, with a
+`manifest.json` listing original relative paths. To restore, close the agent,
+copy each listed path from the backup over its original repository location,
+and keep the backup until you have checked the restored configuration. For a
+complete rollback, remove newly generated adapter files that are not listed in
+the backup manifest. Global skills, credentials, CI workflows, source files, and
+MCP configuration are outside reset scope. Links and junctions are rejected.
+
+## Workspace layout
+
+- `MyOS/projects/<slug>.md`: live status and next steps.
+- `MyOS/ObsidianVault/10 - Projects/<Repository Name>/`: hubs and daily sessions.
+- `MyOS/ObsidianVault/30 - Resources/Atomic Insights/`: reusable knowledge.
+- `MyOS/ObsidianVault/Templates/`: session and insight templates.
+- `MyOS/graphify-out/`: optional graph output, empty initially.
+- `.devkernel/local.json`: ignored machine-local repository registry.
+- `<repository>/.devkernel/workspace.json`: ignored workspace pointer.
+
+Do not commit `.devkernel` files or backups. Copying a workspace to a different
+machine requires registering its repositories again. Duplicate repository names
+that produce the same slug are rejected to prevent card collisions.
+
+The optional `zentora_sync.py --once` checks registered paths without changing
+cards or archiving missing repositories. Registration is explicit; setup does
+not enable a watcher or scan other workspaces.
+
+## Optional tools and skills
+
+Markdown memory works without Obsidian. To browse it visually, open the generated
+`MyOS/ObsidianVault` folder as a vault. Do not create another vault at workspace root.
+
+Graphify is optional and installed separately. From the workspace, use
+`graphify update "MyOS"` for AST updates. Semantic extraction is an explicit,
+API-consuming action: `graphify extract "MyOS" --backend deepseek --output "MyOS"`.
+Store API keys in a local ignored environment file. Use
+`python MyOS/_meta/graph_recall.py "keywords" --hops 2` only after generating a graph.
+
+See [.docs/external-skills.md](.docs/external-skills.md) for separate skill
+installation. Only DevKernel-owned skills are included in clean exports.
+
+## Share a clean starter
+
+The maintainer source checkout contains historical notes, generated diagrams,
+graphs, and legacy skill bundles. **Use the clean export rather than sharing a
+copy of that checkout.** Export uses an explicit allowlist and never copies them:
+
 ```powershell
-python MyOS/_meta/graph_recall.py "<query>" --hops 2
-```
-Generates a strict <350 token Context Capsule including project status, linked Atomic Insights, recent session decisions, and AST symbol dependencies.
-
-### 3. Unified Git Commit & Production Release (`/git-commit`)
-- **Standard Atomic Commit (`/git-commit`):** Appends technical bullets under `## [Unreleased]` in `CHANGELOG.md` and creates an atomic conventional commit.
-- **Release Version (`/git-commit patch|minor|major`):** Promotes `## [Unreleased]` to `## [X.Y.Z] - YYYY-MM-DD`, updates the `production` branch from `main`, creates an annotated git tag `vX.Y.Z`, and triggers a **GitHub Release (`gh release create`) ONLY on `major` updates**.
-
-### 4. Persisting Memory (`save progress`)
-Say **`save progress`** in Claude Code, Cursor, Antigravity, or ChatGPT CLI to:
-1. Record or append to today's consolidated session note: `ObsidianVault/10 - Projects/<Project>/[<CODE>] YYYY-MM-DD - <Focus Title>.md`.
-2. Extract reusable architecture insights or non-obvious bugs into `ObsidianVault/30 - Resources/Atomic Insights/`.
-3. Update `status`, `next`, and `updated` in `MyOS/projects/<project-slug>.md`.
-4. Run fast local AST graph update `graphify update "MyOS"` (zero LLM tokens).
-
----
-
-## 6. Directory Structure
-
-```text
-DevKernel/
-├── .docs/                          # System Architecture & Agent Standards
-│   ├── architecture/               # Modular deep-dive architectural specifications
-│   │   ├── system-overview.md      # Mission, invariants & high-level architecture
-│   │   ├── knowledge-layers.md     # 3-Layer MyOS deep dive & Context Capsule
-│   │   ├── backend-engineering-protocols.md # ZEP & Two-Tier Simplicity Gate
-│   │   └── agent-lifecycle.md      # AI Hero lifecycle & /git-commit release pipeline
-│   ├── agents/                     # Domain doc standards, issue tracker & triage roles
-│   └── README.md                   # Documentation index
-├── MyOS/                           # Meta-Developer Operating System
-│   ├── ObsidianVault/              # Long-term Obsidian memory & session archives
-│   │   ├── 10 - Projects/          # Project Hub notes and dated session notes
-│   │   ├── 30 - Resources/         # Atomic Insights & reusable gotchas
-│   │   └── Templates/              # Note & child repo templates (repo-agents-starter)
-│   ├── projects/                   # ICM Project Cards (<slug>.md)
-│   ├── graphify-out/               # 2-hop Graphify AST graph, reports, and HTML
-│   ├── dashboards/                 # High-level tracker dashboards
-│   ├── _meta/                      # Sync scripts, git hooks, and machine bootstrapper
-│   │   ├── agent-adapters/         # Modular adapter profiles (Claude, Cursor, Copilot, Antigravity, ChatGPT)
-│   │   ├── global-skills/          # 18 core engineering skills (including setup-agent & devkernel-manager)
-│   │   ├── setup_agent.ps1         # Multi-agent environment & adapter provisioner
-│   │   └── bootstrap_machine.ps1   # 1-step workstation bootstrapper
-│   └── .env.graphify.example       # DeepSeek API configuration template
-├── Repos/                          # Child project repositories (ignored by Git)
-│   └── .gitkeep
-├── .gitignore                      # Strict isolation for child repos & secrets
-├── AGENTS.md                       # Master ICM workspace routing table (Universal SSOT)
-├── CHANGELOG.md                    # Keep a Changelog workspace history
-└── README.md                       # Master workspace guide
+python MyOS/_meta/devkernel.py export --destination '..\DevKernel-Starter'
 ```
 
-> **Clean Repository Invariant:** The root repository is completely tool-neutral. Local agent folders (`.cursor/`, `.agents/`, `.github/`, `CLAUDE.md`) are generated dynamically on demand when running `.\MyOS\_meta\setup_agent.ps1 -Agent <name>` or `/setup <agent>`.
+The output has no Git history, credentials, machine registrations, personal notes,
+generated graphs, or external skills. Review it, then distribute it or initialize
+a separate Git repository when ready. Export refuses to overwrite a destination.
 
----
+## Verify development changes
 
-## 7. Deep-Dive Architecture Documentation
+```powershell
+python -m unittest discover -s tests -v
+powershell -NoProfile -ExecutionPolicy Bypass -File tests\verify-powershell.ps1
+python MyOS/_meta/check_portable_paths.py
+git diff --check
+```
 
-For complete technical specifications, see:
-- [System Overview](.docs/architecture/system-overview.md)
-- [3-Layer Knowledge Architecture](.docs/architecture/knowledge-layers.md)
-- [Backend Engineering Protocols (ZEP)](.docs/architecture/backend-engineering-protocols.md)
-- [Agent Lifecycle & Release Pipeline](.docs/architecture/agent-lifecycle.md)
-- [Documentation Index](.docs/README.md)
+Runtime uses only Python's standard library; there are no runtime package dependencies.
+See [.docs/starter-decisions.md](.docs/starter-decisions.md) for the accepted scope.

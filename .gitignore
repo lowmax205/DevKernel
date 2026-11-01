@@ -35,6 +35,7 @@ MyOS/graphify-out/20*
 graphify-out/20*
 MyOS/graphify-out/.graphify_*
 graphify-out/.graphify_*
+.archify/
 
 # On-Demand Agent Artifacts (Clean Root Invariant)
 .cursor/
@@ -49,3 +50,7 @@ Desktop.ini
 *.tmp
 *.log
 MyOS/graphify-out/.rebuild.lock
+
+# Machine-local workspace registrations and repository reset backups
+.devkernel/
+.scratch/
