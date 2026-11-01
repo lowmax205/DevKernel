@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "DevKernel Windows Starter",
+    "locale": "en",
+    "output": ".docs/architecture/system-architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/lowmax205/DevKernel.git",
+      "revision": "480ce99465d420b344077def60e4ecc7e9695045",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "developer",
+      "type": "external",
+      "label": "Developer",
+      "sublabel": "Existing Git repository",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        150,
+        72
+      ],
+      "sources": [
+        {
+          "path": "setup.ps1",
+          "line": 18,
+          "end_line": 38
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "type": "frontend",
+      "label": "Windows Setup",
+      "sublabel": "setup.ps1 / compatibility scripts",
+      "pos": [
+        330,
+        40
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "setup.ps1",
+          "line": 13,
+          "end_line": 45
+        }
+      ]
+    },
+    {
+      "id": "starter",
+      "type": "backend",
+      "label": "Starter CLI",
+      "sublabel": "Python standard library",
+      "pos": [
+        650,
+        40
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 140,
+          "end_line": 189
+        },
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 227,
+          "end_line": 262
+        }
+      ]
+    },
+    {
+      "id": "repository",
+      "type": "database",
+      "label": "Project Configuration",
+      "sublabel": "AGENTS.md + selected adapter",
+      "pos": [
+        1020,
+        40
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 98,
+          "end_line": 110
+        },
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 166,
+          "end_line": 183
+        }
+      ]
+    },
+    {
+      "id": "distribution",
+      "type": "database",
+      "label": "Clean Starter",
+      "sublabel": "Allowlisted files and templates",
+      "pos": [
+        330,
+        260
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 191,
+          "end_line": 224
+        }
+      ]
+    },
+    {
+      "id": "workspace",
+      "type": "database",
+      "label": "Workspace Memory",
+      "sublabel": "Registry, cards and project hubs",
+      "pos": [
+        650,
+        260
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 181,
+          "end_line": 188
+        },
+        {
+          "path": "MyOS/_meta/profiles/core.md",
+          "line": 1,
+          "end_line": 7
+        }
+      ]
+    },
+    {
+      "id": "backups",
+      "type": "database",
+      "label": "Reset Backups",
+      "sublabel": "Repository-local .devkernel",
+      "pos": [
+        1020,
+        260
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 113,
+          "end_line": 137
+        },
+        {
+          "path": "MyOS/_meta/devkernel.py",
+          "line": 175,
+          "end_line": 179
+        }
+      ]
+    },
+    {
+      "id": "graph",
+      "type": "database",
+      "label": "Optional AST Graph",
+      "sublabel": "MyOS/graphify-out/graph.json",
+      "pos": [
+        650,
+        500
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 113,
+          "end_line": 117
+        }
+      ]
+    },
+    {
+      "id": "recall",
+      "type": "backend",
+      "label": "Graph Recall",
+      "sublabel": "Local graph; explicit --graph",
+      "pos": [
+        1020,
+        500
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "MyOS/_meta/graph_recall.py",
+          "line": 40,
+          "end_line": 56
+        },
+        {
+          "path": "MyOS/_meta/graph_recall.py",
+          "line": 191,
+          "end_line": 213
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Optional: manually generated graph",
+      "wraps": [
+        "graph",
+        "recall"
+      ],
+      "pad": 22
+    }
+  ],
+  "connections": [
+    {
+      "id": "start",
+      "from": "developer",
+      "to": "setup",
+      "label": "runs setup",
+      "variant": "emphasis"
+    },
+    {
+      "id": "invoke",
+      "from": "setup",
+      "to": "starter",
+      "label": "calls Python",
+      "variant": "emphasis"
+    },
+    {
+      "id": "merge",
+      "from": "starter",
+      "to": "repository",
+      "label": "preserve / merge",
+      "variant": "emphasis"
+    },
+    {
+      "id": "register",
+      "from": "starter",
+      "to": "workspace",
+      "label": "registers"
+    },
+    {
+      "id": "export",
+      "from": "starter",
+      "to": "distribution",
+      "label": "export only"
+    },
+    {
+      "id": "reset",
+      "from": "starter",
+      "to": "backups",
+      "label": "reset only",
+      "variant": "security"
+    },
+    {
+      "id": "read-graph",
+      "from": "recall",
+      "to": "graph",
+      "label": "reads graph"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Start with an existing repository",
+      "items": [
+        "Windows PowerShell 5.1+, Git and Python 3.9+. Missing prerequisites get guidance; setup does not install them.",
+        "Repositories can live under Repos or elsewhere. Setup never moves them."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Preserve first, reset explicitly",
+      "items": [
+        "One selected adapter: Codex, Claude Code, Cursor, Copilot or Antigravity. Existing instructions stay outside marked blocks.",
+        "Reset backs up every supported local instruction and skill path before clearing any. Global skills and hooks remain untouched."
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "One home per fact",
+      "items": [
+        "Cards hold live status; project folders hold history; Atomic Insights hold reusable facts. Registry and workspace pointers are ignored local JSON.",
+        "zentora_sync.py checks registered paths read-only. It does not watch, archive, install hooks or trigger Graphify."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Optional tools and clean sharing",
+      "items": [
+        "Engineering rules are opt-in. Obsidian and Graphify are optional. Manual graphify update MyOS uses no LLM; semantic extraction requires a separate explicit action.",
+        "Clean export excludes maintainer notes, generated graphs, credentials, Git history and external skill bundles. Only DevKernel-owned skills ship."
+      ]
+    }
+  ]
+}

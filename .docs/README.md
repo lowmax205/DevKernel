@@ -1,10 +1,13 @@
 # Documentation scope
 
 The current Windows starter contract is [starter-decisions.md](starter-decisions.md)
-and the root README. The architecture documents below describe the earlier
-maintainer workspace; automatic installs, global skill mirroring, watchers,
-and mandatory engineering profiles described there are not starter defaults.
-They are excluded from the clean export.
+and the root README. Its current architecture is [the interactive diagram](architecture/system-architecture.html)
+and [system overview](architecture/system-overview.md).
+
+The remaining older documents describe the maintainer workspace. Automatic
+installs, global skill mirroring, watchers, and mandatory engineering profiles
+in those documents are not starter defaults. Architecture artifacts and legacy
+documents are excluded from the clean starter export.
 
 # ZentoraDev Architecture & Standards Documentation
 

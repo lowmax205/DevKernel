@@ -1,0 +1,12 @@
+flowchart LR
+  developer[Developer with an existing Git repository] -->|runs| setup[Windows PowerShell setup]
+  setup -->|calls Python| cli[Starter CLI]
+  cli -->|preserve and merge| adapter[AGENTS.md and selected agent adapter]
+  cli -->|register| memory[Ignored registry, project cards and hubs]
+  cli -->|export only| clean[Allowlisted clean starter]
+  cli -->|explicit reset only| backup[Back up all supported local agent instructions and skills]
+  backup -->|after every backup succeeds| clear[Clear supported paths and configure selected agent]
+  subgraph optional[Optional graph tooling - invoked separately]
+    graphify[Manual Graphify AST update] --> graph[MyOS graph.json]
+    recall[Local graph recall] -->|reads| graph
+  end

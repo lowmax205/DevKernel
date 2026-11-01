@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Source-pinned Windows starter architecture in interactive HTML, Mermaid, and reusable Archify JSON, with automated browser verification.
+- Refreshed maintainer AST graph and verified starter registration, export, reset, and safety symbols without LLM extraction.
 - Windows starter setup for Codex, Claude Code, Cursor, GitHub Copilot, and Antigravity, with interactive and noninteractive entry points.
 - Explicit backup-before-reset for all supported repository agent instruction and local skill paths, with junction protection and recovery guidance.
 - Allowlisted clean starter export containing only DevKernel-owned skills, reusable templates, and verification tools.

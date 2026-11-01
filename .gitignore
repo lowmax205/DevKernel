@@ -54,3 +54,10 @@ MyOS/graphify-out/.rebuild.lock
 # Machine-local workspace registrations and repository reset backups
 .devkernel/
 .scratch/
+
+# Machine-specific Archify provenance and browser receipts (keep local for verification)
+/.docs/architecture/*.delivery.json
+/.docs/architecture/*.delivery-pending.json
+/.docs/architecture/*.finalize.json
+/.docs/architecture/*.finalize-summary.json
+/.docs/architecture/*.browser-check.json
