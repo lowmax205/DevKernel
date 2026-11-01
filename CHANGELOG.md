@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-01
+
 ### Added
 - Source-pinned Windows starter architecture in interactive HTML, Mermaid, and reusable Archify JSON, with automated browser verification.
 - Refreshed maintainer AST graph and verified starter registration, export, reset, and safety symbols without LLM extraction.
