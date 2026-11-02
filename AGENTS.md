@@ -20,3 +20,14 @@ from this file or the setup scripts, never from a hardcoded drive or parent work
 This checkout retains historical architecture, notes, and external skill bundles.
 Use the allowlisted export described in README.md to produce the shareable starter.
 The accepted starter scope is in `.docs/starter-decisions.md`.
+
+## Documentation onboarding and security
+
+Read `.docs/README.md` for this checkout's six planning documents. Follow
+`.docs/agents/documentation-onboarding.md` for evidence-backed drafts, developer
+interviews, and reviewed consolidation. Keep Archify artifacts in place and link
+them from `.docs/ARCHITECTURE.md`. The root docs describe this starter, not the
+parent ZentoraDev workspace. Registration scaffolds missing project docs; sync
+remains read-only. Cloudflare's pinned `security-audit` is the explicit external
+skill exception included in clean exports. Global installation remains separate
+and audits remain on demand.

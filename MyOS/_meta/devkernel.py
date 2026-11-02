@@ -13,6 +13,20 @@ SOURCE = Path(__file__).resolve().parents[2]
 BEGIN = '<!-- devkernel:start -->'
 END = '<!-- devkernel:end -->'
 AGENTS = ('codex', 'claude', 'cursor', 'copilot', 'antigravity')
+DOC_NAMES = ('PRD.md', 'ARCHITECTURE.md', 'RULES.md', 'DESIGN.md', 'TASKS.md', 'MEMORY.md')
+DOC_FILES = tuple('.docs/' + name for name in DOC_NAMES) + ('.docs/agents/documentation-onboarding.md',)
+DOC_TEMPLATES = 'MyOS/ObsidianVault/Templates/repo-agents-starter/'
+# Explicit third-party exception; do not export the other historical skill bundles.
+SECURITY_FILES = (
+    'SKILL.md', 'AI-AND-LLM.md', 'ATTACK-CLASSES.md', 'CLIENT-SIDE.md',
+    'CLOUD-AND-DEPLOYMENT.md', 'DATA-ISOLATION-AND-LIFECYCLE.md',
+    'DESKTOP-MOBILE-AND-LOCAL-IPC.md', 'HUNTING.md', 'MEMORY-SAFETY-AND-BINARY.md',
+    'PROTOCOLS-RPC-AND-MESSAGING.md', 'RECONNAISSANCE.md',
+    'RESOURCE-EXHAUSTION-AND-AVAILABILITY.md', 'SUPPLY-CHAIN-AND-RELEASE.md',
+    'VALIDATION-AND-REPORTING.md', 'WEB-PROTOCOL-AND-AUTH.md', 'report-schema.json',
+    'validate-coverage-ledger.cjs', 'validate-coverage-ledger.test.cjs',
+    'validate-findings.cjs', 'validate-findings.test.cjs', 'LICENSE', 'UPSTREAM.md',
+)
 # Only repository-local instructions and skills. Never entire .github or user homes.
 RESET_PATHS = (
     'AGENTS.md', 'AGENTS.override.md', 'CLAUDE.md', 'GEMINI.md', '.cursorrules',
@@ -62,7 +76,7 @@ def ensure_local_ignore(root, entry):
 
 def validate_target(repo):
     # Refuse links and junctions rather than touching paths outside the chosen repository.
-    for rel in (*RESET_PATHS, '.gitignore', '.devkernel', '.devkernel/workspace.json',
+    for rel in (*RESET_PATHS, *DOC_FILES, '.gitignore', '.devkernel', '.devkernel/workspace.json',
                 '.cursor/rules/devkernel.mdc'):
         path = repo / rel
         for part in (path, *path.parents):
@@ -93,6 +107,20 @@ def merge_preview(path, body):
 
 def core_rules():
     return (SOURCE / 'MyOS/_meta/profiles/core.md').read_text(encoding='utf-8')
+
+
+def documentation_preview(repo, name, slug):
+    """Render missing documents before any registration writes; preserve authored files."""
+    files = {}
+    for rel in DOC_FILES:
+        target = repo / rel
+        if target.exists():
+            if not target.is_file():
+                raise ValueError('Documentation target must be a file: ' + str(target))
+            continue
+        content = (SOURCE / DOC_TEMPLATES / rel).read_text(encoding='utf-8')
+        files[rel] = content.replace('{{Project Name}}', name).replace('{{project-slug}}', slug)
+    return files
 
 
 def adapter_files(agent, body):
@@ -167,6 +195,7 @@ def register(workspace, repo, agent, engineering=False, reset=False, dry_run=Fal
     # Validate all merges before changing files, unless reset intentionally discards them.
     previews = {rel: merge_preview(repo / rel, content) if not reset else BEGIN + '\n' + content.rstrip() + '\n' + END + '\n'
                 for rel, content in files.items()}
+    docs = documentation_preview(repo, name, slug)
     for rel in previews:
         if rel.endswith('.mdc') and not previews[rel].startswith('---\n'):
             previews[rel] = '---\ndescription: DevKernel workspace routing\nalwaysApply: true\n---\n' + previews[rel]
@@ -176,7 +205,7 @@ def register(workspace, repo, agent, engineering=False, reset=False, dry_run=Fal
     ensure_local_ignore(repo, '/.devkernel/')
     if reset:
         backup_reset(repo)
-    for rel, content in previews.items():
+    for rel, content in {**previews, **docs}.items():
         write(repo / rel, content)
     write(repo / '.devkernel/workspace.json', json.dumps({'workspace': relative_workspace}, indent=2) + '\n')
     entries[slug] = {'path': str(repo), 'agent': agent, 'engineering': engineering}
@@ -186,6 +215,7 @@ def register(workspace, repo, agent, engineering=False, reset=False, dry_run=Fal
     hub = workspace / 'MyOS/ObsidianVault/10 - Projects' / name / (name + ' Hub.md')
     if not hub.exists():
         write(hub, '# ' + name + ' Hub\n\nLive status and next steps: `MyOS/projects/' + slug + '.md`.\n\n## Architecture\n\nLink project architecture here.\n\n## Sessions\n\nKeep one consolidated session note per day in this folder.\n')
+    print('[NEXT] Ask your coding agent: Follow .docs/agents/documentation-onboarding.md; inspect this repo, draft the six docs, and interview me before planned feature work.')
 
 
 def export_starter(destination):
@@ -194,7 +224,7 @@ def export_starter(destination):
         raise ValueError('Export destination must not exist: ' + str(destination))
     if destination == SOURCE or SOURCE in destination.parents:
         raise ValueError('Export outside the source repository.')
-    # Explicit allowlist: never copy personal notes, graphs, credentials, or third-party skills.
+    # Explicit allowlist: never copy personal notes, graphs, credentials, or unapproved skills.
     files = ['README.md', 'STARTER-AGENTS.md', 'setup.ps1', '.gitignore',
              '.docs/starter-decisions.md', '.docs/external-skills.md',
              'MyOS/_meta/devkernel.py', 'MyOS/_meta/profiles/core.md',
@@ -205,6 +235,8 @@ def export_starter(destination):
              'MyOS/_meta/global-skills/setup-agent/SKILL.md',
              'MyOS/_meta/check_portable_paths.py',
              'tests/test_starter.py', 'tests/verify-powershell.ps1']
+    files += [DOC_TEMPLATES + rel for rel in DOC_FILES]
+    files += ['MyOS/_meta/global-skills/security-audit/' + name for name in SECURITY_FILES]
     for rel in files:
         if not (SOURCE / rel).is_file():
             raise ValueError('Missing export source: ' + rel)

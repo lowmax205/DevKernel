@@ -70,6 +70,17 @@ the same preserve-first registration. Pass an existing Git repository root, not
 a project name or a subdirectory. `all` is no longer a setup target: choose one
 agent per invocation. No global settings, MCP servers, Git hooks, or tools are installed.
 
+Registration also creates missing `.docs/{PRD,ARCHITECTURE,RULES,DESIGN,TASKS,MEMORY}.md`
+and `.docs/agents/documentation-onboarding.md`. Existing files are never overwritten.
+Ask your agent to inspect the repo, draft from evidence, and interview you. New
+projects start from templates; existing projects start from repo-grounded drafts.
+Resolve relevant gaps before planned feature work; diagnosis, urgent fixes, and
+documentation work can proceed with gaps recorded. Consolidation happens only after
+developer review and leaves redirects. Archify artifacts, ADRs, tickets, and memory
+stay in their canonical homes. These onboarding rules do not enable the optional
+engineering profile.
+
+
 ## Reset repository instructions and skills
 
 Explicitly add `-ResetAgentConfig` to setup or registration. This backs up **all
@@ -102,7 +113,7 @@ machine requires registering its repositories again. Duplicate repository names
 that produce the same slug are rejected to prevent card collisions.
 
 The optional `zentora_sync.py --once` checks registered paths without changing
-cards or archiving missing repositories. Registration is explicit; setup does
+cards, scaffolding docs, or archiving missing repositories. Rerun registration to add missing docs. Registration is explicit; setup does
 not enable a watcher or scan other workspaces.
 
 ## Optional tools and skills
@@ -117,7 +128,13 @@ Store API keys in a local ignored environment file. Use
 `python MyOS/_meta/graph_recall.py "keywords" --hops 2` only after generating a graph.
 
 See [.docs/external-skills.md](.docs/external-skills.md) for separate skill
-installation. Only DevKernel-owned skills are included in clean exports.
+installation. Clean exports include DevKernel-owned skills plus the complete pinned
+Cloudflare `security-audit` as an explicit third-party exception. Its license,
+provenance, resources, validators, and tests remain together. Install it into your
+agent separately without replacing existing global skills. Ask `security audit
+this codebase` on demand; setup never runs an audit. The pinned validator CLIs do
+not support native Windows; full audits need a supported Linux runtime and the
+upstream sandbox controls. Core setup requires neither Node.js nor audit tools.
 
 ## Share a clean starter
 
@@ -130,7 +147,7 @@ python MyOS/_meta/devkernel.py export --destination '..\DevKernel-Starter'
 ```
 
 The output has no Git history, credentials, machine registrations, personal notes,
-generated graphs, or external skills. Review it, then distribute it or initialize
+generated graphs, or unapproved external skills. The pinned Cloudflare skill is the documented exception. Review it, then distribute it or initialize
 a separate Git repository when ready. Export refuses to overwrite a destination.
 
 ## Verify development changes
@@ -144,3 +161,10 @@ git diff --check
 
 Runtime uses only Python's standard library; there are no runtime package dependencies.
 See [.docs/starter-decisions.md](.docs/starter-decisions.md) for the accepted scope.
+
+## Maintainer planning docs
+
+The source checkout's six planning documents are indexed in `.docs/README.md`.
+They describe this Windows starter, not the parent ZentoraDev workspace. Source
+architecture artifacts remain in place. Clean exports include reusable planning
+templates and interview guidance, not maintainer planning records or diagrams.

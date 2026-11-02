@@ -14,3 +14,8 @@ supported repository instruction and local skill paths for all agents.
 Never change global skills, credentials, MCP configuration, or Git hooks.
 `-EngineeringProfile` is optional. Missing tools require installation guidance,
 not automatic installation. Report conflicts for manual review.
+
+Registration also scaffolds missing six-file `.docs` planning templates and
+onboarding guidance, preserving authored documents and existing Archify artifacts.
+Print the developer interview next step; never run an interview or security audit
+inside setup. The bundled Cloudflare skill is installed into agents separately.

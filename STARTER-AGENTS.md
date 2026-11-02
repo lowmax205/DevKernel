@@ -14,3 +14,13 @@ from this file or the setup scripts, never from a hardcoded drive or parent work
 - Global skills and optional apps are installed separately. Never mirror or clear global skills.
 - Engineering policies are opt-in per repository through `-EngineeringProfile`.
 - Verify script syntax, affected behavior, and clean export before claiming setup changes complete.
+
+## Documentation and security
+
+Registration scaffolds six `.docs` project planning files and
+`.docs/agents/documentation-onboarding.md` in each registered project. Follow that
+workflow to draft from evidence and interview the developer. Preserve existing
+docs, canonical records, and Archify artifacts; consolidate only after review.
+Sync stays read-only. The pinned Cloudflare `security-audit` skill is included as
+an explicit third-party export exception; install it separately into your agent
+without replacing existing global skills. Audits run only when requested.

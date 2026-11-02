@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Preserve-first six-file project documentation scaffolding through registration, with repo-grounded drafts, developer interviews, reviewed consolidation, and Archify references.
+- Complete pinned Cloudflare security-audit bundle, MIT attribution, and provenance in clean exports; agent installation remains separate and audits stay on demand.
+- Starter-specific root planning docs and integration checks for docs, dry runs, preservation, exports, and linked paths. Read-only reconciliation is unchanged.
+
 ## [0.1.1] - 2026-11-01
 
 ### Added

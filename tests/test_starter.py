@@ -72,6 +72,7 @@ class StarterTests(unittest.TestCase):
     def test_dry_run_writes_nothing_and_malformed_merge_fails_early(self):
         self.register(dry_run=True)
         self.assertFalse((self.repo / 'AGENTS.md').exists())
+        self.assertFalse((self.repo / '.docs').exists())
         self.assertFalse((self.workspace / '.devkernel').exists())
         (self.repo / 'AGENTS.md').write_text(dk.BEGIN)
         with self.assertRaisesRegex(ValueError, 'Malformed'):
@@ -101,7 +102,12 @@ class StarterTests(unittest.TestCase):
 
     def test_clean_export_and_export_again(self):
         skills = self.workspace / 'MyOS/_meta/global-skills'
-        self.assertEqual(sorted(p.name for p in skills.iterdir()), ['devkernel-manager', 'setup-agent'])
+        self.assertEqual(sorted(p.name for p in skills.iterdir()), ['devkernel-manager', 'security-audit', 'setup-agent'])
+        for name in dk.SECURITY_FILES:
+            self.assertEqual((skills / 'security-audit' / name).read_bytes(),
+                             (ROOT / 'MyOS/_meta/global-skills/security-audit' / name).read_bytes())
+        for rel in dk.DOC_FILES:
+            self.assertTrue((self.workspace / dk.DOC_TEMPLATES / rel).is_file())
         self.assertFalse((self.workspace / '.git').exists())
         self.assertFalse((self.workspace / 'MyOS/graphify-out/graph.json').exists())
         self.assertEqual(list((self.workspace / 'MyOS/ObsidianVault/10 - Projects').iterdir()), [])
@@ -132,6 +138,62 @@ class StarterTests(unittest.TestCase):
             dk.register(self.workspace, nested, 'codex')
         self.assertFalse((nested / 'AGENTS.md').exists())
 
+    def test_documentation_preserves_authored_files_and_archify(self):
+        originals = {
+            '.docs/PRD.md': b'# Authored requirements\n',
+            '.docs/architecture/system-architecture.html': b'<html>keep diagram</html>',
+            '.docs/architecture/system-architecture.mmd': b'graph TD; A-->B',
+            '.docs/decisions/001.md': b'# Existing decision\n',
+            '.scratch/feature/issues/01-task.md': b'Status: ready-for-agent\n',
+            'docs/old-plan.md': b'# Migrate only after review\n',
+        }
+        for rel, raw in originals.items():
+            p = self.repo / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_bytes(raw)
+        self.register()
+        snapshots = {rel: (self.repo / rel).read_bytes() for rel in dk.DOC_FILES}
+        for rel, raw in snapshots.items():
+            self.assertNotIn(b'{{Project Name}}', raw)
+            self.assertNotIn(b'{{project-slug}}', raw)
+            self.assertFalse(raw.startswith(b'\xef\xbb\xbf'))
+        self.assertIn('projects/external-project.md', (self.repo / '.docs/MEMORY.md').read_text())
+        self.assertIn('10 - Projects/External project/', (self.repo / '.docs/MEMORY.md').read_text())
+        self.register(reset=True)
+        for rel, raw in {**snapshots, **originals}.items():
+            self.assertEqual((self.repo / rel).read_bytes(), raw)
+        self.assertEqual((self.repo / 'AGENTS.md').read_text().count('Follow `.docs/agents/documentation-onboarding.md`'), 1)
+        self.assertFalse((self.repo / '.agents/skills/security-audit').exists())
+
+    def test_exported_registration_uses_its_own_templates(self):
+        result = subprocess.run([sys.executable, str(self.workspace / 'MyOS/_meta/devkernel.py'),
+                                 'register', '--workspace', str(self.workspace), '--repo', str(self.repo),
+                                 '--agent', 'codex'], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('[NEXT]', result.stdout)
+        for rel in dk.DOC_FILES:
+            self.assertTrue((self.repo / rel).is_file())
+
+    def test_read_only_sync_does_not_recreate_deleted_docs(self):
+        self.register()
+        doc = self.repo / '.docs/PRD.md'
+        doc.unlink()
+        result = subprocess.run([sys.executable, str(self.workspace / 'MyOS/_meta/zentora_sync.py'), '--once'],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertFalse(doc.exists())
+        self.register(dry_run=True)
+        self.assertFalse(doc.exists())
+        self.register()
+        self.assertTrue(doc.exists())
+
+    def test_documentation_directory_conflict_fails_before_writes(self):
+        (self.repo / '.docs/PRD.md').mkdir(parents=True)
+        with self.assertRaisesRegex(ValueError, 'must be a file'):
+            self.register()
+        self.assertFalse((self.repo / 'AGENTS.md').exists())
+        self.assertFalse((self.workspace / '.devkernel').exists())
+
     def test_fresh_setup_ignores_parent_workspace_environment(self):
         fresh = self.root / 'Fresh workspace'
         env = dict(os.environ, ZENTORA_ROOT=str(ROOT))
@@ -158,6 +220,20 @@ class StarterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Reparse|Linked'):
             self.register(reset=True)
         self.assertEqual(sentinel.read_text(), 'Keep global skills\n')
+        self.assertFalse((self.repo / 'AGENTS.md').exists())
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows junction test')
+    def test_documentation_rejects_junction_before_writes(self):
+        shared = self.root / 'external-docs'
+        shared.mkdir()
+        sentinel = shared / 'PRD.md'
+        sentinel.write_text('Keep external docs\n')
+        link = self.repo / '.docs'
+        script = "New-Item -ItemType Junction -Path '" + str(link) + "' -Target '" + str(shared) + "' | Out-Null"
+        subprocess.run(['powershell', '-NoProfile', '-Command', script], check=True, capture_output=True)
+        with self.assertRaisesRegex(ValueError, 'Reparse|Linked|escapes repository'):
+            self.register()
+        self.assertEqual(sentinel.read_text(), 'Keep external docs\n')
         self.assertFalse((self.repo / 'AGENTS.md').exists())
 
     @unittest.skipUnless(shutil.which('powershell'), 'Windows PowerShell required')

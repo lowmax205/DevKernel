@@ -12,10 +12,11 @@ Accepted scope for the shareable starter:
 - Global skills, Git hooks, MCP configuration, source files, and CI workflows remain untouched.
 - Core routing and memory rules are standard. Engineering policies are opt-in.
 - Obsidian, Graphify, semantic extraction, and API keys are optional.
-- Include DevKernel-owned skills. Install external skills separately.
+- Include DevKernel-owned skills and the complete pinned Cloudflare `security-audit` as an explicit third-party exception, with MIT attribution and source revision. Agent installation remains separate; setup never changes global skills.
+- Registration creates missing six-file `.docs` templates and interview guidance. Existing content is preserved. The coding agent drafts from evidence and interviews the developer; consolidation is reviewed and leaves redirects. Sync remains read-only.
 - Produce a clean distribution through an explicit file allowlist; preserve maintainer history in this source checkout.
 - Local changes only; no commit, push, release, or deployment.
 
 Success means setup works without optional tools, preserves existing content on reruns,
 can reset and recover configuration, supports external repositories, and exports no
-maintainer history, generated graphs, machine paths, credentials, or external skill bundles.
+maintainer history, generated graphs, machine paths, credentials, or unapproved external skill bundles.

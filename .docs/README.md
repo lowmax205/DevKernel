@@ -1,5 +1,21 @@
 # Documentation scope
 
+## Canonical starter planning
+
+- [PRD.md](PRD.md): audience, supported behavior, acceptance criteria, and exclusions.
+- [ARCHITECTURE.md](ARCHITECTURE.md): current registration/export flow and links to preserved Archify artifacts.
+- [RULES.md](RULES.md): inherited guidance, verification, and the security skill exception.
+- [DESIGN.md](DESIGN.md): command-line and documentation conventions; application UI is not applicable.
+- [TASKS.md](TASKS.md): implementation workflow and ticket ownership.
+- [MEMORY.md](MEMORY.md): canonical memory routing without duplicate state.
+
+Follow [documentation onboarding](agents/documentation-onboarding.md). Clean exports
+carry reusable project templates, not these maintainer planning records. The
+Cloudflare security-audit bundle is the explicit third-party export exception;
+see [installation and platform notes](external-skills.md).
+
+## Preserved source references
+
 The current Windows starter contract is [starter-decisions.md](starter-decisions.md)
 and the root README. Its current architecture is [the interactive diagram](architecture/system-architecture.html)
 and [system overview](architecture/system-overview.md).
