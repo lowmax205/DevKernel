@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "graphify": {
+      "command": "python",
+      "args": [
+        "-m",
+        "graphify.serve"
+      ]
+    },
     "context7": {
       "command": "npx",
       "args": [
@@ -16,4 +23,3 @@
     }
   }
 }
-

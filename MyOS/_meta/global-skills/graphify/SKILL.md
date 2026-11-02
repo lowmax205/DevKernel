@@ -5,7 +5,7 @@ description: Fast AST code indexing, semantic knowledge graph extraction, and gr
 
 # Graphify Knowledge Graph & AST Skill
 
-Use this skill when mapping codebases, indexing dependencies, extracting semantic knowledge graphs, querying architectural relationships, or running `/graphify`.
+Use this skill when searching for files/functions, mapping codebases, indexing dependencies, extracting semantic knowledge graphs, querying architectural relationships, or running `/graphify`.
 
 ## Exact Graphify CLI Syntax (Zero-Token-Waste Rule)
 
@@ -18,7 +18,18 @@ Use this skill when mapping codebases, indexing dependencies, extracting semanti
 
 ---
 
-## 1. Fast Code AST Re-Index (Zero LLM Tokens / No API Key)
+## 1. Automatic Lifecycle Hook & Native MCP Server
+
+1. **Antigravity Lifecycle Hook (`.agents/hooks.json` -> `MyOS/_meta/agy_memory_hook.py`):**
+   - `SessionStart`: Automatically injects the active project's ICM Card (`MyOS/projects/<slug>.md`) and latest Obsidian Session summary.
+   - `PreInvocation`: Automatically injects a transient `[ZENTORA CONTEXT CAPSULE]` matching `lastUserInput` across both `MyOS` Vault memory and the active repo's AST `graphify-out/graph.json`.
+2. **Native `graphify` MCP Server (`python -m graphify.serve`):**
+   - Exposes `query_graph`, `get_node`, `get_neighbors`, `get_community`, `god_nodes`, `graph_stats`, and `shortest_path`.
+   - Always pass `project_path: "<ZENTORA_ROOT>/Repos/2026/<RepoName>"` when querying a specific child repository's `graphify-out/graph.json`.
+
+---
+
+## 2. Fast Code AST Re-Index (Zero LLM Tokens / No API Key)
 
 Use this for immediate code structure updates, file relationship graphs, and AST indexing:
 
@@ -34,22 +45,22 @@ Use this for immediate code structure updates, file relationship graphs, and AST
 
 ---
 
-## 2. Graph Recall & Querying (Token-Free English Traversal)
+## 3. Federated Graph Recall & Querying (Token-Free English Traversal)
 
-Before modifying complex cross-module code or answering architectural questions:
+Before searching for files/functions, modifying cross-module code, or answering architectural questions:
 
-- **Repo-Local Query:**
+- **Repo-Local Federated Query (Vault + Repo AST):**
   ```powershell
   .\scripts\graphify.ps1 query "<natural language query>"
   ```
-- **Global Cross-Project Graph Recall (1-to-2 Hop Traversal):**
+- **Direct Federated Recall Script (1-to-2 Hop Traversal across MyOS + Repo AST):**
   ```powershell
-  python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "<english keywords>" --hops 2
+  python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "<english keywords>" --repo "<RepoPath>" --hops 2
   ```
 
 ---
 
-## 3. Full Semantic Extraction with DeepSeek (Major Milestones Only)
+## 4. Full Semantic Extraction with DeepSeek (Major Milestones Only)
 
 Use this ONLY when instructed (`save progress --deep` or major releases) to build rich semantic nodes and summaries:
 
@@ -60,11 +71,10 @@ graphify extract "<ZENTORA_ROOT>/MyOS" --backend deepseek --output "<ZENTORA_ROO
 
 ---
 
-## 4. Child Repositories Architecture
+## 5. Child Repositories Architecture
 
 Every child repository contains:
-- `scripts/graphify.ps1`: The local runner for fast AST updates and local queries.
+- `.agents/hooks.json`: Automatic `SessionStart` + `PreInvocation` memory & graph capsule injector.
+- `scripts/graphify.ps1`: The local runner for fast AST updates and federated queries.
 - `.graphifyignore`: Excludes heavy directories (`node_modules`, `dist`, `.next`, `build`, `coverage`, `.venv`).
-- `graphify-out/`: The local AST knowledge graph (`graph.json`, `graph.html`).
-- Central synchronization: Running `.\scripts\graphify.ps1 -SyncToMyOS` or `python MyOS/_meta/zentora_sync.py --once` links repo updates back into the master knowledge graph.
-
+- `graphify-out/`: The local AST knowledge graph (`graph.json`, `graph.html`, `GRAPH_REPORT.md`).

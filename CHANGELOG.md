@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Antigravity Lifecycle Hooks (.agents/hooks.json & MyOS/_meta/agy_memory_hook.py)**: Automatic SessionStart project card/session injector and transient PreInvocation federated graph context capsule for AI pair programming.
+- **Starter Hooks Template (
+epo-agents-starter/hooks.json)**: Out-of-the-box lifecycle hook configuration for newly scaffolded repositories.
+- **Multi-Project Native MCP Graph Support**: Configured python -m graphify.serve in gent-adapters/cursor/mcp.json with multi-project graph traversal support.
 - Preserve-first six-file project documentation scaffolding through registration, with repo-grounded drafts, developer interviews, reviewed consolidation, and Archify references.
 - Complete pinned Cloudflare security-audit bundle, MIT attribution, and provenance in clean exports; agent installation remains separate and audits stay on demand.
 - Starter-specific root planning docs and integration checks for docs, dry runs, preservation, exports, and linked paths. Read-only reconciliation is unchanged.

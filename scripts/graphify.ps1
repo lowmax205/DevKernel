@@ -1,12 +1,15 @@
-# scripts/graphify.ps1 - Fast Repo-Local AST Indexer & Graph Recall
+# scripts/graphify.ps1 - Fast Repo-Local AST Indexer & Federated Graph Recall
 [CmdletBinding()]
 param(
     [Parameter(Position = 0, Mandatory = $true)]
-    [ValidateSet("update", "query", "sync")]
+    [ValidateSet("update", "query", "path", "explain", "sync", "mcp")]
     [string]$Action,
 
     [Parameter(Position = 1)]
     [string]$QueryText,
+
+    [Parameter(Position = 2)]
+    [string]$TargetText,
 
     [switch]$Force,
     [switch]$NoCluster,
@@ -51,11 +54,33 @@ switch ($Action) {
             Write-Error "Please specify a query string: .\scripts\graphify.ps1 query '<english keywords>'"
             exit 1
         }
-        $recallScript = Join-Path $ZentoraRoot "MyOS\_meta\graph_recall.py"
-        if (Test-Path $recallScript) {
-            python $recallScript "$QueryText" --hops 2
+        $recallScript = if ($ZentoraRoot) { Join-Path $ZentoraRoot "MyOS\_meta\graph_recall.py" } else { $null }
+        if ($recallScript -and (Test-Path $recallScript)) {
+            python $recallScript "$QueryText" --repo "$RepoRoot" --hops 2
         } else {
             & graphify query "$QueryText"
+        }
+    }
+    "path" {
+        if (-not $QueryText -or -not $TargetText) {
+            Write-Error "Usage: .\scripts\graphify.ps1 path '<FromNode>' '<ToNode>'"
+            exit 1
+        }
+        & graphify path "$QueryText" "$TargetText"
+    }
+    "explain" {
+        if (-not $QueryText) {
+            Write-Error "Usage: .\scripts\graphify.ps1 explain '<NodeOrConcept>'"
+            exit 1
+        }
+        & graphify explain "$QueryText"
+    }
+    "mcp" {
+        $graphJson = Join-Path $RepoRoot "graphify-out\graph.json"
+        if (Test-Path $graphJson) {
+            python -m graphify.serve "$graphJson"
+        } else {
+            python -m graphify.serve
         }
     }
     "sync" {
