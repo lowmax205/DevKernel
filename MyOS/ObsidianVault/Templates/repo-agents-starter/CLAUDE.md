@@ -2,38 +2,23 @@
 
 You are operating inside {{Project Name}}, a repository managed under the Zentora Dev Meta-Developer Operating System.
 
-## Master Routing & Invariants
-- **Primary Routing Table:** Always consult `AGENTS.md` before taking architectural actions or modifying project structures.
-- **One Home Per Fact:**
-  - Live Status & Immediate Next Steps live **ONLY** in `<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md`.
-  - Chronological Session Notes & Decisions live **ONLY** in `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`. Notes must NEVER live at the vault root.
-  - Reusable Gotchas & Decisions live **ONLY** in `<ZENTORA_ROOT>/MyOS/ObsidianVault/30 - Resources/Atomic Insights/`.
-  - Code & Concept Graph lives **ONLY** in `<ZENTORA_ROOT>/MyOS/graphify-out/graph.json`.
+## 1. 4-Step Surgical Lookup (BrewedOps 3-Layer Architecture)
+Execute this deterministic 4-step surgical lookup to avoid prompt amnesia and token waste:
+1. **Master Routing Table:** Read `AGENTS.md` before taking architectural actions.
+2. **ICM Project Card:** Read `<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md` for live `status:` and immediate `next:`.
+3. **Obsidian Hub & Session:** Read `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/{{Project Name}}/{{Project Name}} Hub.md` and the latest session note for recent decisions, built features, and bug post-mortems.
+4. **Dynamic Context Recall (2–8 files):** Run `python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "<prompt keywords>" --repo . --hops 2`. Read **only the ~4 to 5 highly relevant files** routed in the manifest.
 
-## Windows PowerShell 5.1 Terminal Execution
-- Never use bash chaining (`&&`, `||`, or `cd "path" && command`).
-- Use PowerShell sequencing: `command1; if ($?) { command2 }` or set the target directory directly.
+## 2. One Home Per Fact (Canonical Boundaries)
+- Live Status & Immediate Next Steps live **ONLY** in `<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md`.
+- Chronological Session Notes & Decisions live **ONLY** in `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`. Notes must NEVER live at the vault root.
+- Reusable Gotchas & Decisions live **ONLY** in `<ZENTORA_ROOT>/MyOS/ObsidianVault/30 - Resources/Atomic Insights/`.
+- Code & Concept Graph lives in `<ZENTORA_ROOT>/MyOS/graphify-out/graph.json` and local `graphify-out/graph.json`.
+
+## 3. Terminal Guardrails & On-Demand Protocols
+- Never use bash chaining (`&&` or `||`). Use PowerShell sequencing: `command1; if ($?) { command2 }`.
 - Save all files as **UTF-8 without BOM** using ASCII-safe punctuation.
-
-## Fast Context Recall
-```powershell
-python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "{{english keywords}}" --hops 2
-```
-
-## Core Workflows
-1. **Save Progress (`save progress`):**
-   - Update today's single consolidated session note: `MyOS/ObsidianVault/10 - Projects/{{Project Name}}/[<CODE>] YYYY-MM-DD - <Focus Title>.md`.
-   - Extract atomic reusable insights to `MyOS/ObsidianVault/30 - Resources/Atomic Insights/`.
-   - Update `status`, `next`, and `updated` in `MyOS/projects/{{project-slug}}.md`.
-   - Run fast AST update: `graphify update "<ZENTORA_ROOT>/MyOS"`.
-2. **Git Commit & Versioning (`/git-commit [patch|minor|major]`):**
-   - Updates `## [Unreleased]` in `CHANGELOG.md` and commits atomically.
-   - For `patch|minor|major`: promotes notes, updates `production`, creates annotated tag `vX.Y.Z`.
-3. **Backend Engineering Protocols (ZEP):**
-   - Enforce controller insulation (no raw SQL/fetch in route handlers).
-   - Enforce Two-Tier Simplicity Gate (Tier 1 CRUD: Direct Repo + Service; Tier 2: Strategy, Adapter, Observer, Circuit Breaker).
-4. **Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03):**
-   - **Inspect Version First:** Check `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` before generating code for modern libraries (Next.js, Tailwind, Pydantic, Prisma, Supabase, FastAPI).
-   - **Context7 Live Snippets:** Invoke `context7` MCP tool to pull current official API signatures and live documentation before writing code.
-   - **Zero Deprecated Syntax:** Never use obsolete patterns (e.g., Next.js `pages/` in App Router, Pydantic v1 `.dict()`, unvetted CJS `require()`).
-   - **Issue Diagnostics (Fetch Protocol):** When hitting package build or dependency errors, invoke `fetch` MCP tool to consult official GitHub issues/releases rather than inventing speculative flags.
+- Run fresh verification (`npm run lint:fix` / `lint` and `npm run build` exit `0`) before committing.
+- Load backend protocols (`.docs/RULES.md` / ZEP) and modernity checks (`context7` MCP tool) on-demand when implementing services or breaking-change prone dependencies.
+- Commit atomically via `/git-commit [patch|minor|major]`.
+- Persist memory via `save progress`.

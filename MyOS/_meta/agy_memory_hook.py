@@ -92,6 +92,24 @@ def _detect_active_repo(payload: Dict[str, Any], last_user_input: str) -> Option
     return _find_child_repo_by_name(last_user_input)
 
 
+def _extract_section_bullets(lines: List[str], section_heading: str, max_items: int = 2) -> List[str]:
+    in_section = False
+    items: List[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.lower().startswith(section_heading.lower()):
+            in_section = True
+            continue
+        if in_section:
+            if stripped.startswith("## "):
+                break
+            if stripped.startswith("- ") and len(stripped) > 3:
+                items.append(stripped)
+                if len(items) >= max_items:
+                    break
+    return items
+
+
 def _get_latest_session_summary(project_name: str) -> str:
     vault_proj = VAULT_PROJECTS_DIR / project_name
     if not vault_proj.exists():
@@ -120,24 +138,27 @@ def _get_latest_session_summary(project_name: str) -> str:
         text = latest.read_text(encoding="utf-8", errors="replace")
         m_sum = re.search(r"^summary:\s*(.+)$", text, re.MULTILINE)
         summary_line = m_sum.group(1).strip() if m_sum else ""
-        bullets: List[str] = []
-        in_built = False
-        for line in text.splitlines():
-            if line.strip().startswith("## What was built"):
-                in_built = True
-                continue
-            if in_built:
-                if line.strip().startswith("## "):
-                    break
-                if line.strip().startswith("- ") and len(line.strip()) > 3:
-                    bullets.append(line.strip())
-                    if len(bullets) >= 3:
-                        break
+        lines = text.splitlines()
+
+        built_bullets = _extract_section_bullets(lines, "## What was built", 2)
+        decisions_bullets = _extract_section_bullets(lines, "## Decisions", 2)
+        mistakes_bullets = _extract_section_bullets(lines, "## Mistakes", 2)
+
         parts = [f"- Latest Session Note: `[[{latest.stem}]]`"]
         if summary_line:
             parts.append(f"  - Summary: {summary_line}")
-        for b in bullets:
-            parts.append(f"  {b[:180]}")
+        if built_bullets:
+            parts.append("  - Built:")
+            for b in built_bullets:
+                parts.append(f"    {b[:160]}")
+        if decisions_bullets:
+            parts.append("  - Decisions:")
+            for d in decisions_bullets:
+                parts.append(f"    {d[:160]}")
+        if mistakes_bullets:
+            parts.append("  - Mistakes / Gotchas:")
+            for m in mistakes_bullets:
+                parts.append(f"    {m[:160]}")
         return "\n".join(parts)
     except Exception:
         return ""
@@ -178,6 +199,10 @@ def _build_session_start_message(active_repo: Optional[Path]) -> str:
         if zentora_sess:
             lines.append(zentora_sess)
 
+    lines.append(
+        "- 4-Step Surgical Lookup: 1. Read Master Routing (AGENTS.md) -> 2. Read ICM Card (MyOS/projects/<slug>.md) -> "
+        "3. Read Hub & Latest Session Note -> 4. Read dynamic files from [ZENTORA CONTEXT CAPSULE]. Do not scan full directories."
+    )
     lines.append(
         "- Mandatory Recall Rule: Use the auto-injected `[ZENTORA CONTEXT CAPSULE]`, `graphify` MCP tools "
         "(`query_graph`, `get_node`, `get_neighbors` with `project_path`), or `graph_recall.py` BEFORE raw `grep` or directory scans."

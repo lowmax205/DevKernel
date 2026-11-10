@@ -1,25 +1,22 @@
-# GitHub Copilot Custom Instructions — Zentora Dev
+# GitHub Copilot Custom Instructions — DevKernel
 
-When authoring, reviewing, or generating code in this repository:
+When authoring, reviewing, or generating code in DevKernel or child repositories:
 
-1. **Routing & Knowledge Authority:**
-   - Adhere strictly to the "One Home Per Fact" rules in `AGENTS.md`.
-   - Never create project or session markdown notes in the Obsidian Vault root. Place notes in `MyOS/ObsidianVault/10 - Projects/<Project Name>/`.
-   - Reusable gotchas and architecture decisions belong in `MyOS/ObsidianVault/30 - Resources/Atomic Insights/`.
+1. **4-Step Surgical Lookup & Canonical Routing:**
+   - Follow the 4-step surgical lookup in `AGENTS.md` (Master Routing -> ICM Card in `MyOS/projects/<slug>.md` -> Obsidian Hub/Session in `MyOS/ObsidianVault/10 - Projects/<Name>/` -> Dynamic recall via `graph_recall.py`).
+   - Reusable gotchas and architecture decisions belong strictly in `MyOS/ObsidianVault/30 - Resources/Atomic Insights/`.
+   - Never create project or session markdown notes in the Obsidian Vault root.
 
-2. **Backend Engineering Protocols (ZEP):**
-   - **Controller Insulation:** Controllers and route handlers must never make direct database queries, execute raw SQL, or trigger raw HTTP fetch calls. Delegate to domain services and repositories.
-   - **Two-Tier Simplicity Gate:**
-     - For standard CRUD (Tier 1): Use direct Repository + Service. Reject CQRS, event buses, and custom builders.
-     - For complex operations (Tier 2): Use Strategy for >3 business variants, Adapter for third-party schemas, Observer for side effects, and Circuit Breaker for flaky external APIs.
+2. **On-Demand Backend Protocols & Simplicity Gate:**
+   - Consult `.docs/RULES.md` before designing domain modules:
+     - Route handlers must not make direct database queries or raw external HTTP fetch calls.
+     - Enforce Tier 1 Simplicity (Repository + Service) for standard CRUD; reserve Tier 2 patterns (Strategy, Adapter, Observer, Circuit Breaker) for complex multi-branch integrations.
 
-3. **Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03):**
-   - **Mandatory Package Version Verification:** Always inspect `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` to confirm installed library versions before writing code.
-   - **Live API Documentation:** Verify modern syntax and official API signatures via Context7 before writing code for breaking-change prone frameworks (Next.js App Router, Tailwind v4, Pydantic v2, Prisma v5+, Supabase v2, FastAPI).
-   - **Zero Deprecated Syntax:** Strictly reject deprecated patterns (no `pages/` routing in Next.js App Router, no Pydantic v1 `.dict()`, no unvetted CommonJS `require()` in modern TypeScript/ESM).
-   - **Issue Diagnostics (Fetch Protocol):** When hitting package build or dependency errors, inspect official GitHub issues/release notes via Fetch instead of speculating.
+3. **Strict Modernity Gate & Anti-Hallucination:**
+   - Always inspect `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` to confirm installed versions before generating code.
+   - For breaking-change prone libraries, consult `context7` MCP tool or official docs. Reject deprecated syntax patterns.
 
-4. **Terminal & File Conventions:**
-   - Use PowerShell 5.1 safe syntax on Windows (avoid bash `&&` or `||`).
+4. **Terminal, Encoding & Verification:**
+   - Use PowerShell 5.1 safe syntax on Windows (no bash `&&` or `||`).
    - Save all files as UTF-8 without BOM with ASCII punctuation.
-   - Run verification (`lint:fix` and `build`) with exit code 0 before completing tasks.
+   - Run native verification (`npm run lint:fix` / `lint` and `npm run build` exit code 0) before completing tasks or committing.

@@ -1,51 +1,44 @@
 # {{Project Name}} — Agent Entry
 
-**Source of truth:** [`.agents/rules/`](.agents/rules/), [`package.json`](package.json), domain skills in [`.agents/skills/`](.agents/skills/), and global AI Hero / Zentora Dev skills in `~/.agents/skills/`.
+**Master Routing Table:** Read before taking architectural actions or answering system status questions. Follow the **4-Step Surgical Lookup** and **One Home Per Fact** to eliminate prompt bloat and token waste.
 
-## 1. Zentora Dev Delegation (One Home Per Fact)
-Connected to the global **Zentora Dev** architecture ([`<ZENTORA_ROOT>/AGENTS.md`](file:///<ZENTORA_ROOT>/AGENTS.md)):
-- **Live Status & Next Steps:** [`<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md`](file:///<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md)
-- **Long-Term Memory & Session Logs (NEVER write to Vault Root):** [`<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects\{{Project Name}}\`](file:///<ZENTORA_ROOT>/MyOS/ObsidianVault/10%20-%20Projects/{{Project%20Name}}/) (`{{Project Name}} Hub.md`, `{{Project Name}} Session YYYY-MM-DD.md`, `{{Project Name}} Changelog Archive.md`)
-- **System Architecture Diagram:** [`.docs/architecture/system-architecture.html`](.docs/architecture/system-architecture.html) and [`.docs/architecture/system-architecture.mmd`](.docs/architecture/system-architecture.mmd)
-- **Knowledge Graph & Recall:**
-  - Fast 2-hop recall (no LLM): `python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "{{english keywords}}" --hops 2`
-  - Fast AST update (no LLM, no `--backend`/`--output`): `graphify update .` or `graphify update "<ZENTORA_ROOT>"`
-  - Full DeepSeek extraction: `graphify extract "<ZENTORA_ROOT>/MyOS" --backend deepseek --output "<ZENTORA_ROOT>/MyOS"` (NEVER use `graphify --update`)
+## 1. 4-Step Surgical Lookup (BrewedOps 3-Layer Architecture)
+Instead of scanning the whole repo or unindexed notes, execute this deterministic 4-step surgical lookup on every task:
+1. **Master Routing:** Read this file (`AGENTS.md`) to orient repository scope, skills, and rules.
+2. **ICM Project Card:** Read [`<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md`](file:///<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md) for live `status:`, immediate `next:`, and exact paths.
+3. **Obsidian Hub & Latest Session:** Read [`<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`](file:///<ZENTORA_ROOT>/MyOS/ObsidianVault/10%20-%20Projects/{{Project%20Name}}/) (`{{Project Name}} Hub.md` and latest dated session note) for recent decisions, what was built, and mistakes.
+4. **Dynamic Context Recall (2–8 files):** Ingest the `## Dynamic Files to Read` manifest auto-injected by `.agents/hooks.json` in `[ZENTORA CONTEXT CAPSULE]` (or run `python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "<prompt keywords>" --repo . --hops 2`). Read **only those ~4 to 5 highly relevant files** per prompt.
 
-## 2. AI Hero + Zentora Dev Development Workflow
-1. **Clarify & Specify:** `/grill-me` (or `grill-with-docs`) -> `to-spec` -> `to-tickets`
-2. **Design & Model:** `domain-modeling` / `codebase-design` / `archify`
-3. **Build & Verify:** `tdd` -> `implement` -> `code-review`
-4. **Commit & Version (`/git-commit`):** Atomic scoped commits that always update `## [Unreleased]` in `CHANGELOG.md`. Append or follow up with `major`, `minor`, or `patch` to promote `## [Unreleased]` and bump the project version.
-5. **Persist Memory (`save progress`):** Record session note in `MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`, extract reusable gotchas to `MyOS/ObsidianVault/30 - Resources/Atomic Insights/`, update `MyOS/projects/{{project-slug}}.md`, and run `graphify`.
+## 2. One Home Per Fact (Canonical Boundaries)
+- **Live Status & Next Steps:** Lives ONLY in [`<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md`](file:///<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md).
+- **Long-Term Memory & Session Logs (NEVER write to Vault Root):** Lives ONLY in [`<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`](file:///<ZENTORA_ROOT>/MyOS/ObsidianVault/10%20-%20Projects/{{Project%20Name}}/).
+- **Reusable Gotchas & Architecture Rules:** Lives ONLY in [`<ZENTORA_ROOT>/MyOS/ObsidianVault/30 - Resources/Atomic Insights/`](file:///<ZENTORA_ROOT>/MyOS/ObsidianVault/30%20-%20Resources/Atomic%20Insights/).
+- **Code & Concept Dependencies:** Lives in [`<ZENTORA_ROOT>/MyOS/graphify-out/graph.json`](file:///<ZENTORA_ROOT>/MyOS/graphify-out/graph.json) and repo-local `graphify-out/graph.json`.
+- **System Architecture Diagram:** Stored in `.docs/architecture/system-architecture.html` and `.docs/architecture/system-architecture.mmd`.
 
-## 3. Backend Engineering Protocols (ZEP) & Two-Tier Simplicity Gate
-- **Boundary Insulation:** API route handlers and controllers must interact via injected services/repositories; direct database queries or raw external HTTP fetch calls in handlers are strictly forbidden.
-- **Two-Tier Simplicity Gate:**
-  - **Tier 1 (CRUD):** Enforce direct Repository + Service. Reject CQRS, Event Buses, and custom Builders for simple entities (`[SIMPLICITY_GATE] Preserving Tier 1 simplicity: Direct Repository + Service model used.`).
-  - **Tier 2 (High-Scale / External / Multi-Algorithm):** Strategy (>3 algorithm branches), Adapter (external/legacy payloads), Observer (asynchronous side effects), Circuit Breaker (external network dependencies).
-- **Polyglot Stack:**
-  - TypeScript: Interface abstractions, Prisma/Drizzle ORM, Zod/Builders.
-  - Python: `typing.Protocol` / ABCs, Pydantic v2 schemas, SQLAlchemy session repositories.
-
-## 4. Strict Pre-Coding Modernity & Anti-Hallucination Gate (ZEP-03)
-- **Mandatory Library Verification Before Generation:**
-  - Before writing code for any modern external library or framework feature prone to major version breaking changes (e.g., Next.js App Router, Tailwind v4, Pydantic v2, Prisma v5+, Supabase v2, LangChain, FastAPI):
-  - The agent **MUST** inspect the target repo's `package.json`, `package-lock.json`, `pyproject.toml`, or `requirements.txt` to confirm the exact installed version.
-  - The agent **MUST** invoke the `context7` MCP tool to retrieve live, official documentation and working syntax snippets before generating code.
-- **Zero Deprecated Syntax Invariant:** Strictly forbid deprecated patterns (e.g., Next.js `pages/` routing in App Router repos, Pydantic v1 `.dict()` on Pydantic v2 codebases, or unvetted CommonJS `require()` in modern TypeScript/ESM projects).
-- **Issue Diagnostics Gate (Fetch Protocol):** When encountering a package compiler bug or third-party dependency error, the agent must use the `fetch` MCP tool to inspect the official GitHub issue, changelog, or release notes instead of inventing hypothetical flags or configs.
+## 3. Core Operating Invariants & On-Demand Docs
+- **Windows PowerShell 5.1 & Encoding:** Never use bash `&&` or `||`. Save all files as **UTF-8 without BOM** using ASCII-safe punctuation.
+- **Mandatory Verification Gate (`verification-before-completion`):** Run fresh native verification (`npm run lint:fix` / `lint` and `npm run build` + tests exiting with code `0`) before claiming completion or committing.
+- **On-Demand Engineering Protocols (ZEP & Modernity Gate):**
+  - **Backend Standards & Simplicity Gate:** Consult [`.docs/RULES.md`](.docs/RULES.md) or Atomic Insights before writing services (Tier 1 CRUD: Repository + Service; Tier 2: Strategy, Adapter, Observer, Circuit Breaker). Controllers never execute raw queries or direct HTTP fetch.
+  - **Modernity & Context7 Gate:** Inspect `package.json` / `pyproject.toml` first; use `context7` MCP for live API signatures on breaking-change-prone libraries; use `fetch` MCP for issue diagnosis.
+- **AI Hero Lifecycle:** `/grill-me` -> `to-spec` -> `to-tickets` -> `tdd` -> `implement` -> `verification-before-completion` -> `/git-commit [patch|minor|major]`.
+- **Save Progress (`save progress`):** Consolidate today's session note in `MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`, extract reusable gotchas to `Atomic Insights/`, update `MyOS/projects/{{project-slug}}.md`, and run fast AST update `.\scripts\graphify.ps1 update` (zero LLM tokens).
 
 ## Agent skills
 
 ### Issue tracker
-
 Local markdown files under `.scratch/{{feature-slug}}/`. See `.docs/agents/issue-tracker.md`.
 
 ### Triage labels
-
 Default five canonical triage roles (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `.docs/agents/triage-labels.md`.
 
 ### Domain docs
-
 Single-context layout (`GLOSSARY.md` at repo root and ADRs in `.docs/decisions/`). See `.docs/agents/domain.md`.
+
+<!-- devkernel-documentation-onboarding -->
+## Project documentation onboarding
+Before planned feature work, follow [.docs/agents/documentation-onboarding.md](.docs/agents/documentation-onboarding.md).
+Inspect existing project evidence, draft the six canonical .docs files, and interview the developer.
+Resolve gaps relevant to the feature; diagnosis, urgent fixes, and documentation work may proceed with gaps recorded.
+Security audits are on demand: use the global `security-audit` skill (`security audit this codebase`).

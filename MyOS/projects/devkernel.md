@@ -1,8 +1,8 @@
 ---
 type: project
 status: active
-next: Smoke-test the Windows starter from the v0.1.1 tag on a clean developer machine
-updated: 2026-11-01
+next: Onboard repositories and codify domain models
+updated: 2026-11-10
 ---
 # DevKernel
 
@@ -14,4 +14,6 @@ updated: 2026-11-01
 | Architecture | `<ZENTORA_ROOT>/.docs/architecture/system-architecture.html` |
 | Vault Folder | `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/DevKernel` |
 | Graph | `<ZENTORA_ROOT>/MyOS/graphify-out/graph.json` |
-| Skills | `devkernel-manager`, `archify`, `git-commit`, `verification-before-completion` |
+| Architecture Diagram | `<ZENTORA_ROOT>/.docs/architecture/system-architecture.html` |
+| Architecture Mermaid | `<ZENTORA_ROOT>/.docs/architecture/system-architecture.mmd` |
+| Skills | `devkernel-manager`, `setup-agent`, `archify`, `git-commit`, `verification-before-completion`, `surgical-coding` |

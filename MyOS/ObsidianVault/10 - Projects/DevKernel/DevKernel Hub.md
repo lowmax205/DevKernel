@@ -37,7 +37,10 @@ DevKernel is the meta-developer operating system (MyOS) orchestrating autonomous
 - [[Adapter Pattern]]
 - [[CQRS Pattern]]
 - [[Universal Agent Adapter Pattern]]
+- [[Vault Path Resolution Invariant]]
+- [[Documentation Onboarding Flow]]
 
 ## Session History
+- [[[DEV] 2026-11-10 - BrewedOps 3-Layer Architecture and System Diagrams]]
 - [[[DEV] 2026-11-01 - Antigravity Provisioning System Architecture and Multi-Repo Governance]]
 - [[[DEV] 2026-10-27 - Multi-Agent Architecture and Knowledge Codification]]
