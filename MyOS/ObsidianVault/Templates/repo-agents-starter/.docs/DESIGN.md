@@ -4,16 +4,12 @@ Review: pending repository inspection and developer interview.
 
 ## Applicability
 
-TODO: Confirm whether this project has a UI. For backend-only projects, explicitly mark UI sections not applicable.
+TODO: Confirm whether there is a UI; mark UI-specific sections not applicable for backend-only or tooling projects.
 
-## Design system
+## Design system and interactions
 
-TODO: Link existing styles and components; confirm colors, typography, spacing, responsive behavior, and accessibility requirements. Do not invent tokens before review.
-
-## Components and interaction states
-
-TODO: Specify relevant loading, empty, error, success, focus, and disabled states.
+TODO: Reference existing colors, typography, spacing, components, accessibility, responsive layouts, and loading/empty/error/focus states. Do not invent tokens or impose a new library.
 
 ## Evidence and open questions
 
-TODO: Link design references and resolve missing decisions.
+TODO: Link references and resolve missing design decisions with the developer.

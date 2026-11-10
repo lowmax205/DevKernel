@@ -5,7 +5,7 @@
 - Revision: c1c8a8c1471069fb0e188eeaff69b8e8db6564a8
 - License: MIT; see LICENSE.
 - Complete upstream skill directory retained without modifications.
-- Installed globally in ~/.agents/skills/security-audit; never copied into child repos.
+- Bundled in DevKernel and clean exports as an explicit third-party exception. Install into the agent separately; setup does not change global skills or copy this skill into project repos.
 - Invoke on demand: `security audit this codebase`. Requires Node.js and an agent with sub-agent support for full audits. Follow upstream sandbox requirements for target execution.
 
 ## Native Windows limitation at this revision

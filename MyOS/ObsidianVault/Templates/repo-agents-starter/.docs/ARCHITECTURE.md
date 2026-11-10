@@ -2,20 +2,18 @@
 
 Review: pending repository inspection and developer interview.
 
-## Stack and structure
+## Stack, layout, and boundaries
 
-TODO: Inspect manifests and lockfiles; record actual runtimes, dependency versions, module boundaries, and entrypoints. Distinguish planned changes from observed implementation.
+TODO: Inspect manifests and lockfiles for actual dependency versions. Describe modules, entrypoints, persistence, deployment, and trust boundaries without assuming a stack.
 
 ## Flows and contracts
 
-TODO: Describe data flow, API boundaries, persistence, authentication, external integrations, and deployment.
+TODO: Describe data flows, API contracts, authentication, state, and integrations.
 
-## Architecture artifacts and decisions
+## Existing architecture artifacts
 
-Preserve existing Archify outputs in place. If present, link [interactive architecture](architecture/system-architecture.html) and [Mermaid source](architecture/system-architecture.mmd). These are expected locations, not claims that the artifacts already exist. Locate and link any additional existing diagrams without relocating them.
+Locate and link existing Archify HTML, Mermaid, and other architecture artifacts in place. Expected conventional paths are `.docs/architecture/system-architecture.html` and `.docs/architecture/system-architecture.mmd`; verify existence before making links. Do not move, replace, or regenerate diagrams during onboarding. Keep ADRs in their existing canonical locations, conventionally `.docs/decisions/`.
 
-Link canonical ADRs under `.docs/decisions/`; do not duplicate decision records here.
+## Open questions
 
-## Evidence and open questions
-
-TODO: Cite source paths and resolve uncertain architecture decisions with the developer.
+TODO: Cite evidence and interview the developer about missing or conflicting decisions.

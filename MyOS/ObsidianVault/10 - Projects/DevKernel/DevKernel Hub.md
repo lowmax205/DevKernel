@@ -12,11 +12,14 @@ summary: Central hub note for DevKernel Meta-Developer OS linking architecture p
 > **Note:** Live project status and next steps live in `<ZENTORA_ROOT>/MyOS/projects/devkernel.md` (One Home Per Fact).
 
 ## Overview
+The current Windows starter architecture is documented in `.docs/architecture/system-overview.md`.
+Setup preserves existing instructions, supports repositories inside or outside Repos, and keeps optional tooling separate.
+
 DevKernel is the meta-developer operating system (MyOS) orchestrating autonomous AI engineering across active child repositories, local Obsidian knowledge vaults, and Graphify AST/semantic knowledge graphs.
 
-## System Architecture Diagrams
-- **Interactive Architecture Diagram (HTML):** `<ZENTORA_ROOT>/.docs/architecture/system-architecture.html`
-- **Architecture Diagram Source (Mermaid):** `<ZENTORA_ROOT>/.docs/architecture/system-architecture.mmd`
+## Architecture & Visual Diagrams
+- [[system-architecture.html|Interactive System Architecture Diagram]] (`.docs/architecture/system-architecture.html`)
+- [[system-architecture.mmd|System Architecture Mermaid Source]] (`.docs/architecture/system-architecture.mmd`)
 
 ## Architecture Patterns
 - [[Singleton Pattern]]
@@ -39,4 +42,5 @@ DevKernel is the meta-developer operating system (MyOS) orchestrating autonomous
 
 ## Session History
 - [[[DEV] 2026-11-10 - BrewedOps 3-Layer Architecture and System Diagrams]]
+- [[[DEV] 2026-11-01 - Antigravity Provisioning System Architecture and Multi-Repo Governance]]
 - [[[DEV] 2026-10-27 - Multi-Agent Architecture and Knowledge Codification]]

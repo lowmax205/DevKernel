@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Preserve-first six-file project documentation scaffolding through registration, with repo-grounded drafts, developer interviews, reviewed consolidation, and Archify references.
+- Complete pinned Cloudflare security-audit bundle, MIT attribution, and provenance in clean exports; agent installation remains separate and audits stay on demand.
+- Starter-specific root planning docs and integration checks for docs, dry runs, preservation, exports, and linked paths. Read-only reconciliation is unchanged.
 - **BrewedOps 3-Layer Knowledge Architecture & 4-Step Surgical Lookup**:
   - Implemented the deterministic 4-step surgical lookup in `AGENTS.md`, `CLAUDE.md`, `00-zentora-and-ai-hero.md`, `copilot-instructions.md`, `cursor/devkernel.mdc`, `chatgpt/README.md`, `devkernel-manager` skill, and `.docs/ARCHITECTURE.md`.
   - Added full PARA structure to `MyOS/ObsidianVault/` (`00 - Inbox/`, `10 - Projects/`, `20 - Areas/`, `30 - Resources/`, `40 - Archive/` with `.gitkeep`).
@@ -30,7 +33,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Consolidated ignore patterns into `MyOS/.graphifyignore` and eliminated redundant root `.graphifyignore`.
-
 - **Dedicated Global Companion Skills**: Mirrored 4 new curated workflow skills in `MyOS/_meta/global-skills/`:
   - `context7-docs`: Real-time version-specific library and API documentation retrieval via Context7 MCP.
   - `playwright-browser`: Snapshot-first browser automation, DOM exploration, and screenshot capture via Playwright MCP.
@@ -50,8 +52,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Machine Onboarding Refactoring (`MyOS/_meta/bootstrap_machine.ps1`)**: Refactored workstation bootstrapper with an `-Agent` parameter (defaulting to `all`), delegating adapter deployment to `setup_agent.ps1`.
 - **Master README.md Overhaul**: Rewrote Sections 3 through 6 to feature the Universal Multi-Agent Ecosystem, Mermaid adapter flowcharts, quickstart commands, and updated directory maps.
 
-### Removed
-- **Root Agent Artifacts Purged**: Removed `.cursor/` and `.agents/` from git tracking and workspace root. All tool-specific directories are now strictly generated on demand via `/setup <agent>` or `setup_agent.ps1`, preserving complete repository neutrality.
+## [0.1.1] - 2026-11-01
+
+### Added
+- Source-pinned Windows starter architecture in interactive HTML, Mermaid, and reusable Archify JSON, with automated browser verification.
+- Refreshed maintainer AST graph and verified starter registration, export, reset, and safety symbols without LLM extraction.
+- Windows starter setup for Codex, Claude Code, Cursor, GitHub Copilot, and Antigravity, with interactive and noninteractive entry points.
+- Explicit backup-before-reset for all supported repository agent instruction and local skill paths, with junction protection and recovery guidance.
+- Allowlisted clean starter export containing only DevKernel-owned skills, reusable templates, and verification tools.
+- Integration coverage for setup, reruns, internal and external repositories, reset backups, profile opt-in, and workspace isolation.
+
+### Changed
+- Preserve existing repository instructions by default and keep engineering policies opt-in.
+- Support arbitrary workspace names and existing Git repositories inside or outside Repos.
+- Replace implicit global skill mirroring, tool installation, hooks, and watchers with local registration and read-only reconciliation checks.
+- Keep optional graph recall scoped to the selected workspace rather than falling back to a parent workspace.
 
 ## [0.1.0] - 2026-10-27
 

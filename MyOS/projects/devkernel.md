@@ -11,6 +11,7 @@ updated: 2026-11-10
 | :--- | :--- |
 | Repo | `<ZENTORA_ROOT>` |
 | Memory | `<ZENTORA_ROOT>/MyOS/projects/devkernel.md` |
+| Architecture | `<ZENTORA_ROOT>/.docs/architecture/system-architecture.html` |
 | Vault Folder | `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/DevKernel` |
 | Graph | `<ZENTORA_ROOT>/MyOS/graphify-out/graph.json` |
 | Architecture Diagram | `<ZENTORA_ROOT>/.docs/architecture/system-architecture.html` |

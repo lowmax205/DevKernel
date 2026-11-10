@@ -20,8 +20,8 @@ Synchronize DevKernel with the latest architectural evolutions from ZentoraDev, 
   - Consolidated ignore patterns into `MyOS/.graphifyignore` and safely eliminated redundant root `.graphifyignore`.
   - Added `scaffold_project_docs.py`, `test_project_docs.py`, and `install_devtools.ps1`.
 - **System Architecture Diagrams (Archify)**:
-  - Finalized standalone interactive HTML architecture diagram [`.docs/architecture/system-architecture.html`](file:///c:/ZentoraDev/Repos/2026/DevKernel/.docs/architecture/system-architecture.html) with full signal-flow animation, dark/light theme switching, and component detail drawers.
-  - Generated companion Mermaid diagram [`.docs/architecture/system-architecture.mmd`](file:///c:/ZentoraDev/Repos/2026/DevKernel/.docs/architecture/system-architecture.mmd) modeling Meta-Control Plane, MyOS 3-Layer Knowledge Architecture, and Client Repositories.
+  - Finalized standalone interactive HTML architecture diagram `.docs/architecture/system-architecture.html` with full signal-flow animation, dark/light theme switching, and component detail drawers.
+  - Generated companion Mermaid diagram `.docs/architecture/system-architecture.mmd` modeling Meta-Control Plane, MyOS 3-Layer Knowledge Architecture, and Client Repositories.
   - Fully wired all 17 components with 0 orphaned nodes and 0 unresolved crossings.
 - **Canonical Documentation Suite**:
   - Scaffolding canonical six-file `.docs` structure (`README.md`, `ARCHITECTURE.md`, `DESIGN.md`, `MEMORY.md`, `PRD.md`, `RULES.md`, `TASKS.md`, `agents/documentation-onboarding.md`).

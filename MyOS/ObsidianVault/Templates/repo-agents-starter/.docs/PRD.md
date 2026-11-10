@@ -1,19 +1,15 @@
 # {{Project Name}} - Product requirements
 
-Review: pending developer interview. Unresolved items are not approved requirements.
+Review: pending developer interview. Template text is not an approved requirement.
 
-## Problem and audience
+## Problem, audience, and outcomes
 
-TODO: Identify the problem, primary users, and current alternatives.
-
-## Goals and success criteria
-
-TODO: Define observable outcomes and acceptance criteria.
+TODO: Describe the problem, users, value, and measurable acceptance criteria.
 
 ## MVP and exclusions
 
-TODO: Agree core capabilities, user stories, and explicit exclusions.
+TODO: Agree the core capabilities, user stories, and explicit exclusions.
 
 ## Evidence and open questions
 
-TODO: Link existing requirements and record unresolved product decisions.
+TODO: Inspect existing requirements and implementation; cite source paths. Distinguish current behavior from desired changes and resolve unknowns with the developer.

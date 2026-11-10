@@ -1,17 +1,9 @@
-# ZentoraDev - Memory routing
+# DevKernel - Memory routing
 
-This file is a navigation index. Live status, session history, and decision records remain in their canonical homes.
+This is an index, not a session ledger. This starter is independent of the parent ZentoraDev workspace.
 
-| Information | Canonical home |
-| --- | --- |
-| Live status and next steps | [ZentoraDev project card](../MyOS/projects/zentoradev.md) |
-| Project context and session navigation | [ZentoraDev Hub](../MyOS/ObsidianVault/10%20-%20Projects/ZentoraDev/ZentoraDev%20Hub.md) |
-| Full session history | `MyOS/ObsidianVault/10 - Projects/ZentoraDev/` |
-| Reusable gotchas and patterns | `MyOS/ObsidianVault/30 - Resources/Atomic Insights/` |
-| Connections and communities | `MyOS/graphify-out/graph.json` |
-| Architecture navigation | [ARCHITECTURE.md](ARCHITECTURE.md) |
-| Issue tracking | [Issue tracker conventions](agents/issue-tracker.md) |
+In a generated workspace, project directions live in `MyOS/projects/<slug>.md`; history lives in `MyOS/ObsidianVault/10 - Projects/<Repository Name>/`; reusable knowledge lives in `MyOS/ObsidianVault/30 - Resources/Atomic Insights/`; optional graph connections live in `MyOS/graphify-out/graph.json` only after generation. Registered project repos locate their selected workspace through ignored `.devkernel/workspace.json`.
 
-ADRs use `.docs/decisions/` when created; the domain workflow creates them on demand. Do not manufacture an ADR just to fill this index.
+Do not treat retained maintainer history or the parent workspace's project cards as generated starter state. Exports exclude that history and start with empty project-memory directories. ADRs, issue trackers, and setup records retain their existing homes. Use `save progress` for actual canonical records; never duplicate session logs, bugs, or live status here.
 
-Use `save progress` for updates to canonical memory. Do not copy session logs, bug histories, ADR content, or live progress into this file. Resolve `<ZENTORA_ROOT>` from the workspace or environment rather than committing machine-specific paths.
+Navigate source behavior through [ARCHITECTURE.md](ARCHITECTURE.md) and [accepted starter decisions](starter-decisions.md). No new DevKernel self-registration or fabricated project card is required for this documentation update.

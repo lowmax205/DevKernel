@@ -1,34 +1,21 @@
 ---
 name: setup-agent
-description: Provision and configure ZentoraDev or child repositories for specific AI agents (Claude Code, ChatGPT CLI, Cursor, Antigravity, GitHub Copilot).
+description: Configure a supported AI agent for a DevKernel-registered Git repository.
 ---
-# Setup Agent Skill
+# Setup Agent
 
-Use this skill when the user asks to set up, install, or configure ZentoraDev or a child repository for a specific AI agent (e.g. `/setup antigravity`, `/setup cursor`, `/setup claude`, `/setup copilot`, `/setup chatgpt`, or `/setup all`).
+Use `MyOS/_meta/setup_agent.ps1 -Agent <agent> -TargetRepo <existing-git-root>`
+from the workspace. Agents: codex (chatgpt alias), claude, cursor, copilot,
+antigravity. Configure one agent per invocation. Use `-DryRun` for a preview.
 
-## Supported Agents
-- `all` (Provisions adapters for all agents simultaneously)
-- `claude` (Deploys `CLAUDE.md` referencing `AGENTS.md`)
-- `cursor` (Deploys `.cursor/rules/zentora-dev.mdc` and `.cursor/rules/backend-patterns.mdc`)
-- `antigravity` (Configures directory junctions to `~/.agents/skills`, `.agents/skills.json`, and manifests)
-- `copilot` (Deploys `.github/copilot-instructions.md`)
-- `chatgpt` (Verifies `AGENTS.md` and CLI context)
+Existing instructions and skills are preserved by default. Only pass
+`-ResetAgentConfig` when explicitly requested; this backs up and clears the
+supported repository instruction and local skill paths for all agents.
+Never change global skills, credentials, MCP configuration, or Git hooks.
+`-EngineeringProfile` is optional. Missing tools require installation guidance,
+not automatic installation. Report conflicts for manual review.
 
-## Command Execution
-Run the automated provisioner via PowerShell:
-
-```powershell
-# For the root ZentoraDev workspace:
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent <name>
-
-# For a specific child repository:
-powershell -ExecutionPolicy Bypass -File .\MyOS\_meta\setup_agent.ps1 -Agent <name> -TargetRepo "<RepoName>"
-```
-
-### Slash Command Usage
-- `/setup all`
-- `/setup claude`
-- `/setup cursor`
-- `/setup antigravity`
-- `/setup copilot`
-- `/setup chatgpt`
+Registration also scaffolds missing six-file `.docs` planning templates and
+onboarding guidance, preserving authored documents and existing Archify artifacts.
+Print the developer interview next step; never run an interview or security audit
+inside setup. The bundled Cloudflare skill is installed into agents separately.

@@ -1,17 +1,12 @@
 # {{Project Name}} - Memory routing
 
-Review: pending link verification with the developer. This file is an index, not a session ledger.
+This is a navigation index, not a session ledger. Review the pointers with the developer.
 
-## Canonical homes
+Resolve this machine's workspace through `.devkernel/workspace.json`. Paths below are relative to that workspace, not this repository or its parent:
 
-- Live status and next steps: `<ZENTORA_ROOT>/MyOS/projects/{{project-slug}}.md`.
-- Project Hub and session history: `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`.
-- Reusable gotchas: `<ZENTORA_ROOT>/MyOS/ObsidianVault/30 - Resources/Atomic Insights/`.
-- Architecture decisions: `.docs/decisions/`.
-- Connections and communities: `<ZENTORA_ROOT>/MyOS/graphify-out/graph.json`.
+- Live status and next steps: `MyOS/projects/{{project-slug}}.md`.
+- Hub and session history: `MyOS/ObsidianVault/10 - Projects/{{Project Name}}/`.
+- Reusable gotchas: `MyOS/ObsidianVault/30 - Resources/Atomic Insights/`.
+- Optional connections: `MyOS/graphify-out/graph.json`, only if generated.
 
-Resolve `<ZENTORA_ROOT>` from the workspace or environment; never commit a machine-specific drive path. Use `save progress` to update canonical records. Do not copy history, ADR content, bug ledgers, or live status into this document.
-
-## Context pointers and open questions
-
-TODO: Add verified links to relevant canonical records; record missing destinations without inventing history.
+Link existing repo ADRs and issue records in place. Use `save progress` for canonical memory updates. Do not copy session logs, bug ledgers, ADR content, or live status here. Never commit machine-specific workspace paths. Record missing destinations explicitly rather than inventing history.

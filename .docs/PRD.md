@@ -1,29 +1,23 @@
-# ZentoraDev - Product requirements
+# DevKernel - Product requirements
 
-Review: evidence-backed draft; pending developer review of product decisions. The root workspace is the subject of this document, not an individual client application.
+Review: current starter contract plus the approved documentation/security additions; further product goals remain open.
 
-## Problem and audience
+## Audience and purpose
 
-Developers and AI coding agents working across independent client repositories need reliable context, consistent engineering rules, and persistent project memory. ZentoraDev is the local-first control workspace for those repositories. DevKernel is the reusable starter derived from this system.
+A portable Windows starter for developers using AI coding agents across independent Git repositories. A workspace can have any name and location; projects can live inside or outside it. Keep live direction, long-term memory, and optional graph connections in separate canonical homes.
 
-## Current capabilities
+## Supported capabilities
 
-- Route live status through project cards, history through Obsidian, and connections through Graphify.
-- Bootstrap new and existing child repositories using shared guidance and global skills.
-- Provision agent adapters and recall focused context without loading entire repositories.
-- Create six planning documents through manual bootstrap and automatic sync, followed by repo inspection and a developer interview.
-- Provide Cloudflare's security-audit skill globally for explicitly requested audits.
+One interactive PowerShell entrypoint checks Git and Python, creates a clean workspace, and registers an existing repository for a selected agent. Preserve existing instructions, merge a marked routing block, and create missing project cards and hubs. Engineering policies are opt-in. Explicit reset backs up supported local agent configuration before clearing it.
 
-## Acceptance criteria for documentation onboarding
+Registration introduces six missing planning docs and an interview workflow. New projects use templates and interviews; existing projects use evidence-backed drafts and interviews. Consolidation is reviewed and leaves redirects. Full security audits are on demand, using the bundled pinned Cloudflare skill after separate agent installation.
 
-Both onboarding paths create missing documents, preserve authored content, and add an idempotent entrypoint reference. New projects use templates plus interviews; existing projects use evidence-backed drafts plus interviews. Relevant documentation gaps are resolved before planned feature work. Diagnosis, urgent fixes, and documentation work can proceed with gaps recorded.
+## Success criteria and exclusions
 
-Consolidation follows developer review. Existing architecture artifacts, central records, ADRs, and tickets keep their canonical locations. Security audits remain on demand and never run during bootstrap.
+Setup must work without Node.js, Obsidian, Graphify, API keys, or a security audit. Reruns preserve authored docs, architecture artifacts, status, and history. Dry runs write nothing. Exports are reproducible and contain no personal history, registrations, credentials, generated graphs, or unapproved external skills.
 
-## Boundaries and open questions
+No automatic agent authentication, repository moves, Git initialization, commits, hooks, MCP installation, global skill mirroring, watcher, or release audit gate is introduced. See [accepted starter decisions](starter-decisions.md) and [setup instructions](../README.md).
 
-This workspace does not implement client application features or duplicate their domain skills. This change does not backfill all child repositories or require security audits for releases.
+## Open questions
 
-Developer review: confirm whether these current capabilities define the ongoing product baseline. No new roadmap or quantitative business target has been approved.
-
-Evidence: [root overview](../README.md), [agent routing](../AGENTS.md), [bootstrap](../MyOS/_meta/bootstrap_repo.ps1), and [automatic sync](../MyOS/_meta/zentora_sync.py).
+No new feature roadmap or quantitative product metrics beyond the accepted starter behavior have been approved.

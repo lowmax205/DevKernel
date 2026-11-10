@@ -2,18 +2,14 @@
 
 Review: pending repository inspection and developer interview.
 
-## Inherited guidance
+## Inherited instructions
 
-Follow root `AGENTS.md`, `.agents/rules/00-zentora-and-ai-hero.md`, and `<ZENTORA_ROOT>/AGENTS.md`. Reference their rules rather than duplicating them. Follow [documentation onboarding](agents/documentation-onboarding.md).
+Follow repository AGENTS.md and existing project standards. DevKernel routing is provided through its marked block and `.devkernel/workspace.json`. Read the selected workspace's AGENTS.md and core profile; do not assume the parent directory is the workspace. Engineering policies remain opt-in. Raise conflicts with existing instructions for developer review.
 
-## Project-specific conventions
+## Project conventions
 
-TODO: Confirm coding style, dependency constraints, module boundaries, validation, error handling, logging, and security conventions from repo evidence.
+TODO: Record project-specific style, dependencies, error handling, logging, and boundary rules, referencing existing guidance rather than duplicating it.
 
-## Verification commands
+## Verification
 
-TODO: Record exact supported lint, build, and affected test commands from repository configuration.
-
-## Open questions
-
-TODO: Resolve project-specific rule conflicts with the developer.
+TODO: Discover the exact lint, build, and affected test commands from the repo. Resolve relevant planning gaps before planned feature work; diagnosis, urgent fixes, and documentation work may proceed with gaps recorded. See [documentation onboarding](agents/documentation-onboarding.md).
