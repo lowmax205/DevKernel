@@ -22,13 +22,19 @@ You are operating inside `<ZENTORA_ROOT>`. Follow the "One Home Per Fact" princi
 - **Fast AST Re-Index:** `.\scripts\graphify.ps1 update` (if present in repo) or `graphify update "<ZENTORA_ROOT>/MyOS"`.
 - **Full DeepSeek Extraction:** `graphify extract "<ZENTORA_ROOT>/MyOS" --backend deepseek --output "<ZENTORA_ROOT>/MyOS"`.
 
+## 4-Step Surgical Lookup (BrewedOps 3-Layer Architecture)
+Execute this deterministic 4-step surgical lookup on every task to eliminate token bloat:
+1. **Master Routing Table:** Read `AGENTS.md` to orient project boundaries and rules.
+2. **ICM Project Card:** Read `<ZENTORA_ROOT>/MyOS/projects/<project-slug>.md` for live `status:` and immediate `next:`.
+3. **Obsidian Hub & Session:** Read `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/<Project Name>/` (`<Project Name> Hub.md` and latest dated session note) for recent decisions, features built, and bug post-mortems.
+4. **Dynamic Context Recall (2–8 files):** Run `python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "<prompt keywords>" --repo . --hops 2`. Read **only the ~4 to 5 highly relevant files** in the manifest.
+
 ## Workflow Rules
 0. **Strict Obsidian Project Folder Resolution (NEVER write to Vault Root):**
    - All project Hub notes, Session notes (`<Project Name> Session YYYY-MM-DD.md`), and Changelog archives MUST be created inside `<ZENTORA_ROOT>/MyOS/ObsidianVault/10 - Projects/<Project Name>/`.
 1. **Pre-Flight Rule (Before answering status or architecture questions):**
-   - Run `python "<ZENTORA_ROOT>/MyOS/_meta/zentora_sync.py" --once`
-   - Run `python "<ZENTORA_ROOT>/MyOS/_meta/graph_recall.py" "<english keywords>" --hops 2`.
-   - Read `<ZENTORA_ROOT>/AGENTS.md` and `<ZENTORA_ROOT>/MyOS/projects/<project-slug>.md`.
+   - Execute the 4-Step Surgical Lookup above before raw `grep` or directory scans.
+   - Run `python "<ZENTORA_ROOT>/MyOS/_meta/zentora_sync.py" --once` when state needs reconciling.
 2. **AI Hero (`aihero.dev`) + DevKernel Development Lifecycle:**
    - Do NOT duplicate global skills (`~/.agents/skills/`) inside individual repository `.agents/skills/` folders.
    - **Clarify & Specify:** `/grill-me` (or `grill-with-docs`) -> `to-spec` -> `to-tickets`

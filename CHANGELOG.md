@@ -8,6 +8,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **BrewedOps 3-Layer Knowledge Architecture & 4-Step Surgical Lookup**:
+  - Implemented the deterministic 4-step surgical lookup in `AGENTS.md`, `CLAUDE.md`, `00-zentora-and-ai-hero.md`, `copilot-instructions.md`, `cursor/devkernel.mdc`, `chatgpt/README.md`, `devkernel-manager` skill, and `.docs/ARCHITECTURE.md`.
+  - Added full PARA structure to `MyOS/ObsidianVault/` (`00 - Inbox/`, `10 - Projects/`, `20 - Areas/`, `30 - Resources/`, `40 - Archive/` with `.gitkeep`).
+  - Added Antigravity lifecycle memory hook (`MyOS/_meta/agy_memory_hook.py`) supporting `SessionStart` and `PreInvocation` automated context injection.
+  - Upgraded `MyOS/_meta/graph_recall.py` to dynamic score-dropoff (>= 35% cutoff) and confidence weighting (`EXTRACTED` 1.0, `INFERRED` 0.75, `AMBIGUOUS` 0.4), outputting the `## Dynamic Files to Read (Surgical Context)` manifest (2 to 8 files dynamically routed).
+  - Enriched `icm-project-card.md` template and all `MyOS/projects/*.md` cards with `Repo AST Graph` and `On-Demand Docs` rows.
+  - Standardized `MyOS/_meta/zentora_sync.py` to source the canonical post-commit hook script from `MyOS/_meta/git-hooks/post-commit` (`[<CODE>] YYYY-MM-DD - <Focus Title>.md`).
+  - Slimmed down `repo-agents-starter` templates (`AGENTS.md`, `CLAUDE.md`, `00-zentora-and-ai-hero.md`, `copilot-instructions.md`) and adapter configs to eliminate prompt bloat and load `.docs/RULES.md` / `context7` on demand.
+  - Added `scaffold_project_docs.py`, `test_project_docs.py`, and `install_devtools.ps1`.
+- **System Architecture Diagrams (Archify)**:
+  - Finalized standalone interactive HTML architecture diagram `.docs/architecture/system-architecture.html` with signal-flow animation, dark/light theme switching, and component detail drawers (passed all 4 showcase quality gates with 0 line crossings).
+  - Generated companion Mermaid diagram `.docs/architecture/system-architecture.mmd` modeling Meta-Control Plane, MyOS 3-Layer Knowledge Architecture, and Client Repositories.
+  - Fully wired all 17 components with 0 orphaned nodes and 0 unresolved crossings.
+- **Canonical Documentation Suite**:
+  - Scaffolding canonical six-file `.docs` structure (`README.md`, `ARCHITECTURE.md`, `DESIGN.md`, `MEMORY.md`, `PRD.md`, `RULES.md`, `TASKS.md`, `agents/documentation-onboarding.md`).
+- **Atomic Insights Codification**:
+  - Codified `Vault Path Resolution Invariant.md` and `Documentation Onboarding Flow.md` under `30 - Resources/Atomic Insights/`.
+- **Curated Global Skills**:
+  - Added `surgical-coding`, `ponytail`, `dead-code-audit`, `security-audit`, and `ui-motion-performance` to `MyOS/_meta/global-skills/`.
+
+### Changed
+- Consolidated ignore patterns into `MyOS/.graphifyignore` and eliminated redundant root `.graphifyignore`.
+
 - **Dedicated Global Companion Skills**: Mirrored 4 new curated workflow skills in `MyOS/_meta/global-skills/`:
   - `context7-docs`: Real-time version-specific library and API documentation retrieval via Context7 MCP.
   - `playwright-browser`: Snapshot-first browser automation, DOM exploration, and screenshot capture via Playwright MCP.

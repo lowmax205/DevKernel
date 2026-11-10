@@ -1,0 +1,20 @@
+{
+  "zentora-memory-graphify": {
+    "enabled": true,
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "python -c \"import pathlib,runpy;p=next((d/'MyOS/_meta/agy_memory_hook.py' for d in [pathlib.Path.cwd(),*pathlib.Path.cwd().parents] if (d/'MyOS/_meta/agy_memory_hook.py').exists()),None);runpy.run_path(str(p),run_name='__main__') if p else print('{}')\" --event SessionStart",
+        "timeout": 10
+      }
+    ],
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "python -c \"import pathlib,runpy;p=next((d/'MyOS/_meta/agy_memory_hook.py' for d in [pathlib.Path.cwd(),*pathlib.Path.cwd().parents] if (d/'MyOS/_meta/agy_memory_hook.py').exists()),None);runpy.run_path(str(p),run_name='__main__') if p else print('{}')\" --event PreInvocation",
+        "timeout": 10
+      }
+    ]
+  }
+}
+

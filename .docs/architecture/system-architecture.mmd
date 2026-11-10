@@ -1,0 +1,64 @@
+flowchart LR
+    %% ZentoraDev Meta-OS & 3-Layer Knowledge Architecture
+    
+    subgraph External ["External Actors"]
+        developer["Software Engineer<br/>(Developer / Prompts)"]
+        ai_agents["AI Coding Agents<br/>(Antigravity & Claude)"]
+    end
+
+    subgraph MetaControl ["Meta-Control Plane: Workspace Root"]
+        routing_table["Master Routing Table<br/>(AGENTS.md & Adapters)"]
+        lifecycle_hooks["Lifecycle Hooks<br/>(agy_memory_hook.py)"]
+        sync_engine["Sync Engine<br/>(zentora_sync.py)"]
+        guardrails["Portability & Gate<br/>(check_portable_paths.py)"]
+    end
+
+    subgraph KnowledgeArch ["MyOS: 3-Layer Knowledge Architecture"]
+        subgraph Layer3 ["Layer 3: Direction (ICM)"]
+            icm_cards["ICM Project Cards<br/>(MyOS/projects/*.md)"]
+            dashboards["Workspace Tracker<br/>(tracker.md & Status)"]
+        end
+
+        subgraph Layer2 ["Layer 2: Connections (Graphify)"]
+            graph_recall["Dynamic Recall<br/>(graph_recall.py)"]
+            graphify_engine["Graphify Engine<br/>(AST & Semantic Sync)"]
+            graph_store[("Global Graph<br/>graphify-out/graph.json")]
+        end
+
+        subgraph Layer1 ["Layer 1: Memory (Obsidian PARA)"]
+            vault_projects["Hubs & Sessions<br/>(10 - Projects)"]
+            vault_atomic["Atomic Insights<br/>(30 - Resources)"]
+            vault_para["PARA Architecture<br/>(Inbox, Areas, Archive)"]
+        end
+    end
+
+    subgraph ClientRepos ["Client Repositories: Repos/"]
+        repos_active["Client Repositories<br/>(Repos/2026/*)"]
+        repo_agents["Repo Rules & Gates<br/>(.agents/rules/ & hooks)"]
+        repo_local_graph[("Repo AST Graph<br/>scripts/graphify.ps1")]
+    end
+
+    %% Interactions & 4-Step Surgical Lookup
+    developer -->|"user prompts"| ai_agents
+    ai_agents ==>|"1. Orient"| routing_table
+    routing_table ==>|"2. Status & Next"| icm_cards
+    routing_table -->|"reads registry"| dashboards
+    icm_cards -.->|"aggregates status"| dashboards
+    icm_cards ==>|"3. Hub & Sessions"| vault_projects
+    vault_projects -.->|"One Home Per Fact"| repos_active
+
+    lifecycle_hooks -->|"PreInvocation"| graph_recall
+    graph_recall -->|"query AST & graph"| graph_store
+    graph_recall ==>|"4. Dynamic Capsule (2-8 files)"| ai_agents
+
+    sync_engine -.->|"trigger AST sync"| graphify_engine
+    graphify_engine -->|"update graph.json"| graph_store
+    graphify_engine -->|"index atomic notes"| vault_atomic
+    graph_store -->|"links gotchas"| vault_atomic
+
+    vault_atomic -.->|"30 - Resources"| vault_para
+    guardrails -->|"enforce vault layout"| vault_para
+    guardrails -->|"verify portable paths"| sync_engine
+
+    repos_active -->|"enforce ZEP rules"| repo_agents
+    repos_active -->|"AST re-index"| repo_local_graph

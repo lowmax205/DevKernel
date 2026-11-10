@@ -139,7 +139,12 @@ function Install-Antigravity {
 
     # Global MCP Servers Configuration (~/.gemini/config/mcp_config.json)
     $mcpConfigFile = Join-Path $geminiConfigDir "mcp_config.json"
+    $myosGraphJson = (Join-Path $MyOSRoot "graphify-out\graph.json").Replace('\', '/')
     $defaultMcpServers = @{
+        "graphify" = @{
+            "command" = "python"
+            "args" = @("-m", "graphify.serve", $myosGraphJson)
+        }
         "context7" = @{
             "command" = "cmd.exe"
             "args" = @("/c", "npx", "-y", "@upstash/context7-mcp")
@@ -159,6 +164,10 @@ function Install-Antigravity {
         "gcp-database-toolbox" = @{
             "command" = "cmd.exe"
             "args" = @("/c", "npx", "-y", "mcp-toolbox-for-databases")
+        }
+        "fetch" = @{
+            "command" = "cmd.exe"
+            "args" = @("/c", "npx", "-y", "mcp-fetch-server")
         }
     }
 
@@ -185,9 +194,9 @@ function Install-Antigravity {
 
     $mcpJson = $existingConfig | ConvertTo-Json -Depth 5
     [System.IO.File]::WriteAllText($mcpConfigFile, $mcpJson, $Utf8NoBom)
-    Write-Host "  + MCP Config: $mcpConfigFile (context7, playwright, sqlite, postgres, gcp-database-toolbox)" -ForegroundColor Green
+    Write-Host "  + MCP Config: $mcpConfigFile (graphify, context7, playwright, sqlite, postgres, gcp-database-toolbox, fetch)" -ForegroundColor Green
 
-    # Target repository skills.json
+    # Target repository skills.json & hooks.json
     $repoAgentsDir = Join-Path $Path ".agents"
     if (-not (Test-Path $repoAgentsDir)) { New-Item -ItemType Directory -Path $repoAgentsDir -Force | Out-Null }
     $repoSkillsJson = Join-Path $repoAgentsDir "skills.json"
@@ -195,6 +204,13 @@ function Install-Antigravity {
     if (Test-Path $adapterSkillsJson) {
         Copy-Item -Path $adapterSkillsJson -Destination $repoSkillsJson -Force
         Write-Host "  + Repo Manifest: $repoSkillsJson" -ForegroundColor Green
+    }
+
+    $repoHooksJson = Join-Path $repoAgentsDir "hooks.json"
+    $adapterHooksJson = Join-Path $AdaptersDir "antigravity\hooks.json"
+    if (Test-Path $adapterHooksJson) {
+        Copy-Item -Path $adapterHooksJson -Destination $repoHooksJson -Force
+        Write-Host "  + Lifecycle Hooks: $repoHooksJson (SessionStart + PreInvocation memory/graphify recall)" -ForegroundColor Green
     }
 
     # Target repository rules

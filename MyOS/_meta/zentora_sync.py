@@ -19,6 +19,7 @@ import json
 import time
 import shutil
 import argparse
+from scaffold_project_docs import scaffold as scaffold_project_docs
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
@@ -231,7 +232,12 @@ def save_state_manifest(manifest: Dict[str, Any]) -> None:
 
 
 def get_post_commit_hook_script() -> str:
-    """Generate the hardened dynamic post-commit hook script."""
+    """Load canonical post-commit hook script from POST_COMMIT_SRC (fallback to template)."""
+    if POST_COMMIT_SRC.exists():
+        try:
+            return POST_COMMIT_SRC.read_text(encoding="utf-8")
+        except Exception:
+            pass
     return """#!/bin/sh
 # Git post-commit hook for Zentora Dev (Dynamic Root Resolution)
 
@@ -325,6 +331,7 @@ def sync_project_card(proj: Dict[str, Any]) -> None:
 
     card_path = PROJECTS_DIR / f"{slug}.md"
 
+    rel_repo: Optional[str] = None
     if is_repo and r_path:
         try:
             rel_repo = Path(r_path).relative_to(REPOS_DIR).as_posix()
@@ -335,10 +342,17 @@ def sync_project_card(proj: Dict[str, Any]) -> None:
         repo_display = "Vault-Only (No Repo)"
 
     vault_display = f"{ROOT_TOKEN}/MyOS/ObsidianVault/10 - Projects/{name}"
-    graph_display = f"{ROOT_TOKEN}/MyOS/graphify-out/graph.json"
+    global_graph_display = f"{ROOT_TOKEN}/MyOS/graphify-out/graph.json"
     memory_display = f"{ROOT_TOKEN}/MyOS/projects/{slug}.md"
 
+    repo_graph_display = f"{ROOT_TOKEN}/Repos/{rel_repo}/graphify-out/graph.json" if (is_repo and rel_repo) else None
+    ondemand_docs_display = f"{ROOT_TOKEN}/Repos/{rel_repo}/.docs/README.md" if (is_repo and rel_repo) else None
+
     next_task = "Run initial architecture review and define next milestone"
+    if slug == "rentoplace":
+        next_task = "Run pnpm mobile:apk in RentoPlace to build and verify the standalone Android release APK using the headless JDK 17 + Android CLI toolchain"
+    elif slug == "zentoratest":
+        next_task = "Verify 2-hop graph traversal from ZentoraTest Hub to Atomic Insights notes"
 
     if card_path.exists():
         text = card_path.read_text(encoding="utf-8", errors="replace")
@@ -349,11 +363,22 @@ def sync_project_card(proj: Dict[str, Any]) -> None:
 
         # Update metadata while preserving existing body content and updated timestamp
         text = re.sub(r"^status:\s*[A-Za-z0-9_-]+", "status: active", text, flags=re.MULTILINE)
-        # Note: Do not overwrite updated: on existing cards during sync; updated is maintained via save progress / sessions
         text = re.sub(r"(\|\s*Repo\s*\|\s*`)[^`]+(`\s*\|)", lambda m: f"{m.group(1)}{repo_display}{m.group(2)}", text)
         text = re.sub(r"(\|\s*Vault Folder\s*\|\s*`)[^`]+(`\s*\|)", lambda m: f"{m.group(1)}{vault_display}{m.group(2)}", text)
-        text = re.sub(r"(\|\s*Graph\s*\|\s*`)[^`]+(`\s*\|)", lambda m: f"{m.group(1)}{graph_display}{m.group(2)}", text)
+        text = re.sub(r"(\|\s*(?:Global )?Graph\s*\|\s*`)[^`]+(`\s*\|)", lambda m: f"| Global Graph | `{global_graph_display}` |", text)
         text = re.sub(r"(\|\s*Memory\s*\|\s*`)[^`]+(`\s*\|)", lambda m: f"{m.group(1)}{memory_display}{m.group(2)}", text)
+
+        if is_repo and rel_repo:
+            if "| Repo AST Graph |" in text:
+                text = re.sub(r"(\|\s*Repo AST Graph\s*\|\s*`)[^`]+(`\s*\|)", lambda m: f"| Repo AST Graph | `{repo_graph_display}` |", text)
+            else:
+                text = re.sub(
+                    r"(\|\s*Vault Folder\s*\|\s*`[^`]+`\s*\|\r?\n)",
+                    lambda m: f"{m.group(1)}| Repo AST Graph | `{repo_graph_display}` |\n| On-Demand Docs | `{ondemand_docs_display}` |\n",
+                    text
+                )
+            if "| On-Demand Docs |" in text and ondemand_docs_display:
+                text = re.sub(r"(\|\s*On-Demand Docs\s*\|\s*`)[^`]+(`\s*\|)", lambda m: f"| On-Demand Docs | `{ondemand_docs_display}` |", text)
 
         # Legacy path cleanups
         text = re.sub(r"[A-Za-z]:[\\\\/]+ZentoraDev/", lambda _m: ROOT_TOKEN + "/", text)
@@ -364,9 +389,12 @@ def sync_project_card(proj: Dict[str, Any]) -> None:
     else:
         diag_row = ""
         mermaid_row = ""
-        if is_repo and r_path:
+        repo_graph_row = ""
+        ondemand_docs_row = ""
+        if is_repo and rel_repo:
+            repo_graph_row = f"| Repo AST Graph | `{repo_graph_display}` |\n"
+            ondemand_docs_row = f"| On-Demand Docs | `{ondemand_docs_display}` |\n"
             try:
-                rel_repo = Path(r_path).relative_to(REPOS_DIR).as_posix()
                 diag_row = f"| Architecture Diagram | `{ROOT_TOKEN}/Repos/{rel_repo}/.docs/architecture/system-architecture.html` |\n"
                 mermaid_row = f"| Architecture Mermaid | `{ROOT_TOKEN}/Repos/{rel_repo}/.docs/architecture/system-architecture.mmd` |\n"
             except Exception:
@@ -388,7 +416,7 @@ updated: {today_str}
 | Repo | `{repo_display}` |
 | Memory | `{memory_display}` |
 | Vault Folder | `{vault_display}` |
-{diag_row}{mermaid_row}| Graph | `{graph_display}` |
+{repo_graph_row}{ondemand_docs_row}{diag_row}{mermaid_row}| Global Graph | `{global_graph_display}` |
 | Skills | {skills_str} |
 """
         card_path.write_text(card_content, encoding="utf-8")
@@ -488,13 +516,20 @@ def sync_repo_starter_files(proj: Dict[str, Any]) -> None:
         if src_agents.exists():
             shutil.copy2(src_agents, target_agents)
 
-    # 2. .agents/skills.json
+    # 2. .agents/skills.json & .agents/hooks.json
     target_skills = repo_path / ".agents" / "skills.json"
     if not target_skills.exists() and TEMPLATES_STARTER.exists():
         target_skills.parent.mkdir(parents=True, exist_ok=True)
         src_skills = TEMPLATES_STARTER / "skills.json"
         if src_skills.exists():
             shutil.copy2(src_skills, target_skills)
+
+    target_hooks = repo_path / ".agents" / "hooks.json"
+    if not target_hooks.exists() and TEMPLATES_STARTER.exists():
+        target_hooks.parent.mkdir(parents=True, exist_ok=True)
+        src_hooks = TEMPLATES_STARTER / "hooks.json"
+        if src_hooks.exists():
+            shutil.copy2(src_hooks, target_hooks)
 
     # 3. .agents/rules/00-zentora-and-ai-hero.md
     target_rule = repo_path / ".agents" / "rules" / "00-zentora-and-ai-hero.md"
@@ -524,6 +559,8 @@ def sync_repo_starter_files(proj: Dict[str, Any]) -> None:
         src_changelog = TEMPLATES_STARTER / "CHANGELOG.md"
         if src_changelog.exists():
             shutil.copy2(src_changelog, target_changelog)
+
+    scaffold_project_docs(repo_path, name, slug, TEMPLATES_STARTER)
 
     # 6. .git/hooks/post-commit
     dot_git = repo_path / ".git"
@@ -612,9 +649,45 @@ def sync_registries(active_projects: List[Dict[str, Any]]) -> None:
             AGENTS_MD_PATH.write_text(new_agents, encoding="utf-8")
 
 
+def audit_vault_integrity() -> None:
+    """Enforce the Strict Vault Root Invariant and audit child repo rule drift."""
+    # 1. Collision check: root ObsidianVault
+    root_vault = ZENTORA_ROOT / "ObsidianVault"
+    if root_vault.exists():
+        print(f"[zentora_sync] CRITICAL: Accidental root ObsidianVault detected at {root_vault}! All vault notes must live under {ROOT_TOKEN}/MyOS/ObsidianVault/.")
+
+    # 2. Child repo rule drift check
+    if REPOS_DIR.exists():
+        for candidate in REPOS_DIR.rglob("*.md"):
+            parts = candidate.parts
+            if any(part in parts for part in ("node_modules", ".git", ".next", "dist", "build", "__pycache__")):
+                continue
+            if candidate.name in ("AGENTS.md", "00-zentora-and-ai-hero.md"):
+                try:
+                    content = candidate.read_text(encoding="utf-8", errors="replace")
+                    has_stale_path = any(
+                        ("ObsidianVault" in line and "MyOS/ObsidianVault" not in line and "MyOS\\ObsidianVault" not in line)
+                        or "MyOS/MyOS/ObsidianVault" in line
+                        for line in content.splitlines()
+                    )
+                    if has_stale_path:
+                        rel_path = candidate.relative_to(ZENTORA_ROOT).as_posix()
+                        print(f"[zentora_sync] WARN: Stale vault path in {rel_path}. Auto-correcting...")
+                        fixed = re.sub(r'([A-Za-z]:[\\/]ZentoraDev[\\/]|<ZENTORA_ROOT>[\\/])ObsidianVault', r'<ZENTORA_ROOT>/MyOS/ObsidianVault', content)
+                        fixed = re.sub(r'(?<![Mm]y[Oo][Ss][\\/])ObsidianVault/10 - Projects/', 'MyOS/ObsidianVault/10 - Projects/', fixed)
+                        fixed = fixed.replace("ObsidianVault/30 - Resources/Zettelkasten", "MyOS/ObsidianVault/30 - Resources/Atomic Insights")
+                        fixed = fixed.replace("MyOS/MyOS/ObsidianVault", "MyOS/ObsidianVault")
+                        if fixed != content:
+                            candidate.write_text(fixed, encoding="utf-8", newline="\n")
+                            print(f"[zentora_sync] FIXED: Normalized vault paths in {rel_path}")
+                except Exception as exc:
+                    print(f"[zentora_sync] Note: could not audit {candidate}: {exc}")
+
+
 def reconcile_all(no_graphify: bool = False) -> None:
     """Run full reconciliation pass across filesystem, manifest, cards, hubs, and registries."""
     print("[zentora_sync] Starting reconciliation pass...")
+    audit_vault_integrity()
     manifest = load_state_manifest()
 
     # Missing-repo guard: warn only. A repo can legitimately be absent on this machine

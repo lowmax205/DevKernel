@@ -30,7 +30,12 @@ if (-not (Test-Path $RepoPath)) {
 }
 $RepoPath = (Resolve-Path $RepoPath).Path
 $ProjectName = Split-Path -Leaf $RepoPath
-$ProjectSlug = ($ProjectName.ToLower() -replace '[^a-z0-9]+', '-').Trim('-')
+$ExactSlugCard = Join-Path $MyOSRoot "projects\$($ProjectName.ToLower()).md"
+if (Test-Path $ExactSlugCard) {
+    $ProjectSlug = $ProjectName.ToLower()
+} else {
+    $ProjectSlug = ($ProjectName.ToLower() -replace '[^a-z0-9]+', '-').Trim('-')
+}
 $Today = (Get-Date).ToString("yyyy-MM-dd")
 
 Write-Host "[INFO] Bootstrapping Zentora Dev + AI Hero for '$ProjectName' (slug: '$ProjectSlug') at $RepoPath"
@@ -69,14 +74,22 @@ foreach ($legacyRel in @(
     }
 }
 
-# 4. Write canonical 00-zentora-and-ai-hero.md rule and .agents/skills.json
+# 4. Write canonical 00-zentora-and-ai-hero.md rule (preserving any ## Repository-specific section) and .agents/{skills,hooks}.json
+$TargetRulePath = Join-Path $RepoRulesDir "00-zentora-and-ai-hero.md"
+$PreservedRepoSpecificSection = ""
+if (Test-Path $TargetRulePath) {
+    $ExistingRuleText = [System.IO.File]::ReadAllText($TargetRulePath, $Utf8NoBom)
+    if ($ExistingRuleText -match "(?ms)(^## Repository-specific .*)$") {
+        $PreservedRepoSpecificSection = "`n" + $Matches[1].Trim() + "`n"
+    }
+}
+
 $RuleTemplate = [System.IO.File]::ReadAllText((Join-Path $StarterDir "00-zentora-and-ai-hero.md"), $Utf8NoBom)
 $RuleContent = $RuleTemplate.
     Replace("<Project Name>", $ProjectName).
     Replace("{{Project Name}}", $ProjectName).
     Replace("<project-slug>", $ProjectSlug).
-    Replace("{{project-slug}}", $ProjectSlug)
-$TargetRulePath = Join-Path $RepoRulesDir "00-zentora-and-ai-hero.md"
+    Replace("{{project-slug}}", $ProjectSlug).TrimEnd() + "`n" + $PreservedRepoSpecificSection
 [System.IO.File]::WriteAllText($TargetRulePath, $RuleContent, $Utf8NoBom)
 Write-Host "[UPDATED] Canonical rule: .agents/rules/00-zentora-and-ai-hero.md"
 
@@ -87,12 +100,40 @@ if (Test-Path $SkillsJsonSrc) {
     Write-Host "[UPDATED] Skill manifest: .agents/skills.json"
 }
 
-# 4b. Deploy scripts/graphify.ps1 and .graphifyignore
+$HooksJsonSrc = Join-Path $StarterDir "hooks.json"
+$HooksJsonDst = Join-Path $RepoPath ".agents\hooks.json"
+if (Test-Path $HooksJsonSrc) {
+    Copy-Item -Path $HooksJsonSrc -Destination $HooksJsonDst -Force
+    Write-Host "[UPDATED] Antigravity lifecycle hooks: .agents/hooks.json"
+}
+
+$PortableRuleSrc = Join-Path $PSScriptRoot "agent-adapters\antigravity\portable-paths.md"
+$PortableRuleDst = Join-Path $RepoRulesDir "portable-paths.md"
+if (Test-Path $PortableRuleSrc) {
+    Copy-Item -Path $PortableRuleSrc -Destination $PortableRuleDst -Force
+    Write-Host "[UPDATED] Portability rule: .agents/rules/portable-paths.md"
+}
+
+# 4b. Deploy scripts/graphify.ps1 (preserving custom scoped runners) and .graphifyignore
 $RepoScriptsDir = Join-Path $RepoPath "scripts"
 if (-not (Test-Path $RepoScriptsDir)) { New-Item -ItemType Directory -Path $RepoScriptsDir -Force | Out-Null }
 $GraphifyScriptSrc = Join-Path $StarterDir "scripts\graphify.ps1"
 $GraphifyScriptDst = Join-Path $RepoScriptsDir "graphify.ps1"
-if (Test-Path $GraphifyScriptSrc) {
+$ScopedScriptPath = Join-Path $RepoScriptsDir "graphify-scoped.py"
+
+$KeepCustomGraphifyRunner = $false
+if (Test-Path $ScopedScriptPath) {
+    $KeepCustomGraphifyRunner = $true
+} elseif (Test-Path $GraphifyScriptDst) {
+    $ExistingRunnerTxt = [System.IO.File]::ReadAllText($GraphifyScriptDst, $Utf8NoBom)
+    if ($ExistingRunnerTxt -match "graphify-scoped\.py") {
+        $KeepCustomGraphifyRunner = $true
+    }
+}
+
+if ($KeepCustomGraphifyRunner -and (Test-Path $GraphifyScriptDst)) {
+    Write-Host "[KEPT] Custom scoped graphify runner: scripts/graphify.ps1 (delegates to scripts/graphify-scoped.py)"
+} elseif (Test-Path $GraphifyScriptSrc) {
     Copy-Item -Path $GraphifyScriptSrc -Destination $GraphifyScriptDst -Force
     Write-Host "[UPDATED] Repo graphify runner: scripts/graphify.ps1"
 }
@@ -127,7 +168,12 @@ if ((-not (Test-Path $AgentsMdPath)) -or $ForceAgentsMd) {
     Write-Host "[UPDATED] Root entrypoint: AGENTS.md"
 } else {
     $ExistingAgents = [System.IO.File]::ReadAllText($AgentsMdPath, $Utf8NoBom)
-    if ($ExistingAgents -notmatch "## Agent skills") {
+    $UpdatedAgents = $ExistingAgents
+    # Normalize any literal drive-letter ZentoraDev paths to portable <ZENTORA_ROOT>
+    $UpdatedAgents = [regex]::Replace($UpdatedAgents, "[A-Za-z]:[\\/]+ZentoraDev", "<ZENTORA_ROOT>")
+    $UpdatedAgents = $UpdatedAgents.Replace("file:///<ZENTORA_ROOT>\AGENTS.md", "file:///<ZENTORA_ROOT>/AGENTS.md")
+
+    if ($UpdatedAgents -notmatch "## Agent skills") {
         $AgentSkillsBlock = @'
 
 
@@ -145,10 +191,13 @@ Default five canonical triage roles (`needs-triage`, `needs-info`, `ready-for-ag
 
 Single-context layout (`GLOSSARY.md` at repo root and ADRs in `.docs/decisions/`). See `.docs/agents/domain.md`.
 '@
-        [System.IO.File]::WriteAllText($AgentsMdPath, $ExistingAgents.TrimEnd() + $AgentSkillsBlock + "`n", $Utf8NoBom)
-        Write-Host "[UPDATED] Appended '## Agent skills' block to existing AGENTS.md"
+        $UpdatedAgents = $UpdatedAgents.TrimEnd() + $AgentSkillsBlock + "`n"
+    }
+    if ($UpdatedAgents -ne $ExistingAgents) {
+        [System.IO.File]::WriteAllText($AgentsMdPath, $UpdatedAgents, $Utf8NoBom)
+        Write-Host "[UPDATED] Normalized portable paths & skills block in existing AGENTS.md"
     } else {
-        Write-Host "[KEPT] Existing root AGENTS.md (already contains '## Agent skills')"
+        Write-Host "[KEPT] Existing root AGENTS.md (already up to date)"
     }
 }
 
@@ -192,6 +241,11 @@ if (Test-Path $AdapterCursorDir) {
     }
 }
 
+# 5c. Shared documentation onboarding (never overwrite project-authored docs)
+& python (Join-Path $PSScriptRoot "scaffold_project_docs.py") --repo $RepoPath --name $ProjectName --slug $ProjectSlug
+if ($LASTEXITCODE -ne 0) { throw "Project documentation scaffolding failed." }
+Write-Host "[NEXT] Ask your coding agent: Follow .docs/agents/documentation-onboarding.md; inspect this repo, draft the six docs, and interview me before planned feature work."
+
 # 6. Create root CHANGELOG.md if missing, or ensure ## [Unreleased] exists
 $ChangelogPath = Join-Path $RepoPath "CHANGELOG.md"
 if (-not (Test-Path $ChangelogPath)) {
@@ -230,7 +284,6 @@ if (-not (Test-Path $CardPath)) {
         Replace("YYYY-MM-DD", $Today).
         Replace("<Immediate next actionable task>", "Run initial architecture review and define next milestone").
         Replace("{{Immediate next actionable task}}", "Run initial architecture review and define next milestone")
-    # Point Graph path to MyOS/graphify-out/graph.json
     $GraphPath = "<ZENTORA_ROOT>/MyOS/graphify-out/graph.json"
     $CardContent = $CardContent.Replace("<ZENTORA_ROOT>/graphify-out/graph.json", $GraphPath)
     [System.IO.File]::WriteAllText($CardPath, $CardContent, $Utf8NoBom)
@@ -266,6 +319,19 @@ if (Test-Path $GitDir) {
         Copy-Item -Path $HookSrc -Destination $HookDst -Force
         Write-Host "[INSTALLED] Post-commit git hook: .git/hooks/post-commit"
     }
+}
+
+# 10. Ensure repo-local AST graphify-out/graph.json exists
+$RepoGraphJson = Join-Path $RepoPath "graphify-out\graph.json"
+if (-not (Test-Path $RepoGraphJson)) {
+    Write-Host "[Graphify] Initializing local AST knowledge graph for '$ProjectName'..." -ForegroundColor Cyan
+    if (Test-Path $GraphifyScriptDst) {
+        & powershell -NoProfile -ExecutionPolicy Bypass -File $GraphifyScriptDst update
+    } else {
+        & graphify update $RepoPath
+    }
+} else {
+    Write-Host "[KEPT] Existing AST graph: graphify-out/graph.json"
 }
 
 Write-Host "[SUCCESS] Bootstrap complete for '$ProjectName'!"

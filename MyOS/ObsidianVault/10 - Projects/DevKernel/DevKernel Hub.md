@@ -14,6 +14,10 @@ summary: Central hub note for DevKernel Meta-Developer OS linking architecture p
 ## Overview
 DevKernel is the meta-developer operating system (MyOS) orchestrating autonomous AI engineering across active child repositories, local Obsidian knowledge vaults, and Graphify AST/semantic knowledge graphs.
 
+## System Architecture Diagrams
+- **Interactive Architecture Diagram (HTML):** `<ZENTORA_ROOT>/.docs/architecture/system-architecture.html`
+- **Architecture Diagram Source (Mermaid):** `<ZENTORA_ROOT>/.docs/architecture/system-architecture.mmd`
+
 ## Architecture Patterns
 - [[Singleton Pattern]]
 - [[Decorator Pattern]]
@@ -30,6 +34,9 @@ DevKernel is the meta-developer operating system (MyOS) orchestrating autonomous
 - [[Adapter Pattern]]
 - [[CQRS Pattern]]
 - [[Universal Agent Adapter Pattern]]
+- [[Vault Path Resolution Invariant]]
+- [[Documentation Onboarding Flow]]
 
 ## Session History
+- [[[DEV] 2026-11-10 - BrewedOps 3-Layer Architecture and System Diagrams]]
 - [[[DEV] 2026-10-27 - Multi-Agent Architecture and Knowledge Codification]]
