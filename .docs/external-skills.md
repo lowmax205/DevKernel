@@ -32,3 +32,7 @@ reject inputs on native Windows because O_NOFOLLOW/O_NONBLOCK protections are
 unavailable; use a supported Linux runtime for full audits. Guidance mode remains
 available. Never bypass validators or report an unvalidated full audit as verified.
 See https://github.com/cloudflare/security-audit-skill/issues/117.
+
+## shadcn (optional)
+
+The source checkout bundles the third-party shadcn/ui skill in `MyOS/_meta/global-skills/shadcn/` (provenance in its `UPSTREAM.md`) for repos that use shadcn/ui and Tailwind; it needs a `components.json`. It is not DevKernel-owned and is excluded from the starter export allowlist. Install it from upstream with `npx skills add shadcn/ui` if you need it elsewhere.

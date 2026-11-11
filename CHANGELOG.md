@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Optional third-party `shadcn` skill vendored in `MyOS/_meta/global-skills/shadcn` (with `UPSTREAM.md` provenance) for shadcn/ui + Tailwind repos; excluded from the starter export allowlist.
 - **Antigravity Lifecycle Hooks (.agents/hooks.json & MyOS/_meta/agy_memory_hook.py)**: Automatic SessionStart project card/session injector and transient PreInvocation federated graph context capsule for AI pair programming.
 - **Starter Hooks Template (
 epo-agents-starter/hooks.json)**: Out-of-the-box lifecycle hook configuration for newly scaffolded repositories.
